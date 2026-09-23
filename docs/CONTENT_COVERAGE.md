@@ -1,6 +1,7 @@
 # Implemented content coverage
 
 Generated from the authored catalog. This maps implementation locations, not independent language-quality certification. Audio IDs identify required assets; runtime availability depends on reviewed files in private storage.
+See [educational audit](EDUCATIONAL_AUDIT.md) for the requirement-to-instruction/exit-rubric review, repaired gaps and remaining quality limits. Current checkpoints are profiled separately on Progress; a missing modality never becomes a zero or a passed stage.
 
 ## Course map
 
@@ -19,6 +20,10 @@ Generated from the authored catalog. This maps implementation locations, not ind
 | B2-10 | B2-10-L01 — Summarize for the person who needs it | Select relevant information without inventing facts. / Paraphrase causes and recommendations for an audience. | B2-10-L01-Q04, B2-10-L01-P01 | mediation, connectors | None |
 | B2-11 | B2-11-L01 — Read for the decision, then for the evidence | Separate gist, detail and supported inference. / Find exceptions and deadlines in a workplace notice. | B2-11-L01-Q04, B2-11-L01-P01 | comprehension, numbers | None |
 | B2-12 | B2-12-L01 — Make the move toward C1 | Improve precision without unnecessary complexity. / Use a checkpoint to identify remaining repairs. | B2-12-L01-Q04, B2-12-L01-P01 | editing, connectors, email | None |
+| B2-12 | B2-12-L02 — Check the foundations across twenty decisions | Check twenty distinct grammar decisions without hints. / Write a usable customer email while preserving uncertainty. | B2-12-L02-Q20, B2-12-L02-P01 | articles, verbs, connectors, email, negation, quantifiers | None |
+| B2-12 | B2-12-L03 — Check unfamiliar reading separately | Retrieve details and distinguish a request from approval. / Explain two exceptions without adding workplace assumptions. | B2-12-L03-Q10, B2-12-L03-P01 | comprehension, mediation | None |
+| B2-12 | B2-12-L05 — Check bridge speaking with follow-ups | Speak from new facts for three minutes. / Respond to follow-ups and preserve conditions. | B2-12-L05-Q03, B2-12-L05-P01 | conversation, numbers, mediation | None |
+| B2-12 | B2-12-L04 — Check bridge listening from actual sound | Extract the corrected details and action from actual audio. / Distinguish a proposal from an agreement. / Bridge coaching target: seven of ten, with sound evidence kept separate from reading. | B2-12-L04-Q10, B2-12-L04-P01 | comprehension, mediation, numbers | audio-bridge-checkpoint-01 |
 | C1-01 | C1-01-L01 — Show how the work flows | Explain a process with actors, conditions and sequence. / Choose active or passive according to focus. | C1-01-L01-Q04, C1-01-L01-P01 | clauses, passive, editing | None |
 | C1-01 | C1-01-L02 — Move between noun style and verb style | Expand nominal phrases into clear clauses. / Preserve actors and logical relations during compression. | C1-01-L02-Q04, C1-01-L02-P01 | clauses, passive, editing | None |
 | C1-01 | C1-01-L03 — Use professional collocations naturally | Choose useful functional verb phrases. / Replace inflated noun style where a simple verb is clearer. | C1-01-L03-Q04, C1-01-L03-P01 | clauses, passive, editing | None |
@@ -71,6 +76,9 @@ Generated from the authored catalog. This maps implementation locations, not ind
 | C1-17 | C1-17-L03 — A changed collection time | Extract the corrected details and action from actual audio. / Distinguish a proposal from an agreement. | C1-17-L03-Q05, C1-17-L03-P01 | comprehension, mediation, numbers | audio-phone-01 |
 | C1-18 | C1-18-L01 — Edit an authentic-looking rough draft | Separate real errors from optional C1 alternatives. / Revise for meaning, cohesion, government and register. | C1-18-L01-Q04, C1-18-L01-P01 | conversation, mediation, editing | None |
 | C1-18 | C1-18-L02 — Complete a C1 transfer checkpoint | Integrate argument, mediation and professional writing. / Identify demonstrated strengths and remaining evidence gaps. | C1-18-L02-Q04, C1-18-L02-P01 | conversation, mediation, editing | None |
+| C1-18 | C1-18-L05 — Check a C1 spoken recommendation | Speak from new facts for three minutes. / Respond to follow-ups and preserve conditions. | C1-18-L05-Q03, C1-18-L05-P01 | conversation, numbers, mediation | None |
+| C1-18 | C1-18-L04 — Check C1 listening with qualifications | Extract the corrected details and action from actual audio. / Distinguish a proposal from an agreement. / C1 comprehension coaching target: six of nine, without treating this as a whole-level verdict. | C1-18-L04-Q09, C1-18-L04-P01 | comprehension, mediation, numbers | audio-c1-checkpoint-01 |
+| C1-18 | C1-18-L03 — Check the limits of a written proposal | Separate a proposed policy, conditions and current obligations. / Reach six of nine comprehension checks before choosing targeted repairs. | C1-18-L03-Q09, C1-18-L03-P01 | comprehension, clauses, mediation | None |
 | X-01 | X-01-L01 — Plan your exam route | Separate the timetable from score destinations. / Plan a shared block without an invented compulsory split. | X-01-L01-Q03, X-01-L01-P01 | comprehension, email, editing | None |
 | X-02 | X-02-L01 — Read for constraints and evidence | Match needs to offers using all decisive constraints. / Distinguish no-match evidence from uncertainty. | X-02-L01-Q03, X-02-L01-P01 | comprehension, email, editing | None |
 | X-03 | X-03-L01 — Reply to a customer within your authority | Combine comprehension with an appropriate customer response. / Separate an approved action from an unconfirmed outcome. | X-03-L01-Q03, X-03-L01-P01 | comprehension, email, editing | None |
@@ -79,6 +87,7 @@ Generated from the authored catalog. This maps implementation locations, not ind
 | X-06 | X-06-L01 — Solve language elements through structure | Use case, verb patterns and clause structure to narrow options. / Verify the resulting meaning in the whole text. | X-06-L01-Q03, X-06-L01-P01 | comprehension, email, editing | None |
 | X-07 | X-07-L01 — Build a management statement | Develop a supported position without a memorized generic essay. / Address a strong counterargument and define an actionable proposal. | X-07-L01-Q03, X-07-L01-P01 | comprehension, email, editing | None |
 | X-08 | X-08-L01 — Present, answer, explain | Structure a short professional presentation. / Answer a follow-up and mediate another person's position. | X-08-L01-Q03, X-08-L01-P01 | conversation, pronunciation, mediation | None |
+| X-08 | X-08-L02 — Prepare all twelve public speaking themes | Develop a specific example for any public speaking theme. / Respond to an unprepared objection and preserve a partner's condition. | X-08-L02-Q03, X-08-L02-P01 | speaking-themes, conversation, mediation | None |
 | X-09 | X-09-L01 — Keep a conversation moving toward a solution | Respond to a partner and develop a joint proposal. / Agree responsibility, deadline and a fallback. | X-09-L01-Q03, X-09-L01-P01 | conversation, pronunciation | None |
 | X-10 | X-10-L01 — Turn mock evidence into the next week’s plan | Separate exposed practice from an unseen rehearsal. / Use criterion-level gaps to choose a specific repair. | X-10-L01-Q03, X-10-L01-P01 | comprehension, email, editing | None |
 | ART-01 | ART-01-L01 — Keep gender and case in separate boxes | Retrieve dictionary gender before applying a case. / Recognize article forms with several grammatical uses. | ART-01-L01-Q04, ART-01-L01-P01 | gender, articles, noun-endings, gender-patterns | None |
@@ -86,11 +95,14 @@ Generated from the authored catalog. This maps implementation locations, not ind
 | ART-03 | ART-03-L01 — Know when a clue is only a tendency | Classify gender clues by certainty and scope. / Retrieve exceptions instead of hiding them. | ART-03-L01-Q04, ART-03-L01-P01 | gender, articles, noun-endings, gender-patterns | None |
 | ART-04 | ART-04-L01 — Find the head of a compound | Use the final noun to determine compound gender. / Keep sense-dependent noun packages separate. | ART-04-L01-Q04, ART-04-L01-P01 | gender, articles, noun-endings, gender-patterns | None |
 | ART-05 | ART-05-L01 — Turn your own mistakes into retrieval practice | Separate recognition from active recall. / Use delayed new-context checks to test retention. | ART-05-L01-Q04, ART-05-L01-P01 | gender, articles, noun-endings, gender-patterns | None |
+| ART-05 | ART-05-L02 — Repair a whole noun phrase | Diagnose gender and case with separate questions. / Apply quantifiers and noun endings in an original handover. | ART-05-L02-Q04, ART-05-L02-P01 | articles, noun-endings, quantifiers, negation | None |
+| ART-05 | ART-05-L03 — Transfer your repair to a new setting | Use noun phrases in a new context without copying a correction. / Distinguish lexical senses and preserve a factual restriction. | ART-05-L03-Q04, ART-05-L03-P01 | gender, articles, noun-endings, quantifiers | None |
 | PR-01 | PR-01-L01 — Hear and produce vowel contrasts | Notice length and quality together. / Use an umlaut contrast in a new sentence. | PR-01-L01-Q03, PR-01-L01-P01 | pronunciation | audio-pronunciation-01 |
 | PR-02 | PR-02-L01 — Keep consonant contrasts intelligible | Notice ich/ach contexts and final devoicing. / Use an extended word form to compare consonants. | PR-02-L01-Q03, PR-02-L01-P01 | pronunciation | audio-pronunciation-02 |
 | PR-03 | PR-03-L01 — Put stress where the word needs it | Notice stress in prefixes and compounds. / Store stress alongside meaning and grammar. | PR-03-L01-Q03, PR-03-L01-P01 | pronunciation | audio-pronunciation-03 |
 | PR-04 | PR-04-L01 — Use sentence focus to express the contrast | Change the intended focus with stress. / Group a sentence into meaningful chunks. | PR-04-L01-Q03, PR-04-L01-P01 | pronunciation | audio-pronunciation-04 |
 | PR-05 | PR-05-L01 — Move from imitation to spontaneous fluency | Use a model for chunking without mistaking imitation for transfer. / Explain a new situation at a manageable pace. | PR-05-L01-Q03, PR-05-L01-P01 | pronunciation | audio-pronunciation-05 |
+| C2-00 | C2-00-L01 — Find your next stretch beyond C1 | Distinguish implication, reservation and evidence in a fresh source. / Synthesize contrasting positions without overstating certainty. | C2-00-L01-Q04, C2-00-L01-P01 | editing, mediation, connectors | None |
 | C2-01 | C2-01-L01 — Synthesize sources that disagree | Distinguish incompatible claims from different measures. / Build a synthesis that retains evidence limits. | C2-01-L01-Q03, C2-01-L01-P01 | mediation, editing, conversation | None |
 | C2-02 | C2-02-L01 — Reframe a sensitive message for two audiences | Control implication and interpersonal effect. / Preserve responsibility while adapting register. | C2-02-L01-Q03, C2-02-L01-P01 | mediation, editing, conversation | None |
 | C2-03 | C2-03-L01 — Defend a proposal and revise its limits | Engage with the strongest opposing argument. / State conditions under which you would revise your conclusion. | C2-03-L01-Q03, C2-03-L01-P01 | mediation, editing, conversation | None |
@@ -106,8 +118,8 @@ Generated from the authored catalog. This maps implementation locations, not ind
 
 ## Internal learning resources
 
-- 125 lexical packages; 125 native three-task retrieval packages, each linked from the vocabulary browser.
-- 21 reference articles: adjectives, articles, clauses, comprehension, connectors, conversation, editing, email, error-categories, gender-patterns, gender, mediation, noun-endings, noun-lookup, numbers, passive, prepositions, pronouns, pronunciation, verbs, word-order.
+- 139 lexical packages; 139 native three-task retrieval packages, each linked from the vocabulary browser.
+- 24 reference articles: adjectives, articles, clauses, comprehension, connectors, conversation, editing, email, error-categories, gender-patterns, gender, mediation, negation, noun-endings, noun-lookup, numbers, passive, prepositions, pronouns, pronunciation, quantifiers, speaking-themes, verbs, word-order.
 - English explanations, German examples, exact declension tables and semantic step diagrams are embedded in lessons.
 - Gender patterns distinguish productive suffixes, tendencies, exceptions, compound heads and lexical senses.
 

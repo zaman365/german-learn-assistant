@@ -44,12 +44,12 @@ Course scripts, including pronunciation models, live in content/audio.ts. Each o
 Generate a selected clip:
 
     pnpm audio generate audio-phone-01
-    pnpm audio generate MOCK-01-A01
+    pnpm audio generate MOCK-01-v2-A01
 
 Existing IDs are not regenerated automatically. Output remains private and pending_review. Listen to the complete clip through your private storage client or local media path. Check German, names, numbers, speaker distinctions, pace and fidelity. Dialogue role labels must not distort the task. Revise/version an unsuitable asset. After review:
 
     AUDIO_REVIEW_CONFIRMED=true pnpm audio approve audio-phone-01
-    AUDIO_REVIEW_CONFIRMED=true pnpm audio approve MOCK-01-A01
+    AUDIO_REVIEW_CONFIRMED=true pnpm audio approve MOCK-01-v2-A01
 
 After all 14 mock clips are approved:
 
@@ -124,3 +124,34 @@ CI uses a dedicated PostgreSQL service and synthetic test credentials, then exer
 Before personal production use, record real model calls, microphone behavior, S3 ownership/deletion, worker recovery, complete audio review and a staging restore. Review German and mock difficulty independently. Record each outcome in IMPLEMENTATION_STATUS.md. An unrun check is not a success.
 
 The build command removes environment files copied by Next.js into standalone output. Supply secrets at runtime. Do not distribute the local development database or recording directory.
+
+## Rehearsal and staging additions (23 September 2026)
+
+`deploy/compose.staging.yaml` runs the tested web and worker images against externally supplied PostgreSQL and private S3. Copy `deploy/staging.env.example` outside the repository, fill it through the host's secret management, and restrict its file permissions. Set `WEB_IMAGE` and `WORKER_IMAGE` to tested image digests and `STAGING_ENV_FILE` to that protected file. Route an HTTPS reverse proxy to the loopback web port and set APP_URL to its exact origin. The worker has no public port. Supply OWNER_PASSWORD only to the one-off owner CLI, then remove that bootstrap environment.
+
+    docker compose -f deploy/compose.staging.yaml run --rm worker node --import tsx scripts/migrate.ts
+    docker compose -f deploy/compose.staging.yaml run --rm worker node --import tsx scripts/seed.ts
+    docker compose -f deploy/compose.staging.yaml up -d
+
+The root Compose file is for disposable local use. Its previously unavailable Docker Hub MinIO images have been replaced by pinned Quay images used in the rehearsal. Those frozen test images are not a production-storage recommendation; staging/production use an operated private S3 service with current security maintenance. `docker-compose` can substitute for `docker compose` where only the standalone client is installed.
+
+For a disposable recovery test, set REHEARSAL_ONLY=true, use an OWNER_EMAIL ending in @example.test, create that synthetic owner, and omit provider credentials. Set REHEARSAL_RECEIPT to a protected local JSON path. Run the following against the disposable database and S3 bucket:
+
+    node --import tsx scripts/rehearsal.ts prepare
+    # Start the worker and let its startup maintenance and queue processing finish.
+    node --import tsx scripts/rehearsal.ts check
+
+The script records a test tone, never speech evidence. It checks orphaned queued work, interrupted running work, stale uploads, retention, deletion retry, signed expiry, owner isolation and saved lesson/exam/export data. Do not run it against a real learner account. If a check fails while the worker is still starting, inspect the worker log before retrying; do not re-run prepare and create more fixtures.
+
+Stop web and worker before taking the paired full backup. Use the pg_dump command above and snapshot objects into a new private directory:
+
+    node --import tsx scripts/storage-snapshot.ts backup /private/backup/objects
+
+The tool refuses an existing backup directory and records SHA-256 checksums without credentials. Treat the directory and database dump as private learner data: encrypt them using the deployment's backup facility. Restore the dump into a separate empty staging database, create a separate empty private bucket, switch the environment to those restored services and use:
+
+    node --import tsx scripts/storage-snapshot.ts restore /private/backup/objects
+    node --import tsx scripts/rehearsal.ts restore-check
+
+`restore-check` applies only to the synthetic receipt from this rehearsal and deletes its restored test recording after verifying it. For a real backup, verify login, original saved work/exam/export and authorized private playback/deletion manually instead. Start the restored web instance with the matching authentication secret and its own APP_URL. The browser suite can target a running standalone container with E2E_EXTERNAL_SERVER=true and APP_URL set to that origin.
+
+Current mock audio IDs include the script version, for example `MOCK-01-v2-A01`; see the versioned definitions in `content/exams` for the current IDs. Archived v1 media/definitions are retained for old attempts. Generate and approve only the intended version. No script approval or media-review flag was set by this implementation pass.

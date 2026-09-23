@@ -13,6 +13,7 @@ const lines = [
   "# Implemented content coverage",
   "",
   "Generated from the authored catalog. This maps implementation locations, not independent language-quality certification. Audio IDs identify required assets; runtime availability depends on reviewed files in private storage.",
+  "See [educational audit](EDUCATIONAL_AUDIT.md) for the requirement-to-instruction/exit-rubric review, repaired gaps and remaining quality limits. Current checkpoints are profiled separately on Progress; a missing modality never becomes a zero or a passed stage.",
   "",
   "## Course map",
   "",

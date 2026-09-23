@@ -1,53 +1,33 @@
 # Implementation record
 
-Branch: codex/build-learning-copilot. Updated 23 September 2026.
+Branch: `codex/build-learning-copilot`. Updated 23 September 2026.
 
-**A runnable development build is implemented. Production course/exam verification is not complete.** No public deployment or infrastructure provisioning has been performed.
+**The implementation and local service rehearsal have advanced; independent educational review, real AI/audio acceptance and official-rule clarification still block a verified production course/exam release.** No production deployment, paid infrastructure, merge or public release was performed.
 
-## Milestones
+## Remaining gates: implemented / verified / blocked
 
-| Milestone | Implemented | Open acceptance evidence |
-|---|---|---|
-| M1 — First journey | Owner login, onboarding, diagnostics, real bridge content, autosave, immutable submissions, errors, reviews and progress | Personal-device and deployment-host checks; isolated desktop/mobile browser CI passed |
-| M2 — Curriculum | 89 authored lessons; all 12 bridge and 18 C1 modules; 10 exam modules; article/pronunciation tracks; 125 lexical entries with native retrieval; references, tables and diagrams | Independent German/content review and learner validation |
-| M3 — Copilot | Structured text rubric, bounded tutor, correction taxonomy, superseding evaluations, quota/idempotency, daily/weekly recommendations and explicit retries | Real configured-model calls and recovery checks; planner calibration |
-| M4 — Audio | Microphone capture, WAV validation, private playback/deletion/retention, transcription and sound adapters; original scripts | Generate/review recordings; real microphone, model, S3 and worker tests |
-| M5 — Exam | Three distinct 60-task sets and 14 listening scripts each; section practice, full paper-reference rehearsal engine, continuous timeline composer, spoken partner, whole-performance coaching and half-point scoring | Official rule clarification, genre/difficulty/timeline review and a real full run; verified-simulation mode blocked |
-| M6 — Release | Four C2 starter lessons, JSON/CSV/summary export, merge/legacy import, recovery, Docker/Compose, CI/Playwright and runbook | Container/worker/S3 smoke checks, staging restore and accessibility review; native PostgreSQL/browser CI passed |
+| Gate | Implemented | Verified with evidence | Blocked / remaining |
+|---|---|---|---|
+| 1. Educational coverage | 100 lessons, five diagnostic rounds, 469 objective course/diagnostic items, 139 lexical packages and 24 internal references. Added mixed/multimodal checkpoints, 415-word summary source, C2 entry diagnostic, lexical senses, quantifiers/negation and all twelve speaking themes. | Complete catalog/exit inventory and agent review in [EDUCATIONAL_AUDIT](EDUCATIONAL_AUDIT.md); referential/schema validation and generated [CONTENT_COVERAGE](CONTENT_COVERAGE.md). | No independent qualified German review, learner calibration or exam difficulty validation. The audit identifies remaining boundaries instead of treating counts as proficiency. |
+| 2. Evidence-based learning and interface | Separate-day/family repair resolution; explicit gender/case probes; contradiction-driven placement revocation; target-skill mastery; fresh retention after recurrence; unseen repair selection; completed-plan preservation and review cap. Per-component checkpoint profile. German navigation/controls/statuses/recommendations and English instruction. | 33 unit and 15 native PostgreSQL integration tests. English/German authenticated browser journeys at 390, 768 and 1440 px, including keyboard resource menu, reduced motion, overflow, saved lesson/export and exam resume. Screenshot inspection at mobile/tablet widths. | Full assistive-technology and personal-device evaluation; pedagogical calibration of recommendation choices. Some authored explanatory/help prose remains English by design. |
+| 3. Original mocks and simulator fidelity | All three mocks v2 use newspaper teasers and four genuine matching conversations with six shared statements. V1 remains available for saved runs. Versioned audio IDs/timelines; original timers, hidden keys and reserved set retained. | Version-pinning integration regression; timer/owner/idempotence tests and half-point scoring tests; browser exam autosave/reload. | Independent German review of every text, distractor, length and dialogue; real complete spoken/timeline rehearsal. Quality flags remain, and verified-simulation mode is unavailable. |
+| 4. Official DTB rules | Rechecked primary telc model, administration/scoring pages and digital transition announcement. No definition change was justified. | [Dated source/page findings](OFFICIAL_RULE_RECHECK.md). Phone-note information remains four points all-or-nothing; shared language criteria remain scored once. | Exact component pass-boundary inclusivity and applicable navigation remain unresolved; BAMF handbook retrieval returned 403. DTB-specific digital details are unpublished in the checked source. No official verdict or pass probability. |
+| 5. Real AI and audio | Structured text/audio adapters, saved attempts, explicit retry/quota behavior, private recording paths, 12 course scripts and 42 current mock scripts. | Contract/evidence and owner-isolation regression tests; real S3 operations on a synthetic test tone. Queue failure/recovery checks never contacted a provider. | No OPENAI_API_KEY or configured model access/paid-call authorization. Writing/mediation, malformed/refused/timed-out real calls, transcription, actual speech analysis, TTS, oral partner, all clip listening reviews and three complete timeline reviews remain unrun. Real secure-origin desktop/mobile microphone checks remain unrun. |
+| 6. Deployment and recovery | Docker web/worker targets, pinned disposable storage images, protected external-service staging configuration, private object snapshot/checksum tool, repeatable synthetic rehearsal script. Stale uploads are tombstoned; interrupted object deletions retry. | Both Docker targets built. Actual PostgreSQL 17 and private MinIO: migration/seed/reseed, standalone login, queue recovery, interrupted-upload cleanup, retention, owner-bound playback and expired-link rejection. Quiesced DB/object backup restored into separate PostgreSQL/MinIO services; original saved lesson, exam, export and object checksum survived; restored deletion and authenticated browser journeys passed. | Production host, TLS/proxy configuration, real devices/provider acceptance and operational backup encryption/secret-manager setup. Disposable local MinIO is not the proposed production storage service. |
 
-Course totals exclude five diagnostic rounds and 125 separate vocabulary practice packages. Course/diagnostic objective items: 390. Official exam papers/audio are not redistributed.
+## Verification evidence
 
-## Verification recorded locally
+- `pnpm install --frozen-lockfile`, `pnpm content:validate`, `pnpm typecheck`, `pnpm lint`, `pnpm format:check`, `pnpm test`, `pnpm test:integration` and `pnpm build` passed with Node 24 and pnpm 11.19.0.
+- Unit: 33 tests across 7 files. Integration: 15 tests against native PostgreSQL, including pinned lesson/mock versions, draft sequence continuity, owner-scoped probes and later placement contradictions. Existing tests cover assistance, import provenance/deduplication, recording isolation, explicit retries, stale saves and authoritative deadlines.
+- Clean migration, seed and idempotent reseed passed in both an isolated native database and a fresh container PostgreSQL database. An earlier development database correctly rejected a changed unpublished mock-v2 fixture hash; a separate clean browser database was used, preserving the original test data rather than weakening collision checks.
+- Playwright: six journeys (English saved-work flow and German/accessibility flow at each width) passed with native PostgreSQL and again against the standalone Docker web/S3 stack. Two further desktop journeys passed against the restored instance. Repeated test logins honor the real server rate-limit retry window.
+- `scripts/rehearsal.ts prepare/check/restore-check` used only a synthetic owner and generated 440 Hz tone. It verified a recovered queued job failed before any provider call, an ambiguous interrupted running job was not replayed, and stale/retained/deleting objects were removed. Tone transport is not speech, listening or microphone acceptance.
+- Matching database/custom-format dump and object snapshot were made with web/worker stopped. Restore used separate containers, volumes, database, bucket and loopback ports. The same authentication secret enabled restored owner login. The original recording's checksum matched before deletion.
+- Local runtime, credentials, dumps, object bytes, test traces and screenshots remain under ignored `.data` / `test-results`; none are committed. Standalone output excludes environment files.
+- CI now also checks formatting and idempotent seeding, and includes the tablet/German browser journeys. See the [branch workflow](https://github.com/zaman365/german-learn-assistant/actions/workflows/ci.yml?query=branch%3Acodex%2Fbuild-learning-copilot) and draft PR checks for the remote result.
 
-- TypeScript and ESLint passed during implementation.
-- Production Next.js build passed with the application/API routes after clearing a corrupt generated Turbopack cache. Standalone output is scrubbed of environment files; the final package and browser bundles passed the local secret-file/content check.
-- 26 unit checks passed for mastery/review/date policies, grading, AI evidence validation, WAV handling, mock counts/score destinations/half-points, incomplete readiness, legacy claims and CSV quoting.
-- 11 integration checks passed on disposable PGlite: retries, owner isolation, stale drafts, assistance, error idempotency, completion/reopen, deadlines/expiry, recording ownership/deletion, import/deduplication, bounded spoken turns, support markers and the empty legacy template.
-- Clean isolated migration, content seed and idempotent reseed passed for the full catalog.
-- The public login screen rendered in the managed browser. Authenticated browser, actual microphone and real provider calls have not been verified here.
-- [GitHub Actions run 35864493243](https://github.com/zaman365/german-learn-assistant/actions/runs/35864493243) passed on remote commit 38d587a687ea9a5b5d9e03791651b7bf80f81feb: native PostgreSQL integration, migration/seed, production build and authenticated desktop/mobile Playwright journeys with synthetic credentials.
-- Containers, production worker, S3, real provider calls, microphone capture and disaster-recovery restore have not been verified. The browser CI result does not establish those gates.
+## Evidence boundaries and release inputs
 
-## Evidence boundaries
+Published V1 content, historical attempts and saved exams are retained. A successful narrow repair is not broad mastery; broad demonstration needs separate days/families, and retention needs a later transfer check. Checkpoint components are independent coaching targets, not certification. Recognizing a form, reading a transcript or saving an unassessed recording cannot create productive or sound mastery.
 
-Configuration is not a successful provider call. A transcript is not pronunciation evidence. A script without reviewed sound is not listening evidence. Completion, independent demonstration, delayed retention and exam readiness are separate.
-
-The original matching texts and short audio scripts still require genre, length and interaction review against the source format; their task counts alone do not establish authentic exam difficulty.
-
-The versioned paper-reference definition has explicit verification/applicability gaps. Exact pass-boundary inclusivity and digital details need authoritative clarification. Full rehearsal remains original coaching with integrity/quality flags, without official pass/fail or a probability of passing.
-
-## Technical decisions
-
-Node 24 / pnpm 11.19.0; Next 16.3.6 / React 19.3.0; Drizzle 0.45.3; Better Auth 1.7.5; OpenAI SDK 7.21.0; pg-boss 12.33.4. Exact versions are locked.
-
-TypeScript 6.0.3 is pinned because the installed TypeScript-ESLint parser rejects TypeScript 7. The lint compatibility layer accommodates older React plugin rule APIs.
-
-Production requires PostgreSQL and private S3-compatible storage. PGlite is a single-process development fallback. Seed transactions preserve immutable content and learner data. No real attempts, recordings, passwords or provider credentials are committed.
-
-## Release actions
-
-1. Keep native PostgreSQL/browser CI passing as the implementation evolves; the run above established the initial baseline.
-2. Configure models, private storage and worker; verify real text, transcription, sound and partner calls.
-3. Generate/review original audio clips and full mock timelines.
-4. Review German and difficulty; resolve official rule gates and version changed definitions.
-5. Verify staging deployment, real microphone behavior and full restore before personal production use.
+To continue external acceptance, supply configured text/transcription/speech/sound model access with an authorized test budget, a qualified German reviewer, and the intended secure staging origin/devices. Resolve the named DTB rule ambiguities from applicable primary evidence before enabling any official evaluator. Use [RUNBOOK](RUNBOOK.md) and `deploy/compose.staging.yaml` for the concrete staging configuration; production remains a separate release decision.

@@ -1,0 +1,29 @@
+# Bring your own PostgreSQL, private S3 bucket and HTTPS reverse proxy.
+# No infrastructure is provisioned. Supply immutable image digests at release time.
+name: german-learning-staging
+services:
+  web:
+    image: ${WEB_IMAGE:?Set the tested web image digest}
+    env_file: ${STAGING_ENV_FILE:?Set the protected runtime env file}
+    environment:
+      NODE_ENV: production
+      STORAGE_DRIVER: s3
+      WORKER_ENABLED: "true"
+    ports: ["127.0.0.1:${STAGING_HTTP_PORT:-4173}:4173"]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+  worker:
+    image: ${WORKER_IMAGE:?Set the tested worker image digest}
+    env_file: ${STAGING_ENV_FILE:?Set the protected runtime env file}
+    environment:
+      NODE_ENV: production
+      STORAGE_DRIVER: s3
+      WORKER_ENABLED: "true"
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped

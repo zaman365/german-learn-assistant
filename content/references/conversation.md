@@ -2,16 +2,16 @@
 
 Start with the communicative purpose, then invite a response. Long uninterrupted speech is not evidence of interactive skill.
 
-| Move | Professional phrase |
-|---|---|
-| Enter the discussion | Darf ich dazu kurz etwas ergänzen? |
-| Hold a turn briefly | Einen Gedanken möchte ich noch zu Ende führen. |
-| Clarify meaning | Was verstehen Sie in diesem Zusammenhang unter „zeitnah“? |
-| Check a number | Meinen Sie fünfzehn oder fünfzig? |
-| Rephrase | Anders ausgedrückt: … |
+| Move                  | Professional phrase                                                  |
+| --------------------- | -------------------------------------------------------------------- |
+| Enter the discussion  | Darf ich dazu kurz etwas ergänzen?                                   |
+| Hold a turn briefly   | Einen Gedanken möchte ich noch zu Ende führen.                       |
+| Clarify meaning       | Was verstehen Sie in diesem Zusammenhang unter „zeitnah“?            |
+| Check a number        | Meinen Sie fünfzehn oder fünfzig?                                    |
+| Rephrase              | Anders ausgedrückt: …                                                |
 | Disagree respectfully | Den Vorteil sehe ich. Allerdings bin ich bei … noch nicht überzeugt. |
-| Invite the partner | Wie schätzen Sie das aus Ihrer Sicht ein? |
-| Confirm an agreement | Wir halten also fest: … übernimmt … bis … |
+| Invite the partner    | Wie schätzen Sie das aus Ihrer Sicht ein?                            |
+| Confirm an agreement  | Wir halten also fest: … übernimmt … bis …                            |
 
 **Sie/du** is a relationship choice, not an automatic measure of politeness. Keep the agreed form consistent. Informal workplace speech can be respectful; formal language can still be aggressive. Modal particles such as **doch, mal, ja, eben** depend on context and intonation. **Könnten Sie bitte kurz …?** is a safer starting point than inserting particles indiscriminately.
 

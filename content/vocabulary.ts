@@ -1,7 +1,7 @@
 import { lexicalSchema, type LexicalEntry } from "../src/content/types";
 
 // Each row is explicitly authored. The compact storage format is expanded and validated before publication.
-const nouns=`
+const nouns = `
 firma|Firma|die|Firmen|company|FIR-ma|bei einer Firma arbeiten|Die Firma entwickelt Software.|The company develops software.
 vertrag|Vertrag|der|Verträge|contract|Ver-TRAG|einen Vertrag unterschreiben|Wir unterschreiben den Vertrag morgen.|We will sign the contract tomorrow.
 angebot|Angebot|das|Angebote|offer; quotation|AN-ge-bot|ein Angebot prüfen|Bitte prüfen Sie unser Angebot.|Please review our offer.
@@ -63,7 +63,7 @@ bewerbung|Bewerbung|die|Bewerbungen|job application|Be-WER-bung|eine Bewerbung e
 stelle|Stelle|die|Stellen|position; job vacancy|STEL-le|sich um eine Stelle bewerben|Die Stelle ist ab sofort zu besetzen.|The position is available immediately.
 fuhrungskraft|Führungskraft|die|Führungskräfte|manager; leader|FÜH-rungs-kraft|eine Führungskraft unterstützen|Eine gute Führungskraft hört aufmerksam zu.|A good leader listens carefully.
 `.trim();
-const verbs=`
+const verbs = `
 schicken|schicken|send|SCHI-cken|schickte · hat geschickt; jemandem etwas schicken|ein Angebot schicken|Wir schicken Ihnen das Angebot heute.|We will send you the offer today.
 bestatigen|bestätigen|confirm|be-STÄ-ti-gen|bestätigte · hat bestätigt; etwas bestätigen|einen Termin bestätigen|Bitte bestätigen Sie den Termin.|Please confirm the appointment.
 verschieben|verschieben|postpone; move|ver-SCHIE-ben|verschob · hat verschoben; etwas verschieben|eine Besprechung verschieben|Wir müssen die Besprechung verschieben.|We need to postpone the meeting.
@@ -80,15 +80,69 @@ ubernehmen|übernehmen|take over; assume|über-NEH-men|übernahm · hat übernom
 einhalten|einhalten|comply with; meet|EIN-hal-ten|hielt ein · hat eingehalten; separable; etwas einhalten|eine Frist einhalten|Wir können die Frist einhalten.|We can meet the deadline.
 erhalten|erhalten|receive; preserve|er-HAL-ten|erhielt · hat erhalten; etwas erhalten|eine Bestätigung erhalten|Sie erhalten morgen eine Bestätigung.|You will receive a confirmation tomorrow.
 `.trim();
-const adjectives=`
+const adjectives = `
 verbindlich|verbindlich|binding; definite|ver-BIND-lich|ein verbindliches Angebot|Wir benötigen eine verbindliche Zusage.|We need a firm commitment.
 zuverlassig|zuverlässig|reliable|zu-ver-LÄS-sig|eine zuverlässige Lieferung|Unsere Partnerin arbeitet zuverlässig.|Our partner works reliably.
 voraussichtlich|voraussichtlich|expected; probably|vo-RAUS-sicht-lich|der voraussichtliche Termin|Die Ware kommt voraussichtlich am Freitag.|The goods are expected to arrive on Friday.
 geeignet|geeignet|suitable|ge-EIG-net|für die Aufgabe geeignet|Das Material ist für diesen Zweck geeignet.|The material is suitable for this purpose.
 zustandig|zuständig|responsible (assigned remit)|ZU-stän-dig|für den Versand zuständig|Wer ist für den Versand zuständig?|Who is responsible for shipping?
 `.trim();
-export const vocabulary:LexicalEntry[]=[
- ...nouns.split("\n").map(line=>{const[id,word,article,plural,meaning,stress,phrase,example,translation]=line.split("|");return lexicalSchema.parse({id,word,type:"noun",article,plural,meaning,stress,phrase,example,translation,register:"neutral / professional"});}),
- ...verbs.split("\n").map(line=>{const[id,word,meaning,stress,forms,phrase,example,translation]=line.split("|");return lexicalSchema.parse({id,word,type:"verb",meaning,stress,forms,phrase,example,translation,register:"neutral / professional"});}),
- ...adjectives.split("\n").map(line=>{const[id,word,meaning,stress,phrase,example,translation]=line.split("|");return lexicalSchema.parse({id,word,type:"adjective",meaning,stress,phrase,example,translation,register:"neutral / professional"});}),
+export const vocabulary: LexicalEntry[] = [
+  ...nouns.split("\n").map((line) => {
+    const [
+      id,
+      word,
+      article,
+      plural,
+      meaning,
+      stress,
+      phrase,
+      example,
+      translation,
+    ] = line.split("|");
+    return lexicalSchema.parse({
+      id,
+      word,
+      type: "noun",
+      article,
+      plural,
+      meaning,
+      stress,
+      phrase,
+      example,
+      translation,
+      register: "neutral / professional",
+    });
+  }),
+  ...verbs.split("\n").map((line) => {
+    const [id, word, meaning, stress, forms, phrase, example, translation] =
+      line.split("|");
+    return lexicalSchema.parse({
+      id,
+      word,
+      type: "verb",
+      meaning,
+      stress,
+      forms,
+      phrase,
+      example,
+      translation,
+      register: "neutral / professional",
+    });
+  }),
+  ...adjectives.split("\n").map((line) => {
+    const [id, word, meaning, stress, phrase, example, translation] =
+      line.split("|");
+    return lexicalSchema.parse({
+      id,
+      word,
+      type: "adjective",
+      meaning,
+      stress,
+      phrase,
+      example,
+      translation,
+      register: "neutral / professional",
+    });
+  }),
 ];

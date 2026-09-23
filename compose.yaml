@@ -1,0 +1,69 @@
+# Local development only. All exposed ports bind to loopback.
+name: german-learning
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_USER: german
+      POSTGRES_PASSWORD: local-development-only
+      POSTGRES_DB: german
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: [postgres-data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U german -d german"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  storage:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: local-minio
+      MINIO_ROOT_PASSWORD: local-development-only
+    ports: ["127.0.0.1:9000:9000", "127.0.0.1:9001:9001"]
+    volumes: [media-data:/data]
+  bucket:
+    image: minio/mc:latest
+    depends_on: [storage]
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        until mc alias set local http://storage:9000 local-minio local-development-only; do sleep 2; done
+        mc mb --ignore-existing local/german-private
+  web:
+    profiles: [app]
+    build: { context: ., target: web }
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://german:local-development-only@db:5432/german
+      S3_ENDPOINT: http://storage:9000
+      S3_BUCKET: german-private
+      S3_ACCESS_KEY_ID: local-minio
+      S3_SECRET_ACCESS_KEY: local-development-only
+      STORAGE_DRIVER: s3
+      WORKER_ENABLED: "true"
+    ports: ["127.0.0.1:4173:4173"]
+    depends_on:
+      db: { condition: service_healthy }
+      bucket: { condition: service_completed_successfully }
+  worker:
+    profiles: [app]
+    build: { context: ., target: worker }
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://german:local-development-only@db:5432/german
+      S3_ENDPOINT: http://storage:9000
+      S3_BUCKET: german-private
+      S3_ACCESS_KEY_ID: local-minio
+      S3_SECRET_ACCESS_KEY: local-development-only
+      STORAGE_DRIVER: s3
+      WORKER_ENABLED: "true"
+    depends_on:
+      db: { condition: service_healthy }
+      bucket: { condition: service_completed_successfully }
+volumes:
+  postgres-data:
+  media-data:

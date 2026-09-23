@@ -1,12 +1,12 @@
 # Complex clauses and compact noun phrases
 
-| Relationship | Clause | Compact alternative |
-|---|---|---|
-| Cause | weil die Lieferung verspätet ist | wegen der verspäteten Lieferung |
-| Concession | obwohl die Kosten steigen | trotz steigender Kosten |
-| Condition | wenn die Leitung zustimmt | bei Zustimmung der Leitung |
-| Time | nachdem die Prüfung abgeschlossen wurde | nach Abschluss der Prüfung |
-| Purpose | damit Fehler vermieden werden | zur Vermeidung von Fehlern |
+| Relationship | Clause                                  | Compact alternative             |
+| ------------ | --------------------------------------- | ------------------------------- |
+| Cause        | weil die Lieferung verspätet ist        | wegen der verspäteten Lieferung |
+| Concession   | obwohl die Kosten steigen               | trotz steigender Kosten         |
+| Condition    | wenn die Leitung zustimmt               | bei Zustimmung der Leitung      |
+| Time         | nachdem die Prüfung abgeschlossen wurde | nach Abschluss der Prüfung      |
+| Purpose      | damit Fehler vermieden werden           | zur Vermeidung von Fehlern      |
 
 The alternatives are not automatic word-for-word substitutions. Retain tense, actor and logical scope when those matter. Nominalization often uses a genitive attribute or prepositional phrase. When it hides a responsible actor, a verbal clause is clearer.
 

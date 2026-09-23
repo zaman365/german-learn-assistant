@@ -60,7 +60,7 @@ These tables preserve the numeric model in the supplied archive, checked against
 
 Criteria II–IV are each rated **once across the two extended texts**. Do not score those criteria for each text and sum them twice. The ordered language bands represent stronger C1, C1, B2 and below B2 performance in the source; criterion I uses its separate A–D task descriptors. A standalone text can receive practice feedback, but it cannot alone produce the full joint writing score.
 
-Phone-note aspects use the task's correct/incorrect answer rules; their weights are not a license to invent a generic partial-credit ladder. Publish original task keys with required facts and accepted formulations. Keep task-specific uncertainty explicit before scoring it. Word-count goals in lessons are coaching guidance, not an invented official minimum.
+The phone note has four binary aspects: names, contact, complete information, and action. Information is one all-or-none four-point aspect, not four independently scored one-point items (official model, scoring explanation p. 40 and table p. 48). Phone-note aspects use the task's correct/incorrect answer rules; their weights are not a license to invent a generic partial-credit ladder. Publish original task keys with required facts and accepted formulations. Keep task-specific uncertainty explicit before scoring it. Word-count goals in lessons are coaching guidance, not an invented official minimum.
 
 ### Speaking
 

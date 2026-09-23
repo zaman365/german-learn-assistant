@@ -2,13 +2,13 @@
 
 Edit meaning before form. A perfectly declined phrase can still promise the wrong thing.
 
-| Pass | Questions |
-|---|---|
-| Task | Did I answer every point? Are claims supported? Are conditions preserved? |
-| Reader | Is the purpose clear? Can the reader identify the next action, owner and deadline? |
-| Cohesion | Do pronouns have clear antecedents? Do connectors express the right relationship? |
-| Form | Are finite verbs placed correctly? Do government, articles, adjectives and noun endings agree? |
-| Style | Is the register appropriate? Is a shorter verbal sentence clearer? |
+| Pass     | Questions                                                                                      |
+| -------- | ---------------------------------------------------------------------------------------------- |
+| Task     | Did I answer every point? Are claims supported? Are conditions preserved?                      |
+| Reader   | Is the purpose clear? Can the reader identify the next action, owner and deadline?             |
+| Cohesion | Do pronouns have clear antecedents? Do connectors express the right relationship?              |
+| Form     | Are finite verbs placed correctly? Do government, articles, adjectives and noun endings agree? |
+| Style    | Is the register appropriate? Is a shorter verbal sentence clearer?                             |
 
 Use natural collocations: **eine Entscheidung treffen**, **eine Maßnahme ergreifen**, **Verantwortung übernehmen**, **eine Frist einhalten**, **zur Verfügung stehen**. Avoid translating each word of an English phrase independently. A functional verb phrase can be useful, but **prüfen** is often clearer than **eine Prüfung durchführen**.
 

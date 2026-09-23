@@ -1,4 +1,84 @@
 import Link from "next/link";
-import { ArrowRight,BookOpen,RotateCcw,PenLine,MessageCircle,Headphones,Layers } from "lucide-react";
-const choices=[{href:"/practice/review",title:"Review due",description:"Retrieve scheduled targets before they fade.",icon:RotateCcw},{href:"/practice/articles",title:"Article drill",description:"Gender, case and endings in context.",icon:Layers},{href:"/practice/grammar",title:"Grammar clinic",description:"Practice a precise pattern, then use it.",icon:BookOpen},{href:"/practice/writing",title:"Writing clinic",description:"Write a useful message and review its criteria.",icon:PenLine},{href:"/practice/speaking",title:"Conversation practice",description:"Speak, listen back, and work on a clear message.",icon:MessageCircle},{href:"/practice/listening",title:"Listening practice",description:"Listen for meaning before revealing the transcript.",icon:Headphones}];
-export default function Practice(){return <><div className="page-heading"><div><span className="eyebrow">MAKE IT STICK</span><h1 style={{marginTop:12}}>A little practice, with a purpose.</h1><p className="muted">Choose a focus, or follow the recommendation on Today.</p></div></div><div className="grid-two">{choices.map(c=><Link href={c.href} key={c.href} className="card" style={{textDecoration:"none"}}><div className="card-header"><span className="activity-icon"><c.icon size={23}/></span><ArrowRight size={18}/></div><h2>{c.title}</h2><p className="muted" style={{margin:0}}>{c.description}</p></Link>)}</div></>;}
+import {
+  ArrowRight,
+  BookOpen,
+  RotateCcw,
+  PenLine,
+  MessageCircle,
+  Headphones,
+  Layers,
+} from "lucide-react";
+const choices = [
+  {
+    href: "/practice/review",
+    title: "Review due",
+    description: "Retrieve scheduled targets before they fade.",
+    icon: RotateCcw,
+  },
+  {
+    href: "/practice/articles",
+    title: "Article drill",
+    description: "Gender, case and endings in context.",
+    icon: Layers,
+  },
+  {
+    href: "/practice/grammar",
+    title: "Grammar clinic",
+    description: "Practice a precise pattern, then use it.",
+    icon: BookOpen,
+  },
+  {
+    href: "/practice/writing",
+    title: "Writing clinic",
+    description: "Write a useful message and review its criteria.",
+    icon: PenLine,
+  },
+  {
+    href: "/practice/speaking",
+    title: "Conversation practice",
+    description: "Speak, listen back, and work on a clear message.",
+    icon: MessageCircle,
+  },
+  {
+    href: "/practice/listening",
+    title: "Listening practice",
+    description: "Listen for meaning before revealing the transcript.",
+    icon: Headphones,
+  },
+];
+export default function Practice() {
+  return (
+    <>
+      <div className="page-heading">
+        <div>
+          <span className="eyebrow">MAKE IT STICK</span>
+          <h1 style={{ marginTop: 12 }}>A little practice, with a purpose.</h1>
+          <p className="muted">
+            Choose a focus, or follow the recommendation on Today.
+          </p>
+        </div>
+      </div>
+      <div className="grid-two">
+        {choices.map((c) => (
+          <Link
+            href={c.href}
+            key={c.href}
+            className="card"
+            style={{ textDecoration: "none" }}
+          >
+            <div className="card-header">
+              <span className="activity-icon">
+                <c.icon size={23} />
+              </span>
+              <ArrowRight size={18} />
+            </div>
+            <h2>{c.title}</h2>
+            <p className="muted" style={{ margin: 0 }}>
+              {c.description}
+            </p>
+          </Link>
+        ))}
+      </div>
+    </>
+  );
+}

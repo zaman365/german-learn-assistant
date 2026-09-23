@@ -1,15 +1,15 @@
 # Passive, alternatives and Konjunktiv
 
-| Function | Form | Example |
-|---|---|---|
-| Process | werden + Partizip II | Der Antrag wird geprüft. |
-| Past process | wurde + Partizip II | Der Antrag wurde geprüft. |
-| Completed process | ist + Partizip II + worden | Der Antrag ist geprüft worden. |
-| Resulting state | sein + Partizip II | Der Antrag ist geprüft. |
-| Passive with obligation | müssen + Partizip II + werden | Der Antrag muss geprüft werden. |
-| Possibility | sich lassen + infinitive | Der Fehler lässt sich beheben. |
-| Obligation/possibility, by context | sein + zu + infinitive | Die Frist ist einzuhalten. / Das Problem ist leicht zu lösen. |
-| Active obligation | haben + zu + infinitive | Die Leitung hat die Beschäftigten zu informieren. |
+| Function                           | Form                          | Example                                                       |
+| ---------------------------------- | ----------------------------- | ------------------------------------------------------------- |
+| Process                            | werden + Partizip II          | Der Antrag wird geprüft.                                      |
+| Past process                       | wurde + Partizip II           | Der Antrag wurde geprüft.                                     |
+| Completed process                  | ist + Partizip II + worden    | Der Antrag ist geprüft worden.                                |
+| Resulting state                    | sein + Partizip II            | Der Antrag ist geprüft.                                       |
+| Passive with obligation            | müssen + Partizip II + werden | Der Antrag muss geprüft werden.                               |
+| Possibility                        | sich lassen + infinitive      | Der Fehler lässt sich beheben.                                |
+| Obligation/possibility, by context | sein + zu + infinitive        | Die Frist ist einzuhalten. / Das Problem ist leicht zu lösen. |
+| Active obligation                  | haben + zu + infinitive       | Die Leitung hat die Beschäftigten zu informieren.             |
 
 An active accusative object becomes the passive subject. A dative object remains dative: **Man hilft dem Kunden → Dem Kunden wird geholfen.** There need not be a new nominative object. **Von** often introduces an actor, **durch** a means/cause, but actual wording and meaning matter.
 

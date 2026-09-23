@@ -1,12 +1,414 @@
-import { authorLesson,type LessonDraft } from "./authoring";
-const rubric=["Fulfils the task and preserves every relevant source condition.","Organizes information for the stated audience.","Uses the target grammar and collocations accurately.","Uses precise, appropriately qualified professional language."];
-const base={references:["clauses","passive","editing"],vocabulary:["prozess","team","prufen","entscheidung"],task:{prompt:"",rubric}};
-const data:LessonDraft[]=[
-{...base,id:"C1-01-L01",title:"Show how the work flows",de:"Vom Auftrag zur Freigabe",objectives:["Explain a process with actors, conditions and sequence.","Choose active or passive according to focus."],skills:["process-description"],explanation:"A process explanation has a path and decision points. Sequence markers such as zunächst, anschließend and erst nachdem tell the reader where they are. Add a named actor when responsibility matters. Passive is useful when a stable process is the focus, but repeated anonymous passives can hide accountability. Distinguish a required precondition from a normal sequence: Nach der Prüfung is a time relation; erst nach erfolgreicher Prüfung makes success a condition. Use bevor to state what must happen earlier, and sobald for the trigger of the next step. In a diagram, label a decision with the question that determines the branch. In prose, state what happens in both cases.",example:["Erst nachdem die Fachabteilung den Bedarf bestätigt hat, gibt der Einkauf die Bestellung frei.","Purchasing approves the order only after the specialist department has confirmed the need."],steps:[{label:"Receive",detail:"Auftrag erfassen"},{label:"Check",detail:"Angaben vollständig?"},{label:"Clarify or approve",detail:"Rückfrage oder Freigabe"},{label:"Confirm",detail:"Termin mitteilen"}],reading:{title:"A new purchasing process",body:"Eingehende Bestellwünsche werden zunächst im gemeinsamen System erfasst. Die Fachabteilung prüft, ob der Bedarf begründet ist und die technischen Angaben vollständig sind. Fehlen Angaben, geht der Vorgang an die anfragende Person zurück; der Einkauf bestellt zu diesem Zeitpunkt noch nichts. Sobald alle Angaben vorliegen und die Kostenstelle bestätigt ist, prüft der Einkauf die Angebote. Bei einem Auftragswert über 5.000 Euro ist zusätzlich die Zustimmung der Bereichsleitung erforderlich. Erst nach dieser Freigabe wird die Bestellung ausgelöst. Die anfragende Person erhält anschließend eine Bestätigung mit dem voraussichtlichen Liefertermin. Bei späteren Terminänderungen informiert der Einkauf sie erneut."},tip:"Explain this process once to a new colleague and once to a manager. The colleague needs action details; the manager may need control points. Keep the threshold and incomplete-data branch in both versions. A visually tidy sequence that omits the return path is incomplete.",checks:[{prompt:"Complete: Erst ___ der Freigabe wird bestellt. Use a preposition.",answer:"nach",why:"Nach + dative expresses the required prior step."},{prompt:"Which orders need additional approval?",answer:"Orders over 5,000 euros",options:["Every order","Orders over 5,000 euros","Only incomplete orders"],why:"The threshold is über 5.000 Euro, not all orders."},{prompt:"Complete: ___ alle Angaben vorliegen, prüft der Einkauf die Angebote. Use the trigger connector.",answer:"Sobald",why:"Sobald introduces the condition's occurrence as the next step's trigger."},{prompt:"Who contacts the requester about later delivery changes?",answer:"der Einkauf",why:"The purchasing department retains responsibility for this communication."}],task:{prompt:"Write a 140–170-word process explanation for a new colleague. Include the incomplete-data branch, cost confirmation, 5,000-euro threshold and later notification. Use one active responsibility statement and one passive process statement.",rubric},reflection:"Can the colleague identify what happens when information is missing?"},
-{...base,id:"C1-01-L02",title:"Move between noun style and verb style",de:"Nach Abschluss – nachdem wir abgeschlossen haben",objectives:["Expand nominal phrases into clear clauses.","Preserve actors and logical relations during compression."],skills:["nominalization"],explanation:"Nominalization packages an event as a noun phrase: nachdem die Prüfung abgeschlossen wurde → nach Abschluss der Prüfung. It is common in headings, reports and rules. The noun often requires a genitive complement, and the surrounding preposition requires its own case. Compression can remove the actor or the timing of a verb. Restore them when readers need to act. Die Freigabe durch die Leitung preserves an actor; die Freigabe der Leitung can instead describe approval belonging to or issued by management and needs context. Do not turn every verb into a noun. Alternate a compact heading with an explicit verbal explanation. Check that cause, concession and condition remain the same relationship.",example:["Bei Überschreitung der Frist ist eine Rücksprache erforderlich. → Wenn Sie die Frist überschreiten, müssen Sie Rücksprache halten.","If you exceed the deadline, you must consult the responsible person."],table:{title:"A meaning-preserving transformation",headers:["Compact form","Clause"],rows:[["nach Eingang der Unterlagen","nachdem die Unterlagen eingegangen sind"],["trotz steigender Kosten","obwohl die Kosten steigen"],["zur Vermeidung von Rückfragen","damit Rückfragen vermieden werden"],["bei Ausfall des Systems","wenn das System ausfällt"]]},reading:{title:"A compact service instruction",body:"Nach Eingang einer Reklamation erfolgt zunächst die Prüfung der Bestellnummer. Bei fehlender Zuordnung ist eine Rückfrage beim Kunden erforderlich. Trotz laufender Prüfung ist der Eingang spätestens am folgenden Arbeitstag zu bestätigen. Zur Vermeidung mehrfacher Bearbeitung wird eine verantwortliche Person eingetragen. Nach Abschluss der Prüfung erhält der Kunde eine begründete Antwort. Bei Überschreitung der internen Bearbeitungsfrist informiert die verantwortliche Person die Teamleitung. Eine Erstattung vor Klärung des Sachverhalts ist nur nach ausdrücklicher Freigabe zulässig. Die Eingangsbestätigung stellt noch keine Anerkennung des Anspruchs dar."},tip:"Underline each nominalized event and write a small subject–verb clause beside it. Ask who does it and whether the source names that person. If the source leaves an actor unspecified, do not invent an individual; keep the role or mark the clarification needed.",checks:[{prompt:"Complete: trotz ___ Kosten (steigen, present participle, zero article).",answer:"steigender",why:"Trotz governs genitive here; plural without a determiner uses strong -er."},{prompt:"Which relationship does bei Ausfall express here?",answer:"Condition",options:["Cause","Concession","Condition"],why:"It means if the system fails, not because it has failed."},{prompt:"Complete: nach Abschluss ___ Prüfung. Use the definite article.",answer:"der",why:"Prüfung is a feminine genitive complement to Abschluss."},{prompt:"Does acknowledging receipt admit the customer's claim?",answer:"No",options:["Yes","No"],why:"The final sentence explicitly separates acknowledgement from admission."}],task:{prompt:"Rewrite the instruction for a new service colleague in 140–170 words using mainly verbal clauses. Preserve deadlines, responsibility, the refund condition and the limit of the acknowledgement.",rubric},reflection:"Where did a verbal clause reveal a responsibility the noun phrase hid?"},
-{...base,id:"C1-01-L03",title:"Use professional collocations naturally",de:"Verantwortung übernehmen",objectives:["Choose useful functional verb phrases.","Replace inflated noun style where a simple verb is clearer."],skills:["collocations"],explanation:"Some noun–verb combinations behave like familiar units: eine Entscheidung treffen, Verantwortung übernehmen, eine Frist einhalten. Learning the whole phrase supports fluent retrieval and avoids literal translations. A functional verb phrase may also change perspective: zur Verfügung stehen describes availability, whereas zur Verfügung stellen describes providing something. A shorter verb is not always identical. In Betracht ziehen means consider, not decide. Distinguish the phase of an action: zur Diskussion stellen opens discussion; zum Abschluss bringen finishes something. Learn articles and prepositions inside the chunk, then practise using the phrase with a new subject, tense and object. Professional style comes from appropriate selection, not the maximum number of noun phrases.",example:["Die Leitung stellt zusätzliche Zeit zur Verfügung; das Team übernimmt die Verantwortung für die Umsetzung.","Management provides additional time; the team takes responsibility for implementation."],table:{title:"Chunks with a practical job",headers:["Chunk","Meaning","Simple alternative when suitable"],rows:[["eine Entscheidung treffen","decide","entscheiden"],["etwas in Betracht ziehen","consider","erwägen"],["zur Verfügung stehen","be available","verfügbar sein"],["Rücksprache halten mit + Dativ","consult","sich mit jemandem abstimmen"]]},reading:{title:"An implementation decision",body:"Die Arbeitsgruppe hat drei Lösungen in Betracht gezogen. Die schnellste Variante hätte zusätzliche Lizenzen erfordert. Da dafür derzeit kein Budget zur Verfügung steht, wurde diese Variante nicht ausgewählt. Die Leitung hat stattdessen die Entscheidung getroffen, den bestehenden Prozess schrittweise zu verbessern. Frau Kern übernimmt die Verantwortung für die technische Umsetzung. Vor Änderungen an Kundendaten hält sie Rücksprache mit dem Datenschutzteam. Die Fachabteilungen stellen jeweils eine Person für den Test zur Verfügung. Nach sechs Wochen wird Bilanz gezogen. Erst dann kommt eine größere Investition erneut in Betracht. Die aktuelle Entscheidung schließt sie für die Zukunft nicht aus."},tip:"Keep a chunk notebook with one contrast, not just a translation: Zeit steht zur Verfügung versus wir stellen Zeit zur Verfügung. In your revision, replace at least one heavy expression with a simple verb and justify whether meaning and register stay intact.",checks:[{prompt:"Complete: eine Entscheidung ___.",answer:"treffen",why:"The conventional collocation is eine Entscheidung treffen."},{prompt:"Complete: Das Team hält ___ mit der Leitung.",answer:"Rücksprache",why:"Rücksprache halten means consult; capitalize the noun."},{prompt:"Does in Betracht ziehen mean final selection?",answer:"No, it means considering an option.",options:["Yes, it means approval.","No, it means considering an option."],why:"The group considered three solutions but selected only one."},{prompt:"Complete: Die Abteilung ___ eine Person zur Verfügung. Use stellen in Präsens.",answer:"stellt",why:"Providing something uses zur Verfügung stellen; availability uses stehen."}],task:{prompt:"Write a 130–160-word update about the decision. Use four appropriate chunks, preserve the future-investment possibility, and then rewrite one sentence with a simpler verb without changing its meaning.",rubric},reflection:"Which chunk expresses consideration rather than commitment?"},
-{...base,id:"C1-02-L01",title:"Make an instruction executable",de:"Was ist zu tun?",objectives:["Express obligation, permission and possibility distinctly.","Specify sequence, actor and verification."],skills:["instructions"],explanation:"An instruction should leave the reader able to act. Separate what must be done, what may be done and what is merely possible. Sein + zu can express necessity or possibility, so context is essential: Die Abdeckung ist vor dem Start zu schließen is an obligation; Der Fehler ist leicht zu beheben describes feasibility. Haben + zu normally places an obligation on an actor and can sound formal or forceful. Modal verbs often make the intended force clearer. Do not soften a required safety step into a suggestion merely to sound polite. Explain the condition, action and check; for a real workplace, use the employer's approved procedures. This fictional language exercise is not an operating manual.",example:["Vor dem Neustart muss die Schutzabdeckung geschlossen sein. Der Neustart darf erst danach erfolgen.","The protective cover must be closed before restarting. Restarting is permitted only afterwards."],steps:[{label:"Condition",detail:"Störung festgestellt"},{label:"Action",detail:"Verantwortliche Person informieren"},{label:"Permission",detail:"Freigabe abwarten"},{label:"Check",detail:"Ergebnis dokumentieren"}],reading:{title:"A fictional access procedure",body:"Bei einem fehlgeschlagenen Zugangstest dürfen Beschäftigte die Anmeldung nicht mehrfach erzwingen. Zunächst ist zu prüfen, ob die richtige Kennung verwendet wurde. Besteht das Problem weiter, muss der interne Support informiert werden. Die Meldung enthält Arbeitsplatznummer, Zeitpunkt und den angezeigten Fehlertext. Passwörter dürfen nicht in die Nachricht aufgenommen werden. Ein erneuter Test ist erst nach Rückmeldung des Supports vorgesehen. Die Teamleitung hat sicherzustellen, dass dringende Aufgaben einer vertretungsberechtigten Person zugewiesen werden. Der betroffene Zugang bleibt bis zur Klärung gesperrt. Eine Weitergabe fremder Zugangsdaten ist keine zulässige Ersatzlösung."},tip:"Use müssen for an unmistakable requirement and dürfen nicht for a prohibition. Ask a colleague to repeat the procedure in their own words. A yes/no ‘Verstanden?’ is weaker evidence of understanding than a short explanation of the next action.",checks:[{prompt:"Which modal expresses a prohibition?",answer:"dürfen nicht",options:["müssen nicht","dürfen nicht","können"],why:"Nicht müssen means not necessary; nicht dürfen means not allowed."},{prompt:"Complete: Die Teamleitung hat die Vertretung ___. Use sicherstellen with zu.",answer:"sicherzustellen",why:"Zu is inserted into the separable verb sicherstellen."},{prompt:"Which detail must be omitted from the support message?",answer:"Passwörter",why:"The procedure explicitly forbids including passwords."},{prompt:"Complete: Ein Test darf erst ___ der Rückmeldung erfolgen.",answer:"nach",why:"Erst nach marks the prior condition for permission."}],task:{prompt:"Write a 120–150-word guide for a new colleague. Use explicit modal verbs and preserve the reporting fields, password prohibition, retry condition and delegation responsibility.",rubric},reflection:"Did you accidentally turn ‘not required’ into ‘not allowed’?"},
-{...base,id:"C1-02-L02",title:"Unpack dense instructions",de:"Die bereits freigegebenen Unterlagen",objectives:["Decode participial attributes from the head noun.","Rebuild them as relative clauses without changing meaning."],skills:["participial-attributes"],explanation:"Dense instructions put several details before a noun. Find the head noun first, then identify its determiner and each attribute. Die gestern von der Leitung freigegebenen Unterlagen means the documents that management approved yesterday. The past participle carries the relation to the action; the adjective ending carries case and agreement. A present participle usually describes an active ongoing relation: die wartenden Kunden are customers who are waiting. A zu-participle such as die zu prüfenden Unterlagen often conveys documents that must be checked. Do not confuse already completed action with required future action. Expand the attribute into a relative clause to check its meaning, then decide which form is clearer for the audience.",example:["Die bis Freitag einzureichenden Nachweise → die Nachweise, die bis Freitag eingereicht werden müssen.","The supporting documents that must be submitted by Friday."],table:{title:"Find the time and force",headers:["Attribute","Expanded meaning"],rows:[["die geprüften Unterlagen","documents that have been checked"],["die zu prüfenden Unterlagen","documents that need checking"],["die fehlenden Unterlagen","documents that are missing"],["die gestern eingegangenen Unterlagen","documents received yesterday"]]},reading:{title:"A document handover",body:"Die bis Donnerstag zu ergänzenden Angaben sind in der Liste gelb markiert. Bereits von der Fachabteilung geprüfte Nachweise müssen nicht erneut bewertet werden, sofern seit der Prüfung keine Änderung eingetreten ist. Die im gemeinsamen Ordner abgelegten Fassungen tragen jeweils ein Freigabedatum. Beschäftigte sollen ausschließlich die zuletzt freigegebene Fassung verwenden. Noch nicht abschließend geklärte Fragen werden in einem getrennten Abschnitt gesammelt. Die für den Versand verantwortliche Kollegin prüft vor der Weitergabe, ob alle erforderlichen Anlagen vorhanden sind. Handschriftlich ergänzte Kopien dürfen nicht als endgültige Fassung verschickt werden. Die Farbcodierung dient als zusätzliche Hilfe; die Art der offenen Angabe steht auch als Text in der Liste."},tip:"Draw a bracket around the noun phrase and rewrite it as ‘the noun that …’. Check whether your rewrite needs active or passive, completed action or obligation. Then return to the adjective ending only after the meaning is clear.",checks:[{prompt:"Which phrase refers to a required check rather than a completed check?",answer:"die zu prüfenden Unterlagen",options:["die geprüften Unterlagen","die zu prüfenden Unterlagen","die fehlenden Unterlagen"],why:"Zu + present participle encodes the pending requirement here."},{prompt:"Complete: mit den bereits ___ Unterlagen (prüfen, past participle).",answer:"geprüften",why:"The participial adjective takes -en after den in dative plural."},{prompt:"When must a checked document be checked again?",answer:"If it has changed since the check",options:["Every Thursday","If it has changed since the check","Never"],why:"The exception is a change since the earlier check."},{prompt:"Complete: die für den Versand ___ Kollegin (verantwortlich).",answer:"verantwortliche",why:"Feminine nominative after die takes weak -e."}],task:{prompt:"Rewrite the document handover into five clear action steps for a new employee. Expand at least three participial attributes into clauses and preserve the change exception and final-version rule.",rubric},reflection:"Which attribute describes something already done, and which creates a duty?"},
-{...base,id:"C1-02-L03",title:"Explain a rule and its exception",de:"Grundsätzlich – es sei denn",objectives:["State default rules and bounded exceptions.","Distinguish unless from only if."],skills:["conditions"],explanation:"Rules often combine a default with an exception. Grundsätzlich can mean ‘as a rule’ in this context, leaving room for stated exceptions; it does not excuse inventing one. Es sei denn introduces an exception: Die Teilnahme ist erforderlich, es sei denn, eine Befreiung liegt vor. Nur wenn introduces a necessary condition: Eine Befreiung ist nur möglich, wenn die Leitung zustimmt. Unless and only if are not interchangeable. Sofern introduces a condition whose truth remains open. Soweit can restrict scope, often meaning to the extent that. When explaining a rule, preserve who can approve an exception and whether approval must occur beforehand. A friendly paraphrase that broadens permission is inaccurate mediation.",example:["Die Unterweisung ist verpflichtend, es sei denn, eine dokumentierte gleichwertige Schulung wird anerkannt.","The briefing is mandatory unless equivalent documented training is recognized."],table:{title:"Control the boundary",headers:["Expression","Function"],rows:[["es sei denn, …","exception to the default"],["nur wenn …","necessary condition"],["sofern …","conditional scope"],["abweichend davon …","explicit departure from the stated rule"]]},reading:{title:"A fictional training rule",body:"Neue Beschäftigte nehmen grundsätzlich innerhalb der ersten zwei Wochen an der internen Einweisung teil. Eine andere Schulung ersetzt diese Einweisung nur, wenn die Fachleitung ihre Gleichwertigkeit schriftlich anerkannt hat. Ein Nachweis über irgendeine frühere Schulung reicht dafür nicht aus. Beschäftigte im Außendienst können am ersten Teil per Video teilnehmen, sofern eine stabile Verbindung besteht. Der praktische zweite Teil findet immer vor Ort statt. Bei Krankheit wird ein Ersatztermin vereinbart; die Teilnahme entfällt dadurch nicht. Bis zum Abschluss dürfen die betreffenden Aufgaben nur unter der im Betrieb vorgesehenen Begleitung übernommen werden. Über Abweichungen entscheidet ausschließlich die Fachleitung, nicht die einzelne Teamvertretung."},tip:"Write the default and each exception in separate lines, then recombine them. Test a borderline case: Does any earlier course count? Is video participation allowed for both parts? If your paraphrase gives a different answer from the source, revise it.",checks:[{prompt:"Does any earlier course automatically replace the briefing?",answer:"No",options:["Yes","No"],why:"Written recognition of equivalence is required."},{prompt:"Complete: Eine Teilnahme per Video ist möglich, ___ eine stabile Verbindung besteht. Use the conditional word from the text.",answer:"sofern",why:"Sofern restricts permission to the stated condition."},{prompt:"Which part always takes place on site?",answer:"der praktische zweite Teil",why:"The rule allows video only for the first part."},{prompt:"Complete: Krankheit führt zu einem Ersatztermin, ___ zum Wegfall der Teilnahme.",answer:"nicht",why:"The contrast preserves the obligation despite illness."}],task:{prompt:"Explain the rule in a 140–170-word message to a new field-service colleague who already attended a course elsewhere. State the default, approval requirement, video limit and illness arrangement. Include one es sei denn clause.",rubric},reflection:"What is the smallest condition that makes the exception valid?"},
+import { authorLesson, type LessonDraft } from "./authoring";
+const rubric = [
+  "Fulfils the task and preserves every relevant source condition.",
+  "Organizes information for the stated audience.",
+  "Uses the target grammar and collocations accurately.",
+  "Uses precise, appropriately qualified professional language.",
 ];
-export const c1Foundations=data.map(authorLesson);
+const base = {
+  references: ["clauses", "passive", "editing"],
+  vocabulary: ["prozess", "team", "prufen", "entscheidung"],
+  task: { prompt: "", rubric },
+};
+const data: LessonDraft[] = [
+  {
+    ...base,
+    id: "C1-01-L01",
+    title: "Show how the work flows",
+    de: "Vom Auftrag zur Freigabe",
+    objectives: [
+      "Explain a process with actors, conditions and sequence.",
+      "Choose active or passive according to focus.",
+    ],
+    skills: ["process-description"],
+    explanation:
+      "A process explanation has a path and decision points. Sequence markers such as zunächst, anschließend and erst nachdem tell the reader where they are. Add a named actor when responsibility matters. Passive is useful when a stable process is the focus, but repeated anonymous passives can hide accountability. Distinguish a required precondition from a normal sequence: Nach der Prüfung is a time relation; erst nach erfolgreicher Prüfung makes success a condition. Use bevor to state what must happen earlier, and sobald for the trigger of the next step. In a diagram, label a decision with the question that determines the branch. In prose, state what happens in both cases.",
+    example: [
+      "Erst nachdem die Fachabteilung den Bedarf bestätigt hat, gibt der Einkauf die Bestellung frei.",
+      "Purchasing approves the order only after the specialist department has confirmed the need.",
+    ],
+    steps: [
+      { label: "Receive", detail: "Auftrag erfassen" },
+      { label: "Check", detail: "Angaben vollständig?" },
+      { label: "Clarify or approve", detail: "Rückfrage oder Freigabe" },
+      { label: "Confirm", detail: "Termin mitteilen" },
+    ],
+    reading: {
+      title: "A new purchasing process",
+      body: "Eingehende Bestellwünsche werden zunächst im gemeinsamen System erfasst. Die Fachabteilung prüft, ob der Bedarf begründet ist und die technischen Angaben vollständig sind. Fehlen Angaben, geht der Vorgang an die anfragende Person zurück; der Einkauf bestellt zu diesem Zeitpunkt noch nichts. Sobald alle Angaben vorliegen und die Kostenstelle bestätigt ist, prüft der Einkauf die Angebote. Bei einem Auftragswert über 5.000 Euro ist zusätzlich die Zustimmung der Bereichsleitung erforderlich. Erst nach dieser Freigabe wird die Bestellung ausgelöst. Die anfragende Person erhält anschließend eine Bestätigung mit dem voraussichtlichen Liefertermin. Bei späteren Terminänderungen informiert der Einkauf sie erneut.",
+    },
+    tip: "Explain this process once to a new colleague and once to a manager. The colleague needs action details; the manager may need control points. Keep the threshold and incomplete-data branch in both versions. A visually tidy sequence that omits the return path is incomplete.",
+    checks: [
+      {
+        prompt:
+          "Complete: Erst ___ der Freigabe wird bestellt. Use a preposition.",
+        answer: "nach",
+        why: "Nach + dative expresses the required prior step.",
+      },
+      {
+        prompt: "Which orders need additional approval?",
+        answer: "Orders over 5,000 euros",
+        options: [
+          "Every order",
+          "Orders over 5,000 euros",
+          "Only incomplete orders",
+        ],
+        why: "The threshold is über 5.000 Euro, not all orders.",
+      },
+      {
+        prompt:
+          "Complete: ___ alle Angaben vorliegen, prüft der Einkauf die Angebote. Use the trigger connector.",
+        answer: "Sobald",
+        why: "Sobald introduces the condition's occurrence as the next step's trigger.",
+      },
+      {
+        prompt: "Who contacts the requester about later delivery changes?",
+        answer: "der Einkauf",
+        why: "The purchasing department retains responsibility for this communication.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 140–170-word process explanation for a new colleague. Include the incomplete-data branch, cost confirmation, 5,000-euro threshold and later notification. Use one active responsibility statement and one passive process statement.",
+      rubric,
+    },
+    reflection:
+      "Can the colleague identify what happens when information is missing?",
+  },
+  {
+    ...base,
+    id: "C1-01-L02",
+    title: "Move between noun style and verb style",
+    de: "Nach Abschluss – nachdem wir abgeschlossen haben",
+    objectives: [
+      "Expand nominal phrases into clear clauses.",
+      "Preserve actors and logical relations during compression.",
+    ],
+    skills: ["nominalization"],
+    explanation:
+      "Nominalization packages an event as a noun phrase: nachdem die Prüfung abgeschlossen wurde → nach Abschluss der Prüfung. It is common in headings, reports and rules. The noun often requires a genitive complement, and the surrounding preposition requires its own case. Compression can remove the actor or the timing of a verb. Restore them when readers need to act. Die Freigabe durch die Leitung preserves an actor; die Freigabe der Leitung can instead describe approval belonging to or issued by management and needs context. Do not turn every verb into a noun. Alternate a compact heading with an explicit verbal explanation. Check that cause, concession and condition remain the same relationship.",
+    example: [
+      "Bei Überschreitung der Frist ist eine Rücksprache erforderlich. → Wenn Sie die Frist überschreiten, müssen Sie Rücksprache halten.",
+      "If you exceed the deadline, you must consult the responsible person.",
+    ],
+    table: {
+      title: "A meaning-preserving transformation",
+      headers: ["Compact form", "Clause"],
+      rows: [
+        [
+          "nach Eingang der Unterlagen",
+          "nachdem die Unterlagen eingegangen sind",
+        ],
+        ["trotz steigender Kosten", "obwohl die Kosten steigen"],
+        ["zur Vermeidung von Rückfragen", "damit Rückfragen vermieden werden"],
+        ["bei Ausfall des Systems", "wenn das System ausfällt"],
+      ],
+    },
+    reading: {
+      title: "A compact service instruction",
+      body: "Nach Eingang einer Reklamation erfolgt zunächst die Prüfung der Bestellnummer. Bei fehlender Zuordnung ist eine Rückfrage beim Kunden erforderlich. Trotz laufender Prüfung ist der Eingang spätestens am folgenden Arbeitstag zu bestätigen. Zur Vermeidung mehrfacher Bearbeitung wird eine verantwortliche Person eingetragen. Nach Abschluss der Prüfung erhält der Kunde eine begründete Antwort. Bei Überschreitung der internen Bearbeitungsfrist informiert die verantwortliche Person die Teamleitung. Eine Erstattung vor Klärung des Sachverhalts ist nur nach ausdrücklicher Freigabe zulässig. Die Eingangsbestätigung stellt noch keine Anerkennung des Anspruchs dar.",
+    },
+    tip: "Underline each nominalized event and write a small subject–verb clause beside it. Ask who does it and whether the source names that person. If the source leaves an actor unspecified, do not invent an individual; keep the role or mark the clarification needed.",
+    checks: [
+      {
+        prompt:
+          "Complete: trotz ___ Kosten (steigen, present participle, zero article).",
+        answer: "steigender",
+        why: "Trotz governs genitive here; plural without a determiner uses strong -er.",
+      },
+      {
+        prompt: "Which relationship does bei Ausfall express here?",
+        answer: "Condition",
+        options: ["Cause", "Concession", "Condition"],
+        why: "It means if the system fails, not because it has failed.",
+      },
+      {
+        prompt:
+          "Complete: nach Abschluss ___ Prüfung. Use the definite article.",
+        answer: "der",
+        why: "Prüfung is a feminine genitive complement to Abschluss.",
+      },
+      {
+        prompt: "Does acknowledging receipt admit the customer's claim?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The final sentence explicitly separates acknowledgement from admission.",
+      },
+    ],
+    task: {
+      prompt:
+        "Rewrite the instruction for a new service colleague in 140–170 words using mainly verbal clauses. Preserve deadlines, responsibility, the refund condition and the limit of the acknowledgement.",
+      rubric,
+    },
+    reflection:
+      "Where did a verbal clause reveal a responsibility the noun phrase hid?",
+  },
+  {
+    ...base,
+    id: "C1-01-L03",
+    title: "Use professional collocations naturally",
+    de: "Verantwortung übernehmen",
+    objectives: [
+      "Choose useful functional verb phrases.",
+      "Replace inflated noun style where a simple verb is clearer.",
+    ],
+    skills: ["collocations"],
+    explanation:
+      "Some noun–verb combinations behave like familiar units: eine Entscheidung treffen, Verantwortung übernehmen, eine Frist einhalten. Learning the whole phrase supports fluent retrieval and avoids literal translations. A functional verb phrase may also change perspective: zur Verfügung stehen describes availability, whereas zur Verfügung stellen describes providing something. A shorter verb is not always identical. In Betracht ziehen means consider, not decide. Distinguish the phase of an action: zur Diskussion stellen opens discussion; zum Abschluss bringen finishes something. Learn articles and prepositions inside the chunk, then practise using the phrase with a new subject, tense and object. Professional style comes from appropriate selection, not the maximum number of noun phrases.",
+    example: [
+      "Die Leitung stellt zusätzliche Zeit zur Verfügung; das Team übernimmt die Verantwortung für die Umsetzung.",
+      "Management provides additional time; the team takes responsibility for implementation.",
+    ],
+    table: {
+      title: "Chunks with a practical job",
+      headers: ["Chunk", "Meaning", "Simple alternative when suitable"],
+      rows: [
+        ["eine Entscheidung treffen", "decide", "entscheiden"],
+        ["etwas in Betracht ziehen", "consider", "erwägen"],
+        ["zur Verfügung stehen", "be available", "verfügbar sein"],
+        [
+          "Rücksprache halten mit + Dativ",
+          "consult",
+          "sich mit jemandem abstimmen",
+        ],
+      ],
+    },
+    reading: {
+      title: "An implementation decision",
+      body: "Die Arbeitsgruppe hat drei Lösungen in Betracht gezogen. Die schnellste Variante hätte zusätzliche Lizenzen erfordert. Da dafür derzeit kein Budget zur Verfügung steht, wurde diese Variante nicht ausgewählt. Die Leitung hat stattdessen die Entscheidung getroffen, den bestehenden Prozess schrittweise zu verbessern. Frau Kern übernimmt die Verantwortung für die technische Umsetzung. Vor Änderungen an Kundendaten hält sie Rücksprache mit dem Datenschutzteam. Die Fachabteilungen stellen jeweils eine Person für den Test zur Verfügung. Nach sechs Wochen wird Bilanz gezogen. Erst dann kommt eine größere Investition erneut in Betracht. Die aktuelle Entscheidung schließt sie für die Zukunft nicht aus.",
+    },
+    tip: "Keep a chunk notebook with one contrast, not just a translation: Zeit steht zur Verfügung versus wir stellen Zeit zur Verfügung. In your revision, replace at least one heavy expression with a simple verb and justify whether meaning and register stay intact.",
+    checks: [
+      {
+        prompt: "Complete: eine Entscheidung ___.",
+        answer: "treffen",
+        why: "The conventional collocation is eine Entscheidung treffen.",
+      },
+      {
+        prompt: "Complete: Das Team hält ___ mit der Leitung.",
+        answer: "Rücksprache",
+        why: "Rücksprache halten means consult; capitalize the noun.",
+      },
+      {
+        prompt: "Does in Betracht ziehen mean final selection?",
+        answer: "No, it means considering an option.",
+        options: [
+          "Yes, it means approval.",
+          "No, it means considering an option.",
+        ],
+        why: "The group considered three solutions but selected only one.",
+      },
+      {
+        prompt:
+          "Complete: Die Abteilung ___ eine Person zur Verfügung. Use stellen in Präsens.",
+        answer: "stellt",
+        why: "Providing something uses zur Verfügung stellen; availability uses stehen.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 130–160-word update about the decision. Use four appropriate chunks, preserve the future-investment possibility, and then rewrite one sentence with a simpler verb without changing its meaning.",
+      rubric,
+    },
+    reflection: "Which chunk expresses consideration rather than commitment?",
+  },
+  {
+    ...base,
+    id: "C1-02-L01",
+    title: "Make an instruction executable",
+    de: "Was ist zu tun?",
+    objectives: [
+      "Express obligation, permission and possibility distinctly.",
+      "Specify sequence, actor and verification.",
+    ],
+    skills: ["instructions"],
+    explanation:
+      "An instruction should leave the reader able to act. Separate what must be done, what may be done and what is merely possible. Sein + zu can express necessity or possibility, so context is essential: Die Abdeckung ist vor dem Start zu schließen is an obligation; Der Fehler ist leicht zu beheben describes feasibility. Haben + zu normally places an obligation on an actor and can sound formal or forceful. Modal verbs often make the intended force clearer. Do not soften a required safety step into a suggestion merely to sound polite. Explain the condition, action and check; for a real workplace, use the employer's approved procedures. This fictional language exercise is not an operating manual.",
+    example: [
+      "Vor dem Neustart muss die Schutzabdeckung geschlossen sein. Der Neustart darf erst danach erfolgen.",
+      "The protective cover must be closed before restarting. Restarting is permitted only afterwards.",
+    ],
+    steps: [
+      { label: "Condition", detail: "Störung festgestellt" },
+      { label: "Action", detail: "Verantwortliche Person informieren" },
+      { label: "Permission", detail: "Freigabe abwarten" },
+      { label: "Check", detail: "Ergebnis dokumentieren" },
+    ],
+    reading: {
+      title: "A fictional access procedure",
+      body: "Bei einem fehlgeschlagenen Zugangstest dürfen Beschäftigte die Anmeldung nicht mehrfach erzwingen. Zunächst ist zu prüfen, ob die richtige Kennung verwendet wurde. Besteht das Problem weiter, muss der interne Support informiert werden. Die Meldung enthält Arbeitsplatznummer, Zeitpunkt und den angezeigten Fehlertext. Passwörter dürfen nicht in die Nachricht aufgenommen werden. Ein erneuter Test ist erst nach Rückmeldung des Supports vorgesehen. Die Teamleitung hat sicherzustellen, dass dringende Aufgaben einer vertretungsberechtigten Person zugewiesen werden. Der betroffene Zugang bleibt bis zur Klärung gesperrt. Eine Weitergabe fremder Zugangsdaten ist keine zulässige Ersatzlösung.",
+    },
+    tip: "Use müssen for an unmistakable requirement and dürfen nicht for a prohibition. Ask a colleague to repeat the procedure in their own words. A yes/no ‘Verstanden?’ is weaker evidence of understanding than a short explanation of the next action.",
+    checks: [
+      {
+        prompt: "Which modal expresses a prohibition?",
+        answer: "dürfen nicht",
+        options: ["müssen nicht", "dürfen nicht", "können"],
+        why: "Nicht müssen means not necessary; nicht dürfen means not allowed.",
+      },
+      {
+        prompt:
+          "Complete: Die Teamleitung hat die Vertretung ___. Use sicherstellen with zu.",
+        answer: "sicherzustellen",
+        why: "Zu is inserted into the separable verb sicherstellen.",
+      },
+      {
+        prompt: "Which detail must be omitted from the support message?",
+        answer: "Passwörter",
+        why: "The procedure explicitly forbids including passwords.",
+      },
+      {
+        prompt: "Complete: Ein Test darf erst ___ der Rückmeldung erfolgen.",
+        answer: "nach",
+        why: "Erst nach marks the prior condition for permission.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 120–150-word guide for a new colleague. Use explicit modal verbs and preserve the reporting fields, password prohibition, retry condition and delegation responsibility.",
+      rubric,
+    },
+    reflection: "Did you accidentally turn ‘not required’ into ‘not allowed’?",
+  },
+  {
+    ...base,
+    id: "C1-02-L02",
+    title: "Unpack dense instructions",
+    de: "Die bereits freigegebenen Unterlagen",
+    objectives: [
+      "Decode participial attributes from the head noun.",
+      "Rebuild them as relative clauses without changing meaning.",
+    ],
+    skills: ["participial-attributes"],
+    explanation:
+      "Dense instructions put several details before a noun. Find the head noun first, then identify its determiner and each attribute. Die gestern von der Leitung freigegebenen Unterlagen means the documents that management approved yesterday. The past participle carries the relation to the action; the adjective ending carries case and agreement. A present participle usually describes an active ongoing relation: die wartenden Kunden are customers who are waiting. A zu-participle such as die zu prüfenden Unterlagen often conveys documents that must be checked. Do not confuse already completed action with required future action. Expand the attribute into a relative clause to check its meaning, then decide which form is clearer for the audience.",
+    example: [
+      "Die bis Freitag einzureichenden Nachweise → die Nachweise, die bis Freitag eingereicht werden müssen.",
+      "The supporting documents that must be submitted by Friday.",
+    ],
+    table: {
+      title: "Find the time and force",
+      headers: ["Attribute", "Expanded meaning"],
+      rows: [
+        ["die geprüften Unterlagen", "documents that have been checked"],
+        ["die zu prüfenden Unterlagen", "documents that need checking"],
+        ["die fehlenden Unterlagen", "documents that are missing"],
+        [
+          "die gestern eingegangenen Unterlagen",
+          "documents received yesterday",
+        ],
+      ],
+    },
+    reading: {
+      title: "A document handover",
+      body: "Die bis Donnerstag zu ergänzenden Angaben sind in der Liste gelb markiert. Bereits von der Fachabteilung geprüfte Nachweise müssen nicht erneut bewertet werden, sofern seit der Prüfung keine Änderung eingetreten ist. Die im gemeinsamen Ordner abgelegten Fassungen tragen jeweils ein Freigabedatum. Beschäftigte sollen ausschließlich die zuletzt freigegebene Fassung verwenden. Noch nicht abschließend geklärte Fragen werden in einem getrennten Abschnitt gesammelt. Die für den Versand verantwortliche Kollegin prüft vor der Weitergabe, ob alle erforderlichen Anlagen vorhanden sind. Handschriftlich ergänzte Kopien dürfen nicht als endgültige Fassung verschickt werden. Die Farbcodierung dient als zusätzliche Hilfe; die Art der offenen Angabe steht auch als Text in der Liste.",
+    },
+    tip: "Draw a bracket around the noun phrase and rewrite it as ‘the noun that …’. Check whether your rewrite needs active or passive, completed action or obligation. Then return to the adjective ending only after the meaning is clear.",
+    checks: [
+      {
+        prompt:
+          "Which phrase refers to a required check rather than a completed check?",
+        answer: "die zu prüfenden Unterlagen",
+        options: [
+          "die geprüften Unterlagen",
+          "die zu prüfenden Unterlagen",
+          "die fehlenden Unterlagen",
+        ],
+        why: "Zu + present participle encodes the pending requirement here.",
+      },
+      {
+        prompt:
+          "Complete: mit den bereits ___ Unterlagen (prüfen, past participle).",
+        answer: "geprüften",
+        why: "The participial adjective takes -en after den in dative plural.",
+      },
+      {
+        prompt: "When must a checked document be checked again?",
+        answer: "If it has changed since the check",
+        options: [
+          "Every Thursday",
+          "If it has changed since the check",
+          "Never",
+        ],
+        why: "The exception is a change since the earlier check.",
+      },
+      {
+        prompt: "Complete: die für den Versand ___ Kollegin (verantwortlich).",
+        answer: "verantwortliche",
+        why: "Feminine nominative after die takes weak -e.",
+      },
+    ],
+    task: {
+      prompt:
+        "Rewrite the document handover into five clear action steps for a new employee. Expand at least three participial attributes into clauses and preserve the change exception and final-version rule.",
+      rubric,
+    },
+    reflection:
+      "Which attribute describes something already done, and which creates a duty?",
+  },
+  {
+    ...base,
+    id: "C1-02-L03",
+    title: "Explain a rule and its exception",
+    de: "Grundsätzlich – es sei denn",
+    objectives: [
+      "State default rules and bounded exceptions.",
+      "Distinguish unless from only if.",
+    ],
+    skills: ["conditions"],
+    explanation:
+      "Rules often combine a default with an exception. Grundsätzlich can mean ‘as a rule’ in this context, leaving room for stated exceptions; it does not excuse inventing one. Es sei denn introduces an exception: Die Teilnahme ist erforderlich, es sei denn, eine Befreiung liegt vor. Nur wenn introduces a necessary condition: Eine Befreiung ist nur möglich, wenn die Leitung zustimmt. Unless and only if are not interchangeable. Sofern introduces a condition whose truth remains open. Soweit can restrict scope, often meaning to the extent that. When explaining a rule, preserve who can approve an exception and whether approval must occur beforehand. A friendly paraphrase that broadens permission is inaccurate mediation.",
+    example: [
+      "Die Unterweisung ist verpflichtend, es sei denn, eine dokumentierte gleichwertige Schulung wird anerkannt.",
+      "The briefing is mandatory unless equivalent documented training is recognized.",
+    ],
+    table: {
+      title: "Control the boundary",
+      headers: ["Expression", "Function"],
+      rows: [
+        ["es sei denn, …", "exception to the default"],
+        ["nur wenn …", "necessary condition"],
+        ["sofern …", "conditional scope"],
+        ["abweichend davon …", "explicit departure from the stated rule"],
+      ],
+    },
+    reading: {
+      title: "A fictional training rule",
+      body: "Neue Beschäftigte nehmen grundsätzlich innerhalb der ersten zwei Wochen an der internen Einweisung teil. Eine andere Schulung ersetzt diese Einweisung nur, wenn die Fachleitung ihre Gleichwertigkeit schriftlich anerkannt hat. Ein Nachweis über irgendeine frühere Schulung reicht dafür nicht aus. Beschäftigte im Außendienst können am ersten Teil per Video teilnehmen, sofern eine stabile Verbindung besteht. Der praktische zweite Teil findet immer vor Ort statt. Bei Krankheit wird ein Ersatztermin vereinbart; die Teilnahme entfällt dadurch nicht. Bis zum Abschluss dürfen die betreffenden Aufgaben nur unter der im Betrieb vorgesehenen Begleitung übernommen werden. Über Abweichungen entscheidet ausschließlich die Fachleitung, nicht die einzelne Teamvertretung.",
+    },
+    tip: "Write the default and each exception in separate lines, then recombine them. Test a borderline case: Does any earlier course count? Is video participation allowed for both parts? If your paraphrase gives a different answer from the source, revise it.",
+    checks: [
+      {
+        prompt: "Does any earlier course automatically replace the briefing?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "Written recognition of equivalence is required.",
+      },
+      {
+        prompt:
+          "Complete: Eine Teilnahme per Video ist möglich, ___ eine stabile Verbindung besteht. Use the conditional word from the text.",
+        answer: "sofern",
+        why: "Sofern restricts permission to the stated condition.",
+      },
+      {
+        prompt: "Which part always takes place on site?",
+        answer: "der praktische zweite Teil",
+        why: "The rule allows video only for the first part.",
+      },
+      {
+        prompt:
+          "Complete: Krankheit führt zu einem Ersatztermin, ___ zum Wegfall der Teilnahme.",
+        answer: "nicht",
+        why: "The contrast preserves the obligation despite illness.",
+      },
+    ],
+    task: {
+      prompt:
+        "Explain the rule in a 140–170-word message to a new field-service colleague who already attended a course elsewhere. State the default, approval requirement, video limit and illness arrangement. Include one es sei denn clause.",
+      rubric,
+    },
+    reflection:
+      "What is the smallest condition that makes the exception valid?",
+  },
+];
+export const c1Foundations = data.map(authorLesson);

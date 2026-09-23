@@ -1,12 +1,409 @@
-import { authorLesson,type LessonDraft } from "./authoring";
-const rubric=["Preserves the supplied facts, positions and decision status.","Makes attribution and next actions clear.","Uses the target structures accurately.","Adapts register and organization to the recipient."];
-const base={references:["conversation","passive","editing"],vocabulary:["team","termin","projekt","entscheidung"]};
-const data:LessonDraft[]=[
-{...base,id:"C1-03-L01",title:"Take a useful turn in a meeting",de:"Darf ich daran anknüpfen?",objectives:["Enter, connect and yield a turn.","Clarify a proposal before evaluating it."],skills:["interaction"],explanation:"A productive turn connects to something already said. Briefly identify that point, add one clear contribution, and make space for a response. Ich möchte an Ihren Vorschlag anknüpfen is useful only if you then state the connection. Distinguish clarifying a proposal from agreeing with it: Verstehe ich richtig, dass …? checks meaning. A short acknowledgment can precede disagreement without cancelling it: Den Zeitgewinn sehe ich; beim Aufwand bin ich noch nicht überzeugt. Avoid a long prepared speech when the group needs one answer. If you need to interrupt, state the immediate reason and return the floor. Interaction is assessed through responsive turns, not simply through speech length.",example:["Darf ich kurz nachfragen: Bezieht sich der Test auf alle Anfragen oder zunächst nur auf Standardfälle?","May I clarify: does the trial cover all inquiries or initially only standard cases?"],table:{title:"A turn with a job",headers:["Move","Phrase"],rows:[["Connect","Daran würde ich gern anknüpfen."],["Clarify","Was würde das konkret für … bedeuten?"],["Qualify","Unter dieser Voraussetzung könnte ich zustimmen."],["Yield","Wie sehen Sie das aus Sicht des Supports?"]]},reading:{title:"Three positions at the table",body:"In einer Besprechung schlägt Jana vor, Standardanfragen künftig über ein gemeinsames Formular zu bearbeiten. Sie erwartet weniger Rückfragen. Malik befürchtet, dass komplizierte Fälle in einem starren Formular nicht ausreichend beschrieben werden können. Er lehnt eine Verbesserung des Ablaufs nicht ab, möchte aber Ausnahmen ermöglichen. Sofia bietet an, zunächst zwei Wochen lang nur wiederkehrende Standardfälle zu testen. Die Zahl der Rückfragen soll dokumentiert werden; eine Zeitersparnis ist bisher nicht gemessen. Die Leitung hat noch keine Entscheidung getroffen und bittet um eine präzise Abgrenzung des Tests. Sie vertreten den Support und müssen klären, wer Sonderfälle übernimmt."},tip:"Prepare a clarification, a conditional contribution and a follow-up question. In a voice exchange, react to the actual answer rather than reciting all three. The source gives expectations and concerns; neither is a measured result.",checks:[{prompt:"Does Malik reject every improvement?",answer:"No",options:["Yes","No"],why:"He asks for exceptions, not for abandoning all improvement."},{prompt:"Complete: Daran würde ich gern ___. Use anknüpfen.",answer:"anknüpfen",why:"After würde the infinitive remains at the end."},{prompt:"What has not yet been measured?",answer:"Zeitersparnis",why:"The text explicitly says a time saving has not been measured."},{prompt:"Complete: Unter dieser ___ könnte ich zustimmen.",answer:"Voraussetzung",why:"Unter dieser Voraussetzung expresses conditional agreement."}],task:{type:"speaking",prompt:"Record a 90-second contribution as the support representative. Acknowledge one concern, clarify the test boundary, propose responsibility for exceptions and invite a response. Then answer: Was wäre Ihr Einwand gegen einen sofortigen Rollout?",rubric},reflection:"Did you respond to another position or only state your own?"},
-{...base,id:"C1-03-L02",title:"Report what someone said",de:"Die Leitung erklärte, der Test sei sinnvoll",objectives:["Use Konjunktiv I with clear attribution.","Separate reported claims from the reporter's own findings."],skills:["reported-speech"],explanation:"Konjunktiv I is useful for reported statements in minutes and formal reports. It marks attribution rather than proving or disproving the claim. Common forms are sei, habe, werde and könne. For a reported past event, use habe or sei with a participle: Er erklärte, die Prüfung habe stattgefunden. If a form is identical to indicative, a suitable Konjunktiv II or a clearly attributed dass-clause can avoid ambiguity. Maintain the reporting perspective: gestern in a statement made on Monday may become am Vortag in a later report. Do not mechanically change every pronoun or time expression; anchor it to the actual speaker and reporting date. Report questions and requests as those functions, not as factual decisions.",example:["Malik erklärte, das Formular könne Sonderfälle nicht vollständig abbilden.","Malik stated that the form could not fully represent exceptional cases."],table:{title:"Frequently needed forms",headers:["Direct statement","Attributed report"],rows:[["Der Test ist abgeschlossen.","Sie erklärte, der Test sei abgeschlossen."],["Wir haben die Fälle geprüft.","Sie erklärte, das Team habe die Fälle geprüft."],["Die Lösung kann helfen.","Er sagte, die Lösung könne helfen."],["Die Freigabe wird folgen.","Er erklärte, die Freigabe werde folgen."]]},reading:{title:"Statements after a pilot",body:"Am Montag sagte die Projektleiterin: „Der Pilot ist abgeschlossen. Wir haben zwanzig Fälle geprüft. Die Ergebnisse sind noch nicht vollständig ausgewertet.“ Der Supportleiter ergänzte: „Einige Rückfragen können durch eine bessere Anleitung vermieden werden. Wir brauchen aber weiterhin eine Ansprechperson für Sonderfälle.“ Die Finanzabteilung erklärte, eine zusätzliche Stelle sei derzeit nicht eingeplant. Die Projektleiterin bat darum, bis Donnerstag Vorschläge für die Aufgabenverteilung einzureichen. Eine Entscheidung über die dauerhafte Einführung traf die Runde nicht. Sie schreiben am Dienstag einen Bericht für eine abwesende Kollegin. Diese soll erkennen können, was berichtet wurde, was noch offen ist und welche Handlung von ihr erwartet wird."},tip:"Label each note with the speaker before turning it into a sentence. After writing, circle every claim without a source. Is it your observation, an established meeting fact, or someone else's assertion? Make that distinction readable.",checks:[{prompt:"Complete: Sie erklärte, der Pilot ___ abgeschlossen. Use Konjunktiv I of sein.",answer:"sei",why:"Sei is the third-person singular Konjunktiv I form."},{prompt:"Complete: Sie sagte, das Team ___ zwanzig Fälle geprüft. Use Konjunktiv I of haben.",answer:"habe",why:"Reported perfect uses habe plus participle here."},{prompt:"What was requested by Thursday?",answer:"Proposals for distributing responsibilities",options:["A permanent rollout","Proposals for distributing responsibilities","Twenty new cases"],why:"The request concerns Aufgabenverteilung, not rollout approval."},{prompt:"Complete: Die Anleitung ___ helfen. Use Konjunktiv I of können.",answer:"könne",why:"Könne marks the attributed modal statement."}],task:{prompt:"Write a 150-word report for the absent colleague. Attribute the three departments' positions, use at least three Konjunktiv I forms and distinguish the Thursday request from a decision on permanent use.",rubric},reflection:"Does any reported assertion sound like a fact you verified yourself?"},
-{...base,id:"C1-03-L03",title:"Turn discussion into an agreement",de:"Was halten wir fest?",objectives:["Separate suggestions, agreements and unresolved points.","Check owner and deadline before closing."],skills:["meeting-decisions"],explanation:"A meeting can sound positive without producing an agreement. Expressions such as wäre denkbar, ich schlage vor and wir sollten remain proposals unless the group adopts them. A closing summary should identify decisions, actions, owners, deadlines and unresolved issues. Ask a specific confirmation question: Können wir das so festhalten? Do not use consensus language if someone has reserved agreement. Eine Prüfung wird vorgenommen is incomplete as an action item when no one knows who will do it. Use an active responsibility statement and a concrete deliverable. A follow-up date is not necessarily the delivery deadline. Record both when they differ, and make dependencies visible.",example:["Wir halten fest: Der Support erstellt bis Dienstag eine Liste der Sonderfälle. Über den Rollout entscheiden wir erst nach deren Auswertung.","We agree that support will compile the exceptions by Tuesday. The rollout decision follows their evaluation."],steps:[{label:"Decision",detail:"What was adopted?"},{label:"Action",detail:"What will be produced?"},{label:"Owner + date",detail:"Who, by when?"},{label:"Open point",detail:"What is still undecided?"}],reading:{title:"The last five minutes",body:"Nach der Diskussion stimmt die Runde einem zweiwöchigen Test für Standardanfragen zu. Malik erklärt sich bereit, bis kommenden Dienstag eine Liste der Sonderfälle zu erstellen. Jana entwirft auf dieser Grundlage bis Donnerstag eine Ergänzung des Formulars. Sofia kann die technische Umsetzung erst zusagen, wenn sie den Entwurf gesehen hat. Die Leitung schlägt Freitag als Folgetermin vor; zwei Personen müssen ihre Verfügbarkeit noch prüfen. Ein dauerhafter Einsatz und zusätzliche Stellen werden nicht beschlossen. Die Zahl der Rückfragen soll während des Tests erhoben werden. Wer die Auswertung übernimmt, bleibt am Ende der Besprechung offen. Sie sollen die Runde mit einer korrekten Zusammenfassung schließen."},tip:"Use a two-column note: confirmed versus pending. Avoid promoting the suggested Friday meeting into a confirmed appointment. An open action owner is a reason to ask a question, not an invitation to assign someone without agreement.",checks:[{prompt:"Is Sofia's implementation commitment confirmed?",answer:"No, it depends on reviewing the draft.",options:["Yes, unconditionally.","No, it depends on reviewing the draft."],why:"She reserves her commitment until she sees the draft."},{prompt:"Who will produce the exceptions list?",answer:"Malik",why:"Malik explicitly accepts that action."},{prompt:"Complete: Über den dauerhaften Einsatz wurde noch nicht ___. Use entscheiden.",answer:"entschieden",why:"The impersonal process passive uses entschieden."},{prompt:"Which responsibility remains unassigned?",answer:"die Auswertung",why:"No owner for evaluating the recorded inquiries is named."}],task:{prompt:"Write a 140–170-word closing summary and three targeted confirmation questions. Preserve every dependency and distinguish the confirmed trial from the proposed Friday meeting.",rubric},reflection:"Which unresolved point could stop the next step?"},
-{...base,id:"C1-04-L01",title:"Write minutes people can act on",de:"Beschluss, Zuständigkeit, Frist",objectives:["Produce result minutes from a discussion.","Preserve decisions without reproducing every turn."],skills:["minutes"],explanation:"Ergebnisprotokolle organize outcomes by topic; they do not reproduce every contribution chronologically. Include a decision's scope and any explicit reservation. Keep an action table for who does what by when. Separate Hintergrund, Beschluss, Aufgabe and offener Punkt when the distinctions matter. Concise nominal headings are useful, while action lines often benefit from full verbs. The phrase Die Zuständigkeit wurde geklärt is less useful than Der Einkauf prüft die Liefertermine bis Mittwoch. Use neutral wording. A participant's concern is not an objective defect unless the group established it. Check dates, names, quantities and whether the meeting adopted a proposal before issuing the minutes.",example:["Beschluss: Testphase vom 4. bis 15. Mai. Aufgabe: IT prüft die Zugänge bis 30. April. Offen: Auswertungskriterien.","Decision: trial from 4–15 May. Action: IT checks access by 30 April. Open: evaluation criteria."],table:{title:"A reliable action line",headers:["Item","Owner","Deadline","Status"],rows:[["Zugänge prüfen","IT","30. April","vereinbart"],["Kriterien vorschlagen","Fachteam","2. Mai","vereinbart"],["Dauerbetrieb","Leitung","nach Auswertung","offen"]]},reading:{title:"Meeting notes to transform",body:"Die Leitung eröffnet die Runde mit dem Hinweis, dass der bisherige Ablauf zu häufige Rückfragen auslöse. Diese Einschätzung soll im Test überprüft werden. Die Gruppe beschließt eine Testphase vom 4. bis 15. Mai. Die IT sagt zu, die benötigten Zugänge bis zum 30. April zu prüfen. Das Fachteam schlägt bis zum 2. Mai messbare Kriterien vor. Als mögliche Kriterien werden Rückfragen pro Fall und Bearbeitungsdauer genannt, jedoch noch nicht endgültig festgelegt. Der Einkauf weist auf zwei fehlende Geräte hin und prüft bis Mittwoch, ob Ersatz verfügbar ist. Eine Anschaffung wird noch nicht genehmigt. Die Leitung entscheidet nach der Auswertung über einen dauerhaften Betrieb."},tip:"Write the action table first, then add only the background needed to understand decisions. Check the heading ‘Beschluss’ against every item beneath it. An option that was merely mentioned belongs under Vorschlag or offen.",checks:[{prompt:"Are the two suggested metrics already adopted?",answer:"No",options:["Yes","No"],why:"They are named as possibilities, not final criteria."},{prompt:"Who checks replacement device availability?",answer:"der Einkauf",why:"The purchasing team accepted that action."},{prompt:"Complete: Die Zugänge sind bis zum 30. April zu ___.",answer:"prüfen",why:"Sein + zu + infinitive states the required check."},{prompt:"What begins on 4 May?",answer:"die Testphase",why:"The agreed trial period runs from 4 to 15 May."}],task:{prompt:"Create 150–180 words of result minutes with headings and an action table. Include all deadlines, the unapproved purchase and the provisional metrics. Do not attribute a measured result to the trial before it runs.",rubric},reflection:"Could someone who missed the meeting act from your minutes alone?"},
-{...base,id:"C1-04-L02",title:"Make reference chains easy to follow",de:"Diese Maßnahme – dadurch – deren Folgen",objectives:["Choose unambiguous pronouns and demonstratives.","Link paragraphs without vague repetition."],skills:["cohesion"],explanation:"Cohesion is the visible relationship between sentences. Pronouns save repetition only when their antecedent is clear. After mentioning a software change, a training session and an approval, dies can be ambiguous. Repeat a precise noun where needed: Diese Schulung, Diese Freigabe. Deren and dessen identify a genitive relationship and must point to the intended antecedent. Dadurch signals a means or consequence connected to previous information; trotzdem signals concession. A paragraph normally develops one central idea. Begin with a sentence that establishes that idea, supply evidence, and indicate the implication. Avoid inserting moreover-style connectors when the real relationship is a contrast or a limitation.",example:["Die Einführung wurde verschoben. Diese Verschiebung gibt dem Team Zeit für einen zusätzlichen Test.","The launch was postponed. This postponement gives the team time for an additional test."],table:{title:"Repair vague reference",headers:["Vague","Clearer when intended"],rows:[["Das wurde später geprüft.","Die Zugangsberechtigung wurde später geprüft."],["Dadurch war es besser.","Durch die zusätzliche Prüfung sank die Zahl falscher Freigaben."],["Ihre Ergebnisse waren unklar.","Die Ergebnisse der Befragung waren unklar."]]},reading:{title:"Two changes, two effects",body:"Das Unternehmen führte im März eine neue Terminplanung ein und bot parallel eine Schulung für das Empfangsteam an. Die Planung machte freie Termine schneller sichtbar. Die Schulung half den Beschäftigten, Sonderwünsche einheitlich zu erfassen. Beide Maßnahmen wurden in einer kurzen Befragung positiv bewertet. Die Befragung erfasste jedoch nur die Einschätzung von acht Beschäftigten; Kundinnen und Kunden wurden nicht befragt. Die Leitung möchte deshalb zusätzlich die tatsächlichen Wartezeiten vergleichen. Dieser Vergleich soll im Juni erfolgen, wenn Daten aus drei Monaten vorliegen. Eine Verkürzung der Wartezeit ist bisher nicht nachgewiesen. Der positive Eindruck allein reicht dafür nicht aus."},tip:"Underline every pronoun, dies, dadurch and deren/dessen. Draw a mental arrow to exactly one antecedent. If you cannot, name the object again. Strategic repetition is clearer than elegant ambiguity.",checks:[{prompt:"Which measure made free appointments visible more quickly?",answer:"die neue Terminplanung",why:"The text assigns this effect to planning, not the training."},{prompt:"Complete: Die Befragung, ___ Ergebnisse vorliegen, erfasste acht Beschäftigte.",answer:"deren",why:"Befragung is feminine; the genitive relative pronoun is deren."},{prompt:"Have shorter waiting times been demonstrated?",answer:"No",options:["Yes","No"],why:"Only staff impressions have been collected so far."},{prompt:"Which connector fits: Nur acht Personen wurden befragt. ___ sollen weitere Daten erhoben werden.",answer:"Deshalb",options:["Deshalb","Trotzdem","Andernfalls"],why:"The small sample motivates the further data collection."}],task:{prompt:"Write a 140–160-word report in two paragraphs: first the two measures and their distinct effects, then evidence limitations and the next check. Use four cohesive references with unmistakable antecedents.",rubric},reflection:"Where was repeating a noun better than using a pronoun?"},
-{...base,id:"C1-04-L03",title:"Report evidence without overstating it",de:"Die Daten legen nahe …",objectives:["Separate measured change from causal explanation.","Use appropriate hedging in a short report."],skills:["evidence-reporting"],explanation:"A report should show what was measured, over which period and under which conditions. A correlation does not establish a cause. Nach der Umstellung sank die Fehlerzahl states sequence; wegen der Umstellung sank sie asserts causation. If other factors changed, use cautious wording and name them. Die Ergebnisse deuten darauf hin is weaker than die Ergebnisse beweisen. This is not indecision: it expresses the evidence accurately. Distinguish absolute counts from rates. A lower number of errors may simply reflect fewer cases. Include the denominator when it matters. Conclude with a proportionate recommendation, such as a longer test or a targeted check, instead of turning limited data into certainty.",example:["Die Fehlerquote sank von vier auf drei Prozent. Ob die neue Checkliste ausschlaggebend war, lässt sich daraus allein nicht ableiten.","The error rate fell from four to three percent. These data alone do not show whether the new checklist caused it."],table:{title:"Observation and interpretation",headers:["Measured","Not yet established"],rows:[["40 Fehler bei 1.000 Fällen","Cause of the errors"],["24 Fehler bei 800 Fällen","Effect of the checklist alone"],["Rate: 4% → 3%","Long-term stability"]]},reading:{title:"A first-month comparison",body:"Im Februar wurden bei 1.000 Vorgängen 40 fehlerhafte Zuordnungen festgestellt. Im März waren es 24 bei 800 Vorgängen. Zu Monatsbeginn wurde eine Checkliste eingeführt; gleichzeitig übernahm ein erfahrener Mitarbeiter die Einarbeitung neuer Kolleginnen und Kollegen. Die Arbeitsgruppe bewertet die niedrigere Fehlerquote als ermutigend. Welchen Anteil die Checkliste und welchen die zusätzliche Begleitung hatte, wurde nicht getrennt untersucht. Auch die Art der bearbeiteten Fälle wurde nicht systematisch verglichen. Das Team empfiehlt, die Checkliste vorläufig beizubehalten und für weitere zwei Monate sowohl Fallarten als auch Fehlerquoten zu dokumentieren. Eine dauerhafte Verfahrensänderung soll erst danach beschlossen werden."},tip:"Compute the rate before writing a trend sentence. Use Prozentpunkte for an absolute difference between percentages. Then test every causal word: because, therefore, due to. Does the design justify it, or should it be a possibility?",checks:[{prompt:"What was the March error rate? Write the percentage including %.",answer:["3%","3 %"],why:"24 divided by 800 is 0.03, or 3 percent."},{prompt:"How many percentage points did the rate fall? Write a number.",answer:"1",why:"4% minus 3% equals one percentage point."},{prompt:"Was the checklist's separate effect established?",answer:"No",options:["Yes","No"],why:"The mentoring and case-mix factors were not isolated."},{prompt:"Complete: Die Daten deuten ___ eine Verbesserung hin.",answer:"auf",why:"Hindeuten auf governs accusative."}],task:{prompt:"Write a 160–190-word management report. Give counts and rates, distinguish one percentage point from the relative reduction, name the confounding changes and recommend a proportionate next step.",rubric},reflection:"Which causal word did you deliberately avoid?"},
+import { authorLesson, type LessonDraft } from "./authoring";
+const rubric = [
+  "Preserves the supplied facts, positions and decision status.",
+  "Makes attribution and next actions clear.",
+  "Uses the target structures accurately.",
+  "Adapts register and organization to the recipient.",
 ];
-export const c1Meetings=data.map(authorLesson);
+const base = {
+  references: ["conversation", "passive", "editing"],
+  vocabulary: ["team", "termin", "projekt", "entscheidung"],
+};
+const data: LessonDraft[] = [
+  {
+    ...base,
+    id: "C1-03-L01",
+    title: "Take a useful turn in a meeting",
+    de: "Darf ich daran anknüpfen?",
+    objectives: [
+      "Enter, connect and yield a turn.",
+      "Clarify a proposal before evaluating it.",
+    ],
+    skills: ["interaction"],
+    explanation:
+      "A productive turn connects to something already said. Briefly identify that point, add one clear contribution, and make space for a response. Ich möchte an Ihren Vorschlag anknüpfen is useful only if you then state the connection. Distinguish clarifying a proposal from agreeing with it: Verstehe ich richtig, dass …? checks meaning. A short acknowledgment can precede disagreement without cancelling it: Den Zeitgewinn sehe ich; beim Aufwand bin ich noch nicht überzeugt. Avoid a long prepared speech when the group needs one answer. If you need to interrupt, state the immediate reason and return the floor. Interaction is assessed through responsive turns, not simply through speech length.",
+    example: [
+      "Darf ich kurz nachfragen: Bezieht sich der Test auf alle Anfragen oder zunächst nur auf Standardfälle?",
+      "May I clarify: does the trial cover all inquiries or initially only standard cases?",
+    ],
+    table: {
+      title: "A turn with a job",
+      headers: ["Move", "Phrase"],
+      rows: [
+        ["Connect", "Daran würde ich gern anknüpfen."],
+        ["Clarify", "Was würde das konkret für … bedeuten?"],
+        ["Qualify", "Unter dieser Voraussetzung könnte ich zustimmen."],
+        ["Yield", "Wie sehen Sie das aus Sicht des Supports?"],
+      ],
+    },
+    reading: {
+      title: "Three positions at the table",
+      body: "In einer Besprechung schlägt Jana vor, Standardanfragen künftig über ein gemeinsames Formular zu bearbeiten. Sie erwartet weniger Rückfragen. Malik befürchtet, dass komplizierte Fälle in einem starren Formular nicht ausreichend beschrieben werden können. Er lehnt eine Verbesserung des Ablaufs nicht ab, möchte aber Ausnahmen ermöglichen. Sofia bietet an, zunächst zwei Wochen lang nur wiederkehrende Standardfälle zu testen. Die Zahl der Rückfragen soll dokumentiert werden; eine Zeitersparnis ist bisher nicht gemessen. Die Leitung hat noch keine Entscheidung getroffen und bittet um eine präzise Abgrenzung des Tests. Sie vertreten den Support und müssen klären, wer Sonderfälle übernimmt.",
+    },
+    tip: "Prepare a clarification, a conditional contribution and a follow-up question. In a voice exchange, react to the actual answer rather than reciting all three. The source gives expectations and concerns; neither is a measured result.",
+    checks: [
+      {
+        prompt: "Does Malik reject every improvement?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "He asks for exceptions, not for abandoning all improvement.",
+      },
+      {
+        prompt: "Complete: Daran würde ich gern ___. Use anknüpfen.",
+        answer: "anknüpfen",
+        why: "After würde the infinitive remains at the end.",
+      },
+      {
+        prompt: "What has not yet been measured?",
+        answer: "Zeitersparnis",
+        why: "The text explicitly says a time saving has not been measured.",
+      },
+      {
+        prompt: "Complete: Unter dieser ___ könnte ich zustimmen.",
+        answer: "Voraussetzung",
+        why: "Unter dieser Voraussetzung expresses conditional agreement.",
+      },
+    ],
+    task: {
+      type: "speaking",
+      prompt:
+        "Record a 90-second contribution as the support representative. Acknowledge one concern, clarify the test boundary, propose responsibility for exceptions and invite a response. Then answer: Was wäre Ihr Einwand gegen einen sofortigen Rollout?",
+      rubric,
+    },
+    reflection: "Did you respond to another position or only state your own?",
+  },
+  {
+    ...base,
+    id: "C1-03-L02",
+    title: "Report what someone said",
+    de: "Die Leitung erklärte, der Test sei sinnvoll",
+    objectives: [
+      "Use Konjunktiv I with clear attribution.",
+      "Separate reported claims from the reporter's own findings.",
+    ],
+    skills: ["reported-speech"],
+    explanation:
+      "Konjunktiv I is useful for reported statements in minutes and formal reports. It marks attribution rather than proving or disproving the claim. Common forms are sei, habe, werde and könne. For a reported past event, use habe or sei with a participle: Er erklärte, die Prüfung habe stattgefunden. If a form is identical to indicative, a suitable Konjunktiv II or a clearly attributed dass-clause can avoid ambiguity. Maintain the reporting perspective: gestern in a statement made on Monday may become am Vortag in a later report. Do not mechanically change every pronoun or time expression; anchor it to the actual speaker and reporting date. Report questions and requests as those functions, not as factual decisions.",
+    example: [
+      "Malik erklärte, das Formular könne Sonderfälle nicht vollständig abbilden.",
+      "Malik stated that the form could not fully represent exceptional cases.",
+    ],
+    table: {
+      title: "Frequently needed forms",
+      headers: ["Direct statement", "Attributed report"],
+      rows: [
+        [
+          "Der Test ist abgeschlossen.",
+          "Sie erklärte, der Test sei abgeschlossen.",
+        ],
+        [
+          "Wir haben die Fälle geprüft.",
+          "Sie erklärte, das Team habe die Fälle geprüft.",
+        ],
+        ["Die Lösung kann helfen.", "Er sagte, die Lösung könne helfen."],
+        [
+          "Die Freigabe wird folgen.",
+          "Er erklärte, die Freigabe werde folgen.",
+        ],
+      ],
+    },
+    reading: {
+      title: "Statements after a pilot",
+      body: "Am Montag sagte die Projektleiterin: „Der Pilot ist abgeschlossen. Wir haben zwanzig Fälle geprüft. Die Ergebnisse sind noch nicht vollständig ausgewertet.“ Der Supportleiter ergänzte: „Einige Rückfragen können durch eine bessere Anleitung vermieden werden. Wir brauchen aber weiterhin eine Ansprechperson für Sonderfälle.“ Die Finanzabteilung erklärte, eine zusätzliche Stelle sei derzeit nicht eingeplant. Die Projektleiterin bat darum, bis Donnerstag Vorschläge für die Aufgabenverteilung einzureichen. Eine Entscheidung über die dauerhafte Einführung traf die Runde nicht. Sie schreiben am Dienstag einen Bericht für eine abwesende Kollegin. Diese soll erkennen können, was berichtet wurde, was noch offen ist und welche Handlung von ihr erwartet wird.",
+    },
+    tip: "Label each note with the speaker before turning it into a sentence. After writing, circle every claim without a source. Is it your observation, an established meeting fact, or someone else's assertion? Make that distinction readable.",
+    checks: [
+      {
+        prompt:
+          "Complete: Sie erklärte, der Pilot ___ abgeschlossen. Use Konjunktiv I of sein.",
+        answer: "sei",
+        why: "Sei is the third-person singular Konjunktiv I form.",
+      },
+      {
+        prompt:
+          "Complete: Sie sagte, das Team ___ zwanzig Fälle geprüft. Use Konjunktiv I of haben.",
+        answer: "habe",
+        why: "Reported perfect uses habe plus participle here.",
+      },
+      {
+        prompt: "What was requested by Thursday?",
+        answer: "Proposals for distributing responsibilities",
+        options: [
+          "A permanent rollout",
+          "Proposals for distributing responsibilities",
+          "Twenty new cases",
+        ],
+        why: "The request concerns Aufgabenverteilung, not rollout approval.",
+      },
+      {
+        prompt:
+          "Complete: Die Anleitung ___ helfen. Use Konjunktiv I of können.",
+        answer: "könne",
+        why: "Könne marks the attributed modal statement.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 150-word report for the absent colleague. Attribute the three departments' positions, use at least three Konjunktiv I forms and distinguish the Thursday request from a decision on permanent use.",
+      rubric,
+    },
+    reflection:
+      "Does any reported assertion sound like a fact you verified yourself?",
+  },
+  {
+    ...base,
+    id: "C1-03-L03",
+    title: "Turn discussion into an agreement",
+    de: "Was halten wir fest?",
+    objectives: [
+      "Separate suggestions, agreements and unresolved points.",
+      "Check owner and deadline before closing.",
+    ],
+    skills: ["meeting-decisions"],
+    explanation:
+      "A meeting can sound positive without producing an agreement. Expressions such as wäre denkbar, ich schlage vor and wir sollten remain proposals unless the group adopts them. A closing summary should identify decisions, actions, owners, deadlines and unresolved issues. Ask a specific confirmation question: Können wir das so festhalten? Do not use consensus language if someone has reserved agreement. Eine Prüfung wird vorgenommen is incomplete as an action item when no one knows who will do it. Use an active responsibility statement and a concrete deliverable. A follow-up date is not necessarily the delivery deadline. Record both when they differ, and make dependencies visible.",
+    example: [
+      "Wir halten fest: Der Support erstellt bis Dienstag eine Liste der Sonderfälle. Über den Rollout entscheiden wir erst nach deren Auswertung.",
+      "We agree that support will compile the exceptions by Tuesday. The rollout decision follows their evaluation.",
+    ],
+    steps: [
+      { label: "Decision", detail: "What was adopted?" },
+      { label: "Action", detail: "What will be produced?" },
+      { label: "Owner + date", detail: "Who, by when?" },
+      { label: "Open point", detail: "What is still undecided?" },
+    ],
+    reading: {
+      title: "The last five minutes",
+      body: "Nach der Diskussion stimmt die Runde einem zweiwöchigen Test für Standardanfragen zu. Malik erklärt sich bereit, bis kommenden Dienstag eine Liste der Sonderfälle zu erstellen. Jana entwirft auf dieser Grundlage bis Donnerstag eine Ergänzung des Formulars. Sofia kann die technische Umsetzung erst zusagen, wenn sie den Entwurf gesehen hat. Die Leitung schlägt Freitag als Folgetermin vor; zwei Personen müssen ihre Verfügbarkeit noch prüfen. Ein dauerhafter Einsatz und zusätzliche Stellen werden nicht beschlossen. Die Zahl der Rückfragen soll während des Tests erhoben werden. Wer die Auswertung übernimmt, bleibt am Ende der Besprechung offen. Sie sollen die Runde mit einer korrekten Zusammenfassung schließen.",
+    },
+    tip: "Use a two-column note: confirmed versus pending. Avoid promoting the suggested Friday meeting into a confirmed appointment. An open action owner is a reason to ask a question, not an invitation to assign someone without agreement.",
+    checks: [
+      {
+        prompt: "Is Sofia's implementation commitment confirmed?",
+        answer: "No, it depends on reviewing the draft.",
+        options: [
+          "Yes, unconditionally.",
+          "No, it depends on reviewing the draft.",
+        ],
+        why: "She reserves her commitment until she sees the draft.",
+      },
+      {
+        prompt: "Who will produce the exceptions list?",
+        answer: "Malik",
+        why: "Malik explicitly accepts that action.",
+      },
+      {
+        prompt:
+          "Complete: Über den dauerhaften Einsatz wurde noch nicht ___. Use entscheiden.",
+        answer: "entschieden",
+        why: "The impersonal process passive uses entschieden.",
+      },
+      {
+        prompt: "Which responsibility remains unassigned?",
+        answer: "die Auswertung",
+        why: "No owner for evaluating the recorded inquiries is named.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 140–170-word closing summary and three targeted confirmation questions. Preserve every dependency and distinguish the confirmed trial from the proposed Friday meeting.",
+      rubric,
+    },
+    reflection: "Which unresolved point could stop the next step?",
+  },
+  {
+    ...base,
+    id: "C1-04-L01",
+    title: "Write minutes people can act on",
+    de: "Beschluss, Zuständigkeit, Frist",
+    objectives: [
+      "Produce result minutes from a discussion.",
+      "Preserve decisions without reproducing every turn.",
+    ],
+    skills: ["minutes"],
+    explanation:
+      "Ergebnisprotokolle organize outcomes by topic; they do not reproduce every contribution chronologically. Include a decision's scope and any explicit reservation. Keep an action table for who does what by when. Separate Hintergrund, Beschluss, Aufgabe and offener Punkt when the distinctions matter. Concise nominal headings are useful, while action lines often benefit from full verbs. The phrase Die Zuständigkeit wurde geklärt is less useful than Der Einkauf prüft die Liefertermine bis Mittwoch. Use neutral wording. A participant's concern is not an objective defect unless the group established it. Check dates, names, quantities and whether the meeting adopted a proposal before issuing the minutes.",
+    example: [
+      "Beschluss: Testphase vom 4. bis 15. Mai. Aufgabe: IT prüft die Zugänge bis 30. April. Offen: Auswertungskriterien.",
+      "Decision: trial from 4–15 May. Action: IT checks access by 30 April. Open: evaluation criteria.",
+    ],
+    table: {
+      title: "A reliable action line",
+      headers: ["Item", "Owner", "Deadline", "Status"],
+      rows: [
+        ["Zugänge prüfen", "IT", "30. April", "vereinbart"],
+        ["Kriterien vorschlagen", "Fachteam", "2. Mai", "vereinbart"],
+        ["Dauerbetrieb", "Leitung", "nach Auswertung", "offen"],
+      ],
+    },
+    reading: {
+      title: "Meeting notes to transform",
+      body: "Die Leitung eröffnet die Runde mit dem Hinweis, dass der bisherige Ablauf zu häufige Rückfragen auslöse. Diese Einschätzung soll im Test überprüft werden. Die Gruppe beschließt eine Testphase vom 4. bis 15. Mai. Die IT sagt zu, die benötigten Zugänge bis zum 30. April zu prüfen. Das Fachteam schlägt bis zum 2. Mai messbare Kriterien vor. Als mögliche Kriterien werden Rückfragen pro Fall und Bearbeitungsdauer genannt, jedoch noch nicht endgültig festgelegt. Der Einkauf weist auf zwei fehlende Geräte hin und prüft bis Mittwoch, ob Ersatz verfügbar ist. Eine Anschaffung wird noch nicht genehmigt. Die Leitung entscheidet nach der Auswertung über einen dauerhaften Betrieb.",
+    },
+    tip: "Write the action table first, then add only the background needed to understand decisions. Check the heading ‘Beschluss’ against every item beneath it. An option that was merely mentioned belongs under Vorschlag or offen.",
+    checks: [
+      {
+        prompt: "Are the two suggested metrics already adopted?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "They are named as possibilities, not final criteria.",
+      },
+      {
+        prompt: "Who checks replacement device availability?",
+        answer: "der Einkauf",
+        why: "The purchasing team accepted that action.",
+      },
+      {
+        prompt: "Complete: Die Zugänge sind bis zum 30. April zu ___.",
+        answer: "prüfen",
+        why: "Sein + zu + infinitive states the required check.",
+      },
+      {
+        prompt: "What begins on 4 May?",
+        answer: "die Testphase",
+        why: "The agreed trial period runs from 4 to 15 May.",
+      },
+    ],
+    task: {
+      prompt:
+        "Create 150–180 words of result minutes with headings and an action table. Include all deadlines, the unapproved purchase and the provisional metrics. Do not attribute a measured result to the trial before it runs.",
+      rubric,
+    },
+    reflection:
+      "Could someone who missed the meeting act from your minutes alone?",
+  },
+  {
+    ...base,
+    id: "C1-04-L02",
+    title: "Make reference chains easy to follow",
+    de: "Diese Maßnahme – dadurch – deren Folgen",
+    objectives: [
+      "Choose unambiguous pronouns and demonstratives.",
+      "Link paragraphs without vague repetition.",
+    ],
+    skills: ["cohesion"],
+    explanation:
+      "Cohesion is the visible relationship between sentences. Pronouns save repetition only when their antecedent is clear. After mentioning a software change, a training session and an approval, dies can be ambiguous. Repeat a precise noun where needed: Diese Schulung, Diese Freigabe. Deren and dessen identify a genitive relationship and must point to the intended antecedent. Dadurch signals a means or consequence connected to previous information; trotzdem signals concession. A paragraph normally develops one central idea. Begin with a sentence that establishes that idea, supply evidence, and indicate the implication. Avoid inserting moreover-style connectors when the real relationship is a contrast or a limitation.",
+    example: [
+      "Die Einführung wurde verschoben. Diese Verschiebung gibt dem Team Zeit für einen zusätzlichen Test.",
+      "The launch was postponed. This postponement gives the team time for an additional test.",
+    ],
+    table: {
+      title: "Repair vague reference",
+      headers: ["Vague", "Clearer when intended"],
+      rows: [
+        [
+          "Das wurde später geprüft.",
+          "Die Zugangsberechtigung wurde später geprüft.",
+        ],
+        [
+          "Dadurch war es besser.",
+          "Durch die zusätzliche Prüfung sank die Zahl falscher Freigaben.",
+        ],
+        [
+          "Ihre Ergebnisse waren unklar.",
+          "Die Ergebnisse der Befragung waren unklar.",
+        ],
+      ],
+    },
+    reading: {
+      title: "Two changes, two effects",
+      body: "Das Unternehmen führte im März eine neue Terminplanung ein und bot parallel eine Schulung für das Empfangsteam an. Die Planung machte freie Termine schneller sichtbar. Die Schulung half den Beschäftigten, Sonderwünsche einheitlich zu erfassen. Beide Maßnahmen wurden in einer kurzen Befragung positiv bewertet. Die Befragung erfasste jedoch nur die Einschätzung von acht Beschäftigten; Kundinnen und Kunden wurden nicht befragt. Die Leitung möchte deshalb zusätzlich die tatsächlichen Wartezeiten vergleichen. Dieser Vergleich soll im Juni erfolgen, wenn Daten aus drei Monaten vorliegen. Eine Verkürzung der Wartezeit ist bisher nicht nachgewiesen. Der positive Eindruck allein reicht dafür nicht aus.",
+    },
+    tip: "Underline every pronoun, dies, dadurch and deren/dessen. Draw a mental arrow to exactly one antecedent. If you cannot, name the object again. Strategic repetition is clearer than elegant ambiguity.",
+    checks: [
+      {
+        prompt: "Which measure made free appointments visible more quickly?",
+        answer: "die neue Terminplanung",
+        why: "The text assigns this effect to planning, not the training.",
+      },
+      {
+        prompt:
+          "Complete: Die Befragung, ___ Ergebnisse vorliegen, erfasste acht Beschäftigte.",
+        answer: "deren",
+        why: "Befragung is feminine; the genitive relative pronoun is deren.",
+      },
+      {
+        prompt: "Have shorter waiting times been demonstrated?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "Only staff impressions have been collected so far.",
+      },
+      {
+        prompt:
+          "Which connector fits: Nur acht Personen wurden befragt. ___ sollen weitere Daten erhoben werden.",
+        answer: "Deshalb",
+        options: ["Deshalb", "Trotzdem", "Andernfalls"],
+        why: "The small sample motivates the further data collection.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 140–160-word report in two paragraphs: first the two measures and their distinct effects, then evidence limitations and the next check. Use four cohesive references with unmistakable antecedents.",
+      rubric,
+    },
+    reflection: "Where was repeating a noun better than using a pronoun?",
+  },
+  {
+    ...base,
+    id: "C1-04-L03",
+    title: "Report evidence without overstating it",
+    de: "Die Daten legen nahe …",
+    objectives: [
+      "Separate measured change from causal explanation.",
+      "Use appropriate hedging in a short report.",
+    ],
+    skills: ["evidence-reporting"],
+    explanation:
+      "A report should show what was measured, over which period and under which conditions. A correlation does not establish a cause. Nach der Umstellung sank die Fehlerzahl states sequence; wegen der Umstellung sank sie asserts causation. If other factors changed, use cautious wording and name them. Die Ergebnisse deuten darauf hin is weaker than die Ergebnisse beweisen. This is not indecision: it expresses the evidence accurately. Distinguish absolute counts from rates. A lower number of errors may simply reflect fewer cases. Include the denominator when it matters. Conclude with a proportionate recommendation, such as a longer test or a targeted check, instead of turning limited data into certainty.",
+    example: [
+      "Die Fehlerquote sank von vier auf drei Prozent. Ob die neue Checkliste ausschlaggebend war, lässt sich daraus allein nicht ableiten.",
+      "The error rate fell from four to three percent. These data alone do not show whether the new checklist caused it.",
+    ],
+    table: {
+      title: "Observation and interpretation",
+      headers: ["Measured", "Not yet established"],
+      rows: [
+        ["40 Fehler bei 1.000 Fällen", "Cause of the errors"],
+        ["24 Fehler bei 800 Fällen", "Effect of the checklist alone"],
+        ["Rate: 4% → 3%", "Long-term stability"],
+      ],
+    },
+    reading: {
+      title: "A first-month comparison",
+      body: "Im Februar wurden bei 1.000 Vorgängen 40 fehlerhafte Zuordnungen festgestellt. Im März waren es 24 bei 800 Vorgängen. Zu Monatsbeginn wurde eine Checkliste eingeführt; gleichzeitig übernahm ein erfahrener Mitarbeiter die Einarbeitung neuer Kolleginnen und Kollegen. Die Arbeitsgruppe bewertet die niedrigere Fehlerquote als ermutigend. Welchen Anteil die Checkliste und welchen die zusätzliche Begleitung hatte, wurde nicht getrennt untersucht. Auch die Art der bearbeiteten Fälle wurde nicht systematisch verglichen. Das Team empfiehlt, die Checkliste vorläufig beizubehalten und für weitere zwei Monate sowohl Fallarten als auch Fehlerquoten zu dokumentieren. Eine dauerhafte Verfahrensänderung soll erst danach beschlossen werden.",
+    },
+    tip: "Compute the rate before writing a trend sentence. Use Prozentpunkte for an absolute difference between percentages. Then test every causal word: because, therefore, due to. Does the design justify it, or should it be a possibility?",
+    checks: [
+      {
+        prompt:
+          "What was the March error rate? Write the percentage including %.",
+        answer: ["3%", "3 %"],
+        why: "24 divided by 800 is 0.03, or 3 percent.",
+      },
+      {
+        prompt: "How many percentage points did the rate fall? Write a number.",
+        answer: "1",
+        why: "4% minus 3% equals one percentage point.",
+      },
+      {
+        prompt: "Was the checklist's separate effect established?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The mentoring and case-mix factors were not isolated.",
+      },
+      {
+        prompt: "Complete: Die Daten deuten ___ eine Verbesserung hin.",
+        answer: "auf",
+        why: "Hindeuten auf governs accusative.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write a 160–190-word management report. Give counts and rates, distinguish one percentage point from the relative reduction, name the confounding changes and recommend a proportionate next step.",
+      rubric,
+    },
+    reflection: "Which causal word did you deliberately avoid?",
+  },
+];
+export const c1Meetings = data.map(authorLesson);

@@ -2,14 +2,14 @@
 
 Learn a verb with its principal forms and construction: **sich auf etwas vorbereiten — bereitete sich vor — hat sich vorbereitet**. A bare translation does not tell you its preposition, case or auxiliary.
 
-| Use | Example | Decision |
-|---|---|---|
-| Present or arranged future | Morgen bespreche ich den Entwurf. | A time expression can make Präsens future. |
-| Conversational completed event | Wir haben die Unterlagen geprüft. | Perfect auxiliary + participle. |
-| Written narrative | Die Anlage fiel aus. | Präteritum is common in reports; war/hatte/modals are also common in speech. |
-| Earlier than another past event | Wir hatten den Fehler bereits gemeldet. | Plusquamperfekt: hatte/war + participle. |
-| Future or assumption | Er wird morgen kommen. / Er wird noch arbeiten. | Context distinguishes prediction from present supposition. |
-| Prior completion or past assumption | Sie wird den Bericht gelesen haben. | Future II need not describe a literal future. |
+| Use                                 | Example                                         | Decision                                                                     |
+| ----------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------- |
+| Present or arranged future          | Morgen bespreche ich den Entwurf.               | A time expression can make Präsens future.                                   |
+| Conversational completed event      | Wir haben die Unterlagen geprüft.               | Perfect auxiliary + participle.                                              |
+| Written narrative                   | Die Anlage fiel aus.                            | Präteritum is common in reports; war/hatte/modals are also common in speech. |
+| Earlier than another past event     | Wir hatten den Fehler bereits gemeldet.         | Plusquamperfekt: hatte/war + participle.                                     |
+| Future or assumption                | Er wird morgen kommen. / Er wird noch arbeiten. | Context distinguishes prediction from present supposition.                   |
+| Prior completion or past assumption | Sie wird den Bericht gelesen haben.             | Future II need not describe a literal future.                                |
 
 Separable prefixes are stressed and separate in a main clause: **Wir rufen an; wir haben angerufen; wir versuchen anzurufen**. Inseparable prefixes such as be-, er-, ver-, zer-, ent- do not take participial ge-: **besprochen, erreicht, verstanden**. Verbs in -ieren also omit ge-: **organisiert**. Meaning can determine whether a prefix separates: **umfahren** has two different stress and meaning patterns. Check the individual entry.
 

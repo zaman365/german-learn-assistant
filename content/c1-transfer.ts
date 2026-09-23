@@ -1,12 +1,425 @@
-import { authorLesson,type LessonDraft } from "./authoring";
-const rubric=["Fulfils the communicative task with accurate, relevant content.","Adapts register and structure to the audience.","Responds to uncertainty, partner input or source limits appropriately.","Uses varied but controlled grammar and natural collocations."];
-const base={references:["conversation","mediation","editing"],vocabulary:["kollege","team","erfahrung","ergebnis"]};
-const data:LessonDraft[]=[
-{...base,id:"C1-16-L01",title:"Sustain a natural workplace conversation",de:"Interesse zeigen und weiterfragen",objectives:["Balance self-disclosure, response and follow-up.","Use informal phrases without overusing idioms."],skills:["informal-interaction"],explanation:"Workplace small talk builds a manageable exchange, not an interview. Respond to what the other person said, add a relevant detail of your own and ask a natural follow-up. Avoid a rapid list of unrelated questions. Informality does not require intimate topics or slang. An idiom such as den Kopf frei bekommen means mentally unwinding; use it only when it fits the speaker and context. If a topic appears unwelcome, acknowledge the cue and move on. A good follow-up invites elaboration without demanding private information. Practice different openings so the interaction remains responsive rather than memorized.",example:["Das klingt nach einer guten Möglichkeit, den Kopf frei zu bekommen. Machst du das eher allein oder mit anderen?","That sounds like a good way to unwind. Do you usually do it alone or with others?"],table:{title:"Keep the exchange balanced",headers:["Move","Example"],rows:[["Respond","Das kann ich gut nachvollziehen."],["Connect","Bei mir ist es ähnlich, wenn …"],["Follow up","Was gefällt dir daran besonders?"],["Change topic","Apropos nächste Woche: …"]]},reading:{title:"At the break table",body:"Eine Kollegin erzählt, dass sie nach arbeitsreichen Tagen gern kurze Spaziergänge macht. Sie sagt, es gehe ihr weniger um Sport als darum, den Kopf frei zu bekommen. Sie haben selbst festgestellt, dass eine Pause ohne Bildschirm hilft. Die Kollegin erwähnt außerdem einen geplanten Teamtag, weiß aber noch nicht, ob sie teilnehmen kann. Sie möchten das Gespräch freundlich fortsetzen, ohne nach privaten Gründen zu drängen. Das Thema ist offen: Pausen, Freizeitgewohnheiten oder Erwartungen an den Teamtag. Ziel ist eine dreiminütige Unterhaltung mit ungefähr ausgewogener Beteiligung und mindestens zwei echten Anschlussfragen."},tip:"Notice whether your question grows from the previous answer. A follow-up about the walk's appeal is more responsive than suddenly asking about salary or family. Leave the other person room to decline a topic.",checks:[{prompt:"What does den Kopf frei bekommen mean here?",answer:"Unwind mentally",options:["Have a medical procedure","Unwind mentally","Avoid every responsibility"],why:"The idiom refers to mentally switching off and clearing one's head."},{prompt:"Is the colleague's main purpose intensive sport?",answer:"No",options:["Yes","No"],why:"She emphasizes mental relief rather than sport."},{prompt:"Complete: Was gefällt dir ___ besonders?",answer:"daran",why:"Daran refers back to the activity after gefallen an in this question pattern."},{prompt:"Which follow-up respects the unknown private reason?",answer:"Was würdest du dir für den Teamtag wünschen?",options:["Warum kannst du privat nicht kommen?","Was würdest du dir für den Teamtag wünschen?","Du musst deine Gründe erklären."],why:"It invites a relevant opinion without demanding personal disclosure."}],task:{type:"speaking",prompt:"Record a conversation opening and three different follow-up responses. Then discuss pauses and the team day for three minutes in responsive turns, balancing your own examples with questions.",rubric},reflection:"Did your last question follow from the partner's actual answer?"},
-{...base,id:"C1-16-L02",title:"Shift register when the audience changes",de:"Vom Pausengespräch zur Teaminformation",objectives:["Reframe an informal idea for a professional audience.","Preserve meaning while changing tone and detail."],skills:["register-shift"],explanation:"Register shift changes how a message is delivered, not the facts. A casual Das läuft gerade ziemlich schief can become Im aktuellen Ablauf treten wiederholt Schwierigkeiten auf when repeated difficulties are actually established. Do not add frequency or certainty just to sound formal. Informal idioms may need a plain equivalent for a broad audience. Replace vague references with the relevant process, and remove personal speculation. Formal wording should remain readable; a short active sentence is often appropriate. Preserve whether the original speaker offered an idea, reported a fact or made a joke. An informal suggestion is not a management decision.",example:["Vielleicht kriegen wir das mit einer kurzen Runde hin. → Eine kurze Abstimmung könnte helfen, die offenen Punkte zu klären.","A brief coordination meeting could help resolve the open issues."],table:{title:"Change tone, retain status",headers:["Informal","Professional"],rows:[["Das ist noch nicht in trockenen Tüchern.","Die Vereinbarung ist noch nicht abschließend bestätigt."],["Wir sollten kurz die Köpfe zusammenstecken.","Ich schlage eine kurze gemeinsame Abstimmung vor."],["Das wäre vielleicht was.","Diese Möglichkeit sollte geprüft werden."]]},reading:{title:"An idea from the break room",body:"Im Pausengespräch sagt ein Kollege: „Wir könnten doch freitags mal kurz die Köpfe zusammenstecken. Dann wären die offenen Sachen nicht immer so verteilt.“ Eine Kollegin findet die Idee interessant, weist aber darauf hin, dass sie freitags im Außendienst ist. Niemand beschließt einen festen Termin. Es liegen keine Zahlen dazu vor, wie oft Informationen fehlen. Sie möchten der Teamleitung die Idee sachlich vorstellen. Dabei sollen der mögliche Nutzen, die Teilnahmefrage und der Vorschlagsstatus sichtbar bleiben. Die lockere Formulierung darf nicht als Kritik an einzelnen Personen oder als bereits vereinbarte neue Sitzung erscheinen."},tip:"Highlight every fact or level of certainty in the original and preserve it in the revised version. Remove an idiom if the audience may misunderstand it, but do not replace it with inflated bureaucratic language.",checks:[{prompt:"Has a Friday meeting been agreed?",answer:"No",options:["Yes","No"],why:"The discussion produced an idea, not a decision."},{prompt:"What does die Köpfe zusammenstecken mean here?",answer:"Discuss something together",options:["Avoid talking","Discuss something together","Take a formal vote"],why:"It refers to a joint discussion, not necessarily a vote."},{prompt:"Complete: Die Teilnahmefrage muss noch ___ werden.",answer:"geklärt",why:"Modal passive uses geklärt werden."},{prompt:"Is repeated information failure quantified?",answer:"No",options:["Yes","No"],why:"No frequency data exist in the brief."}],task:{prompt:"Write an informal reply to the colleague and a separate 140-word note to management. Preserve the suggestion's status, possible benefit, participation constraint and lack of measured frequency.",rubric},reflection:"Did formality accidentally make your claim stronger?"},
-{...base,id:"C1-17-L01",title:"Turn two sources into one useful colleague email",de:"Auswählen, zuordnen, erklären",objectives:["Synthesize complementary sources for a specific recipient.","Preserve source disagreement and practical conditions."],skills:["mediation"],explanation:"When combining sources, do not write two disconnected summaries. Start from the recipient's task and organize relevant information around it. Mark which source establishes each fact, especially when dates or claims differ. A newer message may update one detail without cancelling the rest of an earlier instruction. Distinguish an announced plan from a confirmed arrangement. Translate specialist shorthand into plain German and define an unfamiliar term in place. If sources disagree, make the discrepancy explicit and identify the necessary clarification. Do not silently choose the more convenient version. A good mediated message reduces the recipient's work while preserving the conditions they need to act safely and correctly.",example:["Die Einladung nennt Raum 2; die spätere Nachricht stellt einen Wechsel in Aussicht, bestätigt ihn aber noch nicht.","The invitation names room 2; the later note suggests a possible change but does not confirm it."],table:{title:"Trace the facts",headers:["Source","Established","Open"],rows:[["Invitation","date, starting time, room 2","none in that version"],["Update","equipment issue, check underway","room change"],["Recipient need","arrival and preparation","final room confirmation"]]},reading:{title:"Invitation and later update",body:"Einladung: Die interne Schulung findet am Dienstag von 9 bis 12 Uhr in Raum 2 statt. Bitte bringen Sie einen Laptop und den vorbereiteten Beispielsfall mit. Die Teilnahme ist für die neue Projektgruppe vorgesehen.\nSpätere Nachricht der Organisation: In Raum 2 wird die Projektionstechnik geprüft. Falls sie bis Montagmittag nicht einsatzbereit ist, wechseln wir in Raum 5. Der Termin bleibt unverändert. Raum 5 hat weniger Steckdosen; bei einem Wechsel sollen die Geräte vollständig geladen sein. Die endgültige Raumangabe folgt am Montag um 14 Uhr. Eine neue Kollegin fragt Sie, was sie für Dienstag wissen und vorbereiten muss."},tip:"Keep the unchanged date and time separate from the conditional room change. The colleague needs a preparation list and when to check for confirmation, not every detail of the technical problem.",checks:[{prompt:"Has room 5 already been confirmed?",answer:"No",options:["Yes","No"],why:"The change depends on the equipment check."},{prompt:"Does the later message alter the starting time?",answer:"No",options:["Yes","No"],why:"The update says the appointment remains unchanged."},{prompt:"Complete: ___ eines Raumwechsels sollen die Geräte geladen sein. Use the phrase meaning in the event of; write two words.",answer:"Im Falle",why:"Im Falle eines … introduces a contingency with genitive."},{prompt:"When is the final room message due? Write the hour.",answer:"14",why:"The final confirmation is due Monday at 14 Uhr."}],task:{skill:"mediation",prompt:"Write a 150-word email to the new colleague integrating both sources. Include time, preparation, conditional room change and final-confirmation timing without announcing an unconfirmed room.",rubric},reflection:"Which detail was updated, and which remained unchanged?"},
-{...base,id:"C1-17-L02",title:"Make a phone note that preserves the action",de:"Wer? Was? Bis wann?",objectives:["Select names, numbers, reason and action from a message.","Keep corrections and negations in the final note."],skills:["phone-notes"],explanation:"A phone note is a tool for the next person, not a transcript. Record caller, recipient or responsible role, reason, key facts, requested action and deadline. Spoken messages often contain self-corrections: Dienstag — nein, Donnerstag. Retain the corrected version and do not list both as equally valid. A negation can reverse the action: nicht vor 14 Uhr. Label a requested callback separately from a delivery deadline. If a digit is unclear, request repetition or mark it for verification rather than completing it from expectation. This lesson first teaches the note structure from text; actual listening evidence requires the associated audio practice and must not be inferred from reading the transcript.",example:["Rückruf heute bis 15 Uhr; Zustellung frühestens Donnerstag. Mengenänderung: 12 statt 20 Geräte.","Callback today by 3 p.m.; delivery no earlier than Thursday. Quantity changed from 20 to 12 devices."],table:{title:"Useful note fields",headers:["Field","Example"],rows:[["Caller","Frau Mertens, supplier"],["Reason","change to available quantity"],["Important fact","12 instead of 20"],["Action","confirm partial delivery"],["Deadline","callback today by 15 Uhr"]]},reading:{title:"A written message for note-taking practice",body:"Guten Tag, hier ist Mertens vom Lieferteam. Es geht um Ihre Bestellung für Donnerstag. Wir können zunächst zwölf Geräte liefern, nicht zwanzig. Die übrigen acht würden voraussichtlich am Montag folgen. Bitte klären Sie, ob eine Teillieferung für Sie sinnvoll ist. Ich brauche heute bis 15 Uhr eine Rückmeldung, damit wir die Sendung einplanen können. Ach, die Lieferadresse bleibt die Hauptstelle; die Außenstelle war für einen anderen Auftrag vorgesehen. Sie erreichen mich unter der Durchwahl 274. Bitte bestätigen Sie außerdem, wer die Ware am Donnerstag zwischen 10 und 12 Uhr annehmen kann."},tip:"Use labeled fragments, not full polished sentences. Do not confuse the callback deadline with the delivery window. The remaining eight devices have an estimated Monday date, which should retain its uncertainty marker.",checks:[{prompt:"How many devices are available for Thursday? Write digits.",answer:"12",why:"The message corrects the expected quantity from twenty to twelve."},{prompt:"Which destination applies?",answer:"die Hauptstelle",why:"The caller explicitly corrects the branch-office confusion."},{prompt:"Write the caller's extension.",answer:"274",why:"The message gives extension 274."},{prompt:"Is Monday delivery of the remainder guaranteed?",answer:"No",options:["Yes","No"],why:"Voraussichtlich marks an estimate."}],task:{skill:"mediation",prompt:"Create an 80–110-word labeled phone note preserving quantity, estimated remainder date, destination correction, callback deadline, extension and acceptance question. Then write a two-sentence handover to the responsible colleague.",rubric},reflection:"Which spoken correction would have caused the largest practical error?"},
-{...base,id:"C1-18-L01",title:"Edit an authentic-looking rough draft",de:"Bedeutung zuerst, Form danach",objectives:["Separate real errors from optional C1 alternatives.","Revise for meaning, cohesion, government and register."],skills:["editing"],explanation:"Use several focused passes rather than trying to repair every feature at once. First check task completion and factual accuracy. Then inspect paragraph structure, references and connector logic. Only then check verb position, government, agreement and spelling. A correct plain sentence is not an error just because a more formal option exists. Label optional changes C1-Variante and explain their benefit for this audience. Do not rewrite the learner's position or invent a stronger conclusion. For recurring article errors, separate noun gender from the case selected by the construction. A complete feedback record preserves the original response, correction, reason and later transfer check.",example:["Wir haben mit der Kunde gesprochen. → Wir haben mit dem Kunden gesprochen.","Mit requires dative; Kunde is masculine and a weak noun, so both determiner and noun change."],table:{title:"Correction or variant?",headers:["Original","Change","Category"],rows:[["mit der Kunde","mit dem Kunden","case + noun inflection"],["weil wir brauchen Zeit","weil wir Zeit brauchen","verb position"],["Ich schicke den Entwurf morgen.","Den Entwurf erhalten Sie morgen.","optional focus/register variant"]]},reading:{title:"A draft needing careful revision",body:"Sehr geehrte Frau Kern, wir haben mit der Kunde gesprochen, weil wir brauchen mehr Angaben. Der Kunde sagt, dass die Lieferung gestern nicht gekommen ist. Das beweist, dass der Transportdienst den Fehler gemacht hat. Wir können die Ersatzware vielleicht eventuell bis morgen sicher schicken. Die Prüfung von der Fotos ist noch nicht abgeschlossen. Trotzdem bitte senden Sie uns die Bestellnummer. Ich schicke Ihnen morgen eine Nachricht. Mit freundlichen Grüßen\nInterner Faktenstand: Ursache ungeklärt; Fotos werden geprüft. Ersatzversand noch nicht freigegeben. Eine Rückmeldung morgen ist zugesagt. Die Bestellnummer fehlt und wird für die Zuordnung benötigt."},tip:"Do not merely polish the false causal claim and impossible guarantee. Correct meaning first. Keep the valid promise to send an update tomorrow. Explain why a change is necessary or merely optional.",checks:[{prompt:"Correct the full phrase: mit der Kunde.",answer:"mit dem Kunden",why:"Mit takes dative; masculine Kunde is a weak noun."},{prompt:"Complete: weil wir mehr Angaben ___. Use brauchen.",answer:"brauchen",why:"The finite verb belongs at the end of the subordinate clause."},{prompt:"Is the transport company's fault established?",answer:"No",options:["Yes","No"],why:"The internal facts say the cause is unknown."},{prompt:"Which promise is supported?",answer:"An update tomorrow",options:["Guaranteed replacement tomorrow","An update tomorrow","A full refund"],why:"Only the next-day response has been committed."}],task:{prompt:"Rewrite the email in 140–170 words. Then provide a correction log with at least five actual errors and two optional C1 variants, explaining the difference and preserving the known facts.",rubric},reflection:"Which important correction involved meaning rather than grammar?"},
-{...base,id:"C1-18-L02",title:"Complete a C1 transfer checkpoint",de:"Selbstständig anwenden und begründet überarbeiten",objectives:["Integrate argument, mediation and professional writing.","Identify demonstrated strengths and remaining evidence gaps."],skills:["c1-checkpoint"],explanation:"A checkpoint should require fresh decisions across several skills. Reading a new source, selecting relevant facts and producing an audience-appropriate response tests transfer more meaningfully than repeating a memorized text. Plan before writing, then revise without viewing a model answer. Explain a few editing choices so you can distinguish deliberate control from accidental correctness. Keep modality claims specific: a strong written response cannot supply missing listening or pronunciation evidence. Completion, independent demonstration and delayed retention remain different records. Use the result to choose the next repair and later check, not to declare a guaranteed CEFR level from one task.",example:["Ich empfehle einen begrenzten Test, weil die bisherigen Daten ermutigend, aber für einen dauerhaften Rollout noch nicht ausreichend sind.","I recommend a limited trial because current data are encouraging but insufficient for permanent rollout."],steps:[{label:"Read",detail:"Facts, conditions and uncertainty"},{label:"Plan",detail:"Audience and purpose"},{label:"Produce",detail:"Independent response"},{label:"Review later",detail:"New task, separate day"}],reading:{title:"A new workplace decision",body:"Ein Team möchte wiederkehrende Kundenfragen mit einem gemeinsamen Antwortkatalog bearbeiten. In einem zweiwöchigen Versuch wurden 60 Fälle erfasst. Bei 42 Fällen reichte eine vorhandene Antwort aus; bei 18 war eine individuelle Ergänzung nötig. Die Bearbeitungszeit wurde nicht gemessen. Zwei Mitarbeitende berichten, dass die Antworten einheitlicher wirkten. Eine Kollegin befürchtet, dass wichtige Besonderheiten übersehen werden könnten. Die Leitung erwägt einen sechswöchigen Test in zwei weiteren Teams. Vorher müssen Pflegeverantwortung, Umgang mit Ausnahmen und Erfolgskriterien geklärt werden. Eine automatische Versendung ohne Prüfung ist nicht vorgesehen. Sie sollen einen Vorschlag für die Entscheidung und eine kurze Information an die beteiligten Teams erstellen."},tip:"Work unaided first. In the revision pass, mark genuine errors separately from stylistic improvements. Your next-day plan should address the weakest demonstrated objective while retaining unassessed audio skills as unknown.",checks:[{prompt:"What percentage of cases used an existing answer without individual addition? Include %.",answer:["70%","70 %"],why:"42 of 60 cases equals 70%."},{prompt:"Has faster handling been measured?",answer:"No",options:["Yes","No"],why:"The source explicitly says processing time was not measured."},{prompt:"Is automatic unchecked sending proposed?",answer:"No",options:["Yes","No"],why:"Automatic sending without review is excluded."},{prompt:"Complete: Vor dem Test sind die Zuständigkeiten ___. Use klären with zu.",answer:"zu klären",why:"Sein + zu + infinitive expresses the required preliminary action."}],task:{skill:"c1-checkpoint",prompt:"Write a 230–270-word recommendation with evidence, a fair objection, trial design, responsibilities and success criteria. Add a 90-word team notice preserving the no-automatic-sending condition. Explain three revisions and name one target for a later independent check.",rubric},reflection:"Which skill is supported by this work, and which still needs different evidence?"},
+import { authorLesson, type LessonDraft } from "./authoring";
+const rubric = [
+  "Fulfils the communicative task with accurate, relevant content.",
+  "Adapts register and structure to the audience.",
+  "Responds to uncertainty, partner input or source limits appropriately.",
+  "Uses varied but controlled grammar and natural collocations.",
 ];
-export const c1Transfer=data.map(authorLesson);
+const base = {
+  references: ["conversation", "mediation", "editing"],
+  vocabulary: ["kollege", "team", "erfahrung", "ergebnis"],
+};
+const data: LessonDraft[] = [
+  {
+    ...base,
+    id: "C1-16-L01",
+    title: "Sustain a natural workplace conversation",
+    de: "Interesse zeigen und weiterfragen",
+    objectives: [
+      "Balance self-disclosure, response and follow-up.",
+      "Use informal phrases without overusing idioms.",
+    ],
+    skills: ["informal-interaction"],
+    explanation:
+      "Workplace small talk builds a manageable exchange, not an interview. Respond to what the other person said, add a relevant detail of your own and ask a natural follow-up. Avoid a rapid list of unrelated questions. Informality does not require intimate topics or slang. An idiom such as den Kopf frei bekommen means mentally unwinding; use it only when it fits the speaker and context. If a topic appears unwelcome, acknowledge the cue and move on. A good follow-up invites elaboration without demanding private information. Practice different openings so the interaction remains responsive rather than memorized.",
+    example: [
+      "Das klingt nach einer guten Möglichkeit, den Kopf frei zu bekommen. Machst du das eher allein oder mit anderen?",
+      "That sounds like a good way to unwind. Do you usually do it alone or with others?",
+    ],
+    table: {
+      title: "Keep the exchange balanced",
+      headers: ["Move", "Example"],
+      rows: [
+        ["Respond", "Das kann ich gut nachvollziehen."],
+        ["Connect", "Bei mir ist es ähnlich, wenn …"],
+        ["Follow up", "Was gefällt dir daran besonders?"],
+        ["Change topic", "Apropos nächste Woche: …"],
+      ],
+    },
+    reading: {
+      title: "At the break table",
+      body: "Eine Kollegin erzählt, dass sie nach arbeitsreichen Tagen gern kurze Spaziergänge macht. Sie sagt, es gehe ihr weniger um Sport als darum, den Kopf frei zu bekommen. Sie haben selbst festgestellt, dass eine Pause ohne Bildschirm hilft. Die Kollegin erwähnt außerdem einen geplanten Teamtag, weiß aber noch nicht, ob sie teilnehmen kann. Sie möchten das Gespräch freundlich fortsetzen, ohne nach privaten Gründen zu drängen. Das Thema ist offen: Pausen, Freizeitgewohnheiten oder Erwartungen an den Teamtag. Ziel ist eine dreiminütige Unterhaltung mit ungefähr ausgewogener Beteiligung und mindestens zwei echten Anschlussfragen.",
+    },
+    tip: "Notice whether your question grows from the previous answer. A follow-up about the walk's appeal is more responsive than suddenly asking about salary or family. Leave the other person room to decline a topic.",
+    checks: [
+      {
+        prompt: "What does den Kopf frei bekommen mean here?",
+        answer: "Unwind mentally",
+        options: [
+          "Have a medical procedure",
+          "Unwind mentally",
+          "Avoid every responsibility",
+        ],
+        why: "The idiom refers to mentally switching off and clearing one's head.",
+      },
+      {
+        prompt: "Is the colleague's main purpose intensive sport?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "She emphasizes mental relief rather than sport.",
+      },
+      {
+        prompt: "Complete: Was gefällt dir ___ besonders?",
+        answer: "daran",
+        why: "Daran refers back to the activity after gefallen an in this question pattern.",
+      },
+      {
+        prompt: "Which follow-up respects the unknown private reason?",
+        answer: "Was würdest du dir für den Teamtag wünschen?",
+        options: [
+          "Warum kannst du privat nicht kommen?",
+          "Was würdest du dir für den Teamtag wünschen?",
+          "Du musst deine Gründe erklären.",
+        ],
+        why: "It invites a relevant opinion without demanding personal disclosure.",
+      },
+    ],
+    task: {
+      type: "speaking",
+      prompt:
+        "Record a conversation opening and three different follow-up responses. Then discuss pauses and the team day for three minutes in responsive turns, balancing your own examples with questions.",
+      rubric,
+    },
+    reflection:
+      "Did your last question follow from the partner's actual answer?",
+  },
+  {
+    ...base,
+    id: "C1-16-L02",
+    title: "Shift register when the audience changes",
+    de: "Vom Pausengespräch zur Teaminformation",
+    objectives: [
+      "Reframe an informal idea for a professional audience.",
+      "Preserve meaning while changing tone and detail.",
+    ],
+    skills: ["register-shift"],
+    explanation:
+      "Register shift changes how a message is delivered, not the facts. A casual Das läuft gerade ziemlich schief can become Im aktuellen Ablauf treten wiederholt Schwierigkeiten auf when repeated difficulties are actually established. Do not add frequency or certainty just to sound formal. Informal idioms may need a plain equivalent for a broad audience. Replace vague references with the relevant process, and remove personal speculation. Formal wording should remain readable; a short active sentence is often appropriate. Preserve whether the original speaker offered an idea, reported a fact or made a joke. An informal suggestion is not a management decision.",
+    example: [
+      "Vielleicht kriegen wir das mit einer kurzen Runde hin. → Eine kurze Abstimmung könnte helfen, die offenen Punkte zu klären.",
+      "A brief coordination meeting could help resolve the open issues.",
+    ],
+    table: {
+      title: "Change tone, retain status",
+      headers: ["Informal", "Professional"],
+      rows: [
+        [
+          "Das ist noch nicht in trockenen Tüchern.",
+          "Die Vereinbarung ist noch nicht abschließend bestätigt.",
+        ],
+        [
+          "Wir sollten kurz die Köpfe zusammenstecken.",
+          "Ich schlage eine kurze gemeinsame Abstimmung vor.",
+        ],
+        [
+          "Das wäre vielleicht was.",
+          "Diese Möglichkeit sollte geprüft werden.",
+        ],
+      ],
+    },
+    reading: {
+      title: "An idea from the break room",
+      body: "Im Pausengespräch sagt ein Kollege: „Wir könnten doch freitags mal kurz die Köpfe zusammenstecken. Dann wären die offenen Sachen nicht immer so verteilt.“ Eine Kollegin findet die Idee interessant, weist aber darauf hin, dass sie freitags im Außendienst ist. Niemand beschließt einen festen Termin. Es liegen keine Zahlen dazu vor, wie oft Informationen fehlen. Sie möchten der Teamleitung die Idee sachlich vorstellen. Dabei sollen der mögliche Nutzen, die Teilnahmefrage und der Vorschlagsstatus sichtbar bleiben. Die lockere Formulierung darf nicht als Kritik an einzelnen Personen oder als bereits vereinbarte neue Sitzung erscheinen.",
+    },
+    tip: "Highlight every fact or level of certainty in the original and preserve it in the revised version. Remove an idiom if the audience may misunderstand it, but do not replace it with inflated bureaucratic language.",
+    checks: [
+      {
+        prompt: "Has a Friday meeting been agreed?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The discussion produced an idea, not a decision.",
+      },
+      {
+        prompt: "What does die Köpfe zusammenstecken mean here?",
+        answer: "Discuss something together",
+        options: [
+          "Avoid talking",
+          "Discuss something together",
+          "Take a formal vote",
+        ],
+        why: "It refers to a joint discussion, not necessarily a vote.",
+      },
+      {
+        prompt: "Complete: Die Teilnahmefrage muss noch ___ werden.",
+        answer: "geklärt",
+        why: "Modal passive uses geklärt werden.",
+      },
+      {
+        prompt: "Is repeated information failure quantified?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "No frequency data exist in the brief.",
+      },
+    ],
+    task: {
+      prompt:
+        "Write an informal reply to the colleague and a separate 140-word note to management. Preserve the suggestion's status, possible benefit, participation constraint and lack of measured frequency.",
+      rubric,
+    },
+    reflection: "Did formality accidentally make your claim stronger?",
+  },
+  {
+    ...base,
+    id: "C1-17-L01",
+    title: "Turn two sources into one useful colleague email",
+    de: "Auswählen, zuordnen, erklären",
+    objectives: [
+      "Synthesize complementary sources for a specific recipient.",
+      "Preserve source disagreement and practical conditions.",
+    ],
+    skills: ["mediation"],
+    explanation:
+      "When combining sources, do not write two disconnected summaries. Start from the recipient's task and organize relevant information around it. Mark which source establishes each fact, especially when dates or claims differ. A newer message may update one detail without cancelling the rest of an earlier instruction. Distinguish an announced plan from a confirmed arrangement. Translate specialist shorthand into plain German and define an unfamiliar term in place. If sources disagree, make the discrepancy explicit and identify the necessary clarification. Do not silently choose the more convenient version. A good mediated message reduces the recipient's work while preserving the conditions they need to act safely and correctly.",
+    example: [
+      "Die Einladung nennt Raum 2; die spätere Nachricht stellt einen Wechsel in Aussicht, bestätigt ihn aber noch nicht.",
+      "The invitation names room 2; the later note suggests a possible change but does not confirm it.",
+    ],
+    table: {
+      title: "Trace the facts",
+      headers: ["Source", "Established", "Open"],
+      rows: [
+        ["Invitation", "date, starting time, room 2", "none in that version"],
+        ["Update", "equipment issue, check underway", "room change"],
+        [
+          "Recipient need",
+          "arrival and preparation",
+          "final room confirmation",
+        ],
+      ],
+    },
+    reading: {
+      title: "Invitation and later update",
+      body: "Einladung: Die interne Schulung findet am Dienstag von 9 bis 12 Uhr in Raum 2 statt. Bitte bringen Sie einen Laptop und den vorbereiteten Beispielsfall mit. Die Teilnahme ist für die neue Projektgruppe vorgesehen.\nSpätere Nachricht der Organisation: In Raum 2 wird die Projektionstechnik geprüft. Falls sie bis Montagmittag nicht einsatzbereit ist, wechseln wir in Raum 5. Der Termin bleibt unverändert. Raum 5 hat weniger Steckdosen; bei einem Wechsel sollen die Geräte vollständig geladen sein. Die endgültige Raumangabe folgt am Montag um 14 Uhr. Eine neue Kollegin fragt Sie, was sie für Dienstag wissen und vorbereiten muss.",
+    },
+    tip: "Keep the unchanged date and time separate from the conditional room change. The colleague needs a preparation list and when to check for confirmation, not every detail of the technical problem.",
+    checks: [
+      {
+        prompt: "Has room 5 already been confirmed?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The change depends on the equipment check.",
+      },
+      {
+        prompt: "Does the later message alter the starting time?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The update says the appointment remains unchanged.",
+      },
+      {
+        prompt:
+          "Complete: ___ eines Raumwechsels sollen die Geräte geladen sein. Use the phrase meaning in the event of; write two words.",
+        answer: "Im Falle",
+        why: "Im Falle eines … introduces a contingency with genitive.",
+      },
+      {
+        prompt: "When is the final room message due? Write the hour.",
+        answer: "14",
+        why: "The final confirmation is due Monday at 14 Uhr.",
+      },
+    ],
+    task: {
+      skill: "mediation",
+      prompt:
+        "Write a 150-word email to the new colleague integrating both sources. Include time, preparation, conditional room change and final-confirmation timing without announcing an unconfirmed room.",
+      rubric,
+    },
+    reflection: "Which detail was updated, and which remained unchanged?",
+  },
+  {
+    ...base,
+    id: "C1-17-L02",
+    title: "Make a phone note that preserves the action",
+    de: "Wer? Was? Bis wann?",
+    objectives: [
+      "Select names, numbers, reason and action from a message.",
+      "Keep corrections and negations in the final note.",
+    ],
+    skills: ["phone-notes"],
+    explanation:
+      "A phone note is a tool for the next person, not a transcript. Record caller, recipient or responsible role, reason, key facts, requested action and deadline. Spoken messages often contain self-corrections: Dienstag — nein, Donnerstag. Retain the corrected version and do not list both as equally valid. A negation can reverse the action: nicht vor 14 Uhr. Label a requested callback separately from a delivery deadline. If a digit is unclear, request repetition or mark it for verification rather than completing it from expectation. This lesson first teaches the note structure from text; actual listening evidence requires the associated audio practice and must not be inferred from reading the transcript.",
+    example: [
+      "Rückruf heute bis 15 Uhr; Zustellung frühestens Donnerstag. Mengenänderung: 12 statt 20 Geräte.",
+      "Callback today by 3 p.m.; delivery no earlier than Thursday. Quantity changed from 20 to 12 devices.",
+    ],
+    table: {
+      title: "Useful note fields",
+      headers: ["Field", "Example"],
+      rows: [
+        ["Caller", "Frau Mertens, supplier"],
+        ["Reason", "change to available quantity"],
+        ["Important fact", "12 instead of 20"],
+        ["Action", "confirm partial delivery"],
+        ["Deadline", "callback today by 15 Uhr"],
+      ],
+    },
+    reading: {
+      title: "A written message for note-taking practice",
+      body: "Guten Tag, hier ist Mertens vom Lieferteam. Es geht um Ihre Bestellung für Donnerstag. Wir können zunächst zwölf Geräte liefern, nicht zwanzig. Die übrigen acht würden voraussichtlich am Montag folgen. Bitte klären Sie, ob eine Teillieferung für Sie sinnvoll ist. Ich brauche heute bis 15 Uhr eine Rückmeldung, damit wir die Sendung einplanen können. Ach, die Lieferadresse bleibt die Hauptstelle; die Außenstelle war für einen anderen Auftrag vorgesehen. Sie erreichen mich unter der Durchwahl 274. Bitte bestätigen Sie außerdem, wer die Ware am Donnerstag zwischen 10 und 12 Uhr annehmen kann.",
+    },
+    tip: "Use labeled fragments, not full polished sentences. Do not confuse the callback deadline with the delivery window. The remaining eight devices have an estimated Monday date, which should retain its uncertainty marker.",
+    checks: [
+      {
+        prompt: "How many devices are available for Thursday? Write digits.",
+        answer: "12",
+        why: "The message corrects the expected quantity from twenty to twelve.",
+      },
+      {
+        prompt: "Which destination applies?",
+        answer: "die Hauptstelle",
+        why: "The caller explicitly corrects the branch-office confusion.",
+      },
+      {
+        prompt: "Write the caller's extension.",
+        answer: "274",
+        why: "The message gives extension 274.",
+      },
+      {
+        prompt: "Is Monday delivery of the remainder guaranteed?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "Voraussichtlich marks an estimate.",
+      },
+    ],
+    task: {
+      skill: "mediation",
+      prompt:
+        "Create an 80–110-word labeled phone note preserving quantity, estimated remainder date, destination correction, callback deadline, extension and acceptance question. Then write a two-sentence handover to the responsible colleague.",
+      rubric,
+    },
+    reflection:
+      "Which spoken correction would have caused the largest practical error?",
+  },
+  {
+    ...base,
+    id: "C1-18-L01",
+    title: "Edit an authentic-looking rough draft",
+    de: "Bedeutung zuerst, Form danach",
+    objectives: [
+      "Separate real errors from optional C1 alternatives.",
+      "Revise for meaning, cohesion, government and register.",
+    ],
+    skills: ["editing"],
+    explanation:
+      "Use several focused passes rather than trying to repair every feature at once. First check task completion and factual accuracy. Then inspect paragraph structure, references and connector logic. Only then check verb position, government, agreement and spelling. A correct plain sentence is not an error just because a more formal option exists. Label optional changes C1-Variante and explain their benefit for this audience. Do not rewrite the learner's position or invent a stronger conclusion. For recurring article errors, separate noun gender from the case selected by the construction. A complete feedback record preserves the original response, correction, reason and later transfer check.",
+    example: [
+      "Wir haben mit der Kunde gesprochen. → Wir haben mit dem Kunden gesprochen.",
+      "Mit requires dative; Kunde is masculine and a weak noun, so both determiner and noun change.",
+    ],
+    table: {
+      title: "Correction or variant?",
+      headers: ["Original", "Change", "Category"],
+      rows: [
+        ["mit der Kunde", "mit dem Kunden", "case + noun inflection"],
+        ["weil wir brauchen Zeit", "weil wir Zeit brauchen", "verb position"],
+        [
+          "Ich schicke den Entwurf morgen.",
+          "Den Entwurf erhalten Sie morgen.",
+          "optional focus/register variant",
+        ],
+      ],
+    },
+    reading: {
+      title: "A draft needing careful revision",
+      body: "Sehr geehrte Frau Kern, wir haben mit der Kunde gesprochen, weil wir brauchen mehr Angaben. Der Kunde sagt, dass die Lieferung gestern nicht gekommen ist. Das beweist, dass der Transportdienst den Fehler gemacht hat. Wir können die Ersatzware vielleicht eventuell bis morgen sicher schicken. Die Prüfung von der Fotos ist noch nicht abgeschlossen. Trotzdem bitte senden Sie uns die Bestellnummer. Ich schicke Ihnen morgen eine Nachricht. Mit freundlichen Grüßen\nInterner Faktenstand: Ursache ungeklärt; Fotos werden geprüft. Ersatzversand noch nicht freigegeben. Eine Rückmeldung morgen ist zugesagt. Die Bestellnummer fehlt und wird für die Zuordnung benötigt.",
+    },
+    tip: "Do not merely polish the false causal claim and impossible guarantee. Correct meaning first. Keep the valid promise to send an update tomorrow. Explain why a change is necessary or merely optional.",
+    checks: [
+      {
+        prompt: "Correct the full phrase: mit der Kunde.",
+        answer: "mit dem Kunden",
+        why: "Mit takes dative; masculine Kunde is a weak noun.",
+      },
+      {
+        prompt: "Complete: weil wir mehr Angaben ___. Use brauchen.",
+        answer: "brauchen",
+        why: "The finite verb belongs at the end of the subordinate clause.",
+      },
+      {
+        prompt: "Is the transport company's fault established?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The internal facts say the cause is unknown.",
+      },
+      {
+        prompt: "Which promise is supported?",
+        answer: "An update tomorrow",
+        options: [
+          "Guaranteed replacement tomorrow",
+          "An update tomorrow",
+          "A full refund",
+        ],
+        why: "Only the next-day response has been committed.",
+      },
+    ],
+    task: {
+      prompt:
+        "Rewrite the email in 140–170 words. Then provide a correction log with at least five actual errors and two optional C1 variants, explaining the difference and preserving the known facts.",
+      rubric,
+    },
+    reflection:
+      "Which important correction involved meaning rather than grammar?",
+  },
+  {
+    ...base,
+    id: "C1-18-L02",
+    title: "Complete a C1 transfer checkpoint",
+    de: "Selbstständig anwenden und begründet überarbeiten",
+    objectives: [
+      "Integrate argument, mediation and professional writing.",
+      "Identify demonstrated strengths and remaining evidence gaps.",
+    ],
+    skills: ["c1-checkpoint"],
+    explanation:
+      "A checkpoint should require fresh decisions across several skills. Reading a new source, selecting relevant facts and producing an audience-appropriate response tests transfer more meaningfully than repeating a memorized text. Plan before writing, then revise without viewing a model answer. Explain a few editing choices so you can distinguish deliberate control from accidental correctness. Keep modality claims specific: a strong written response cannot supply missing listening or pronunciation evidence. Completion, independent demonstration and delayed retention remain different records. Use the result to choose the next repair and later check, not to declare a guaranteed CEFR level from one task.",
+    example: [
+      "Ich empfehle einen begrenzten Test, weil die bisherigen Daten ermutigend, aber für einen dauerhaften Rollout noch nicht ausreichend sind.",
+      "I recommend a limited trial because current data are encouraging but insufficient for permanent rollout.",
+    ],
+    steps: [
+      { label: "Read", detail: "Facts, conditions and uncertainty" },
+      { label: "Plan", detail: "Audience and purpose" },
+      { label: "Produce", detail: "Independent response" },
+      { label: "Review later", detail: "New task, separate day" },
+    ],
+    reading: {
+      title: "A new workplace decision",
+      body: "Ein Team möchte wiederkehrende Kundenfragen mit einem gemeinsamen Antwortkatalog bearbeiten. In einem zweiwöchigen Versuch wurden 60 Fälle erfasst. Bei 42 Fällen reichte eine vorhandene Antwort aus; bei 18 war eine individuelle Ergänzung nötig. Die Bearbeitungszeit wurde nicht gemessen. Zwei Mitarbeitende berichten, dass die Antworten einheitlicher wirkten. Eine Kollegin befürchtet, dass wichtige Besonderheiten übersehen werden könnten. Die Leitung erwägt einen sechswöchigen Test in zwei weiteren Teams. Vorher müssen Pflegeverantwortung, Umgang mit Ausnahmen und Erfolgskriterien geklärt werden. Eine automatische Versendung ohne Prüfung ist nicht vorgesehen. Sie sollen einen Vorschlag für die Entscheidung und eine kurze Information an die beteiligten Teams erstellen.",
+    },
+    tip: "Work unaided first. In the revision pass, mark genuine errors separately from stylistic improvements. Your next-day plan should address the weakest demonstrated objective while retaining unassessed audio skills as unknown.",
+    checks: [
+      {
+        prompt:
+          "What percentage of cases used an existing answer without individual addition? Include %.",
+        answer: ["70%", "70 %"],
+        why: "42 of 60 cases equals 70%.",
+      },
+      {
+        prompt: "Has faster handling been measured?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "The source explicitly says processing time was not measured.",
+      },
+      {
+        prompt: "Is automatic unchecked sending proposed?",
+        answer: "No",
+        options: ["Yes", "No"],
+        why: "Automatic sending without review is excluded.",
+      },
+      {
+        prompt:
+          "Complete: Vor dem Test sind die Zuständigkeiten ___. Use klären with zu.",
+        answer: "zu klären",
+        why: "Sein + zu + infinitive expresses the required preliminary action.",
+      },
+    ],
+    task: {
+      skill: "c1-checkpoint",
+      prompt:
+        "Write a 230–270-word recommendation with evidence, a fair objection, trial design, responsibilities and success criteria. Add a 90-word team notice preserving the no-automatic-sending condition. Explain three revisions and name one target for a later independent check.",
+      rubric,
+    },
+    reflection:
+      "Which skill is supported by this work, and which still needs different evidence?",
+  },
+];
+export const c1Transfer = data.map(authorLesson);

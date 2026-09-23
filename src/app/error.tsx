@@ -1,0 +1,2 @@
+"use client";
+export default function ErrorPage({reset}:{reset:()=>void}){return <main style={{maxWidth:680,margin:"12vh auto",padding:30}} className="card"><h1>We couldn’t open this step.</h1><p className="muted">Your previously saved work is safe. Try again, or return to Today.</p><div className="row" style={{justifyContent:"flex-start"}}><button className="button" onClick={reset}>Try again</button><a href="/today" className="button secondary">Back to Today</a></div></main>;}

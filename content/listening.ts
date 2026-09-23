@@ -1,5 +1,5 @@
 import { lessonSchema } from "../src/content/types";
-function listen(
+export function listen(
   id: string,
   moduleId: string,
   title: string,

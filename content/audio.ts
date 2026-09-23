@@ -1,3 +1,4 @@
+import { checkpointAudio } from "./checkpoint-comprehension";
 export type AudioScript = {
   id: string;
   version: number;
@@ -8,6 +9,7 @@ export type AudioScript = {
   quality: "awaiting_audio_review";
 };
 export const courseAudio: AudioScript[] = [
+  ...checkpointAudio,
   {
     id: "audio-phone-01",
     version: 1,

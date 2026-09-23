@@ -216,6 +216,7 @@ export const drafts = pgTable(
         exerciseId: string;
         attemptKey: string;
         step?: number;
+        contentVersion?: number;
       }>()
       .notNull(),
     sequence: integer("sequence").notNull().default(0),
@@ -305,6 +306,16 @@ export const errorPatterns = pgTable(
     attemptId: text("attempt_id").references(() => attempts.id),
     count: integer("count").notNull().default(1),
     status: text("status").notNull().default("open"),
+    resolutionEvidence: jsonb("resolution_evidence")
+      .$type<string[]>()
+      .notNull()
+      .default([]),
+    probe: jsonb("probe").$type<{
+      article: string;
+      grammaticalCase: string;
+      outcome: string;
+      checkedAt: string;
+    }>(),
     updatedAt: timestamp("updated_at", { withTimezone: true })
       .notNull()
       .defaultNow(),

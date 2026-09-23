@@ -1,5 +1,5 @@
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
-import { and, eq, isNull, lt } from "drizzle-orm";
+import { and, eq, isNull, lt, inArray } from "drizzle-orm";
 import { getDb } from "@/db";
 import { media, profiles } from "@/db/schema";
 import { AppError, publishedLesson, submitAttempt } from "@/learning/service";
@@ -62,7 +62,7 @@ export async function uploadRecording(
     const claimed = previous
       ? await getDb()
           .update(media)
-          .set({ state: "uploading" })
+          .set({ state: "uploading", createdAt: new Date() })
           .where(and(eq(media.id, id), eq(media.state, "failed")))
           .returning()
       : await getDb()
@@ -95,15 +95,26 @@ export async function uploadRecording(
       );
     try {
       await putAsset(key, bytes, "audio/wav");
-      await getDb()
+      const ready = await getDb()
         .update(media)
         .set({ state: "ready" })
-        .where(eq(media.id, id));
+        .where(
+          and(
+            eq(media.id, id),
+            eq(media.state, "uploading"),
+            isNull(media.deletedAt),
+          ),
+        )
+        .returning();
+      if (!ready.length) {
+        await removeAsset(key);
+        throw new AppError(409, "The upload expired. Record a new take.");
+      }
     } catch (e) {
       await getDb()
         .update(media)
         .set({ state: "failed" })
-        .where(eq(media.id, id));
+        .where(and(eq(media.id, id), eq(media.state, "uploading")));
       await removeAsset(key).catch(() => {});
       throw e;
     }
@@ -175,12 +186,44 @@ export async function deleteRecording(userId: string, id: string) {
   if (!row) throw new AppError(404, "Recording not found.");
   await getDb()
     .update(media)
-    .set({ state: "deleted", deletedAt: new Date() })
+    .set({ state: "deleting", deletedAt: new Date() })
     .where(and(eq(media.id, id), eq(media.userId, userId)));
   await removeAsset(row.key);
+  await getDb().update(media).set({ state: "deleted" }).where(eq(media.id, id));
   return { deleted: true };
 }
 export async function cleanExpiredRecordings(now = new Date()) {
+  // Tombstone before removal: playback stays denied if S3 is unavailable.
+  // Retrying these idempotent deletes also recovers a worker crash during removal.
+  const stale = await getDb()
+    .update(media)
+    .set({ state: "deleting", deletedAt: now })
+    .where(
+      and(
+        eq(media.kind, "learner_recording"),
+        eq(media.state, "uploading"),
+        lt(media.createdAt, new Date(now.getTime() - 10 * 60000)),
+      ),
+    )
+    .returning();
+  const pending = await getDb()
+    .select()
+    .from(media)
+    .where(
+      and(
+        eq(media.kind, "learner_recording"),
+        inArray(media.state, ["deleting"]),
+      ),
+    );
+  for (const asset of new Map(
+    [...stale, ...pending].map((a) => [a.id, a]),
+  ).values()) {
+    await removeAsset(asset.key);
+    await getDb()
+      .update(media)
+      .set({ state: "deleted" })
+      .where(eq(media.id, asset.id));
+  }
   const rows = await getDb()
     .select({ asset: media, profile: profiles.data })
     .from(media)

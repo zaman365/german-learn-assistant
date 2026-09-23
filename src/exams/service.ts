@@ -13,7 +13,10 @@ import { wavFromPcm } from "@/audio/pcm";
 import { MAX_AUDIO_BYTES, mediaUrl } from "@/audio/service";
 import { isReviewedClip, isReviewedTimeline } from "@/audio/readiness";
 export type Run = typeof examAttempts.$inferSelect;
-export async function publishedMock(id: string, version = 1): Promise<Mock> {
+export async function publishedMock(
+  id: string,
+  version?: number,
+): Promise<Mock> {
   const row = (
     await getDb()
       .select()
@@ -21,11 +24,15 @@ export async function publishedMock(id: string, version = 1): Promise<Mock> {
       .where(
         and(
           eq(contentVersions.id, id),
-          eq(contentVersions.version, version),
+          version === undefined
+            ? undefined
+            : eq(contentVersions.version, version),
           eq(contentVersions.type, "mock"),
           eq(contentVersions.published, true),
         ),
       )
+      .orderBy(desc(contentVersions.version))
+      .limit(1)
   )[0];
   if (!row)
     throw new AppError(
@@ -33,6 +40,15 @@ export async function publishedMock(id: string, version = 1): Promise<Mock> {
       "This mock has not been published. Run the content seed.",
     );
   return mockSchema.parse(row.payload);
+}
+export function mockVersionOf(run: Pick<Run, "definitionVersion">) {
+  const match = run.definitionVersion.match(/\/mock-(\d+)$/);
+  if (!match || Number(match[1]) < 1)
+    throw new AppError(
+      409,
+      "This attempt has no supported content version. Preserve it as historical evidence.",
+    );
+  return Number(match[1]);
 }
 async function owned(userId: string, id: string) {
   const row = (
@@ -61,7 +77,9 @@ export async function examCatalog(userId: string) {
     );
   const readyTimeline = (mock: Mock) =>
     isReviewedTimeline(
-      assets.find((asset) => asset.id === mock.id + "-timeline-v1"),
+      assets.find(
+        (asset) => asset.id === mock.id + "-timeline-v" + mock.version,
+      ),
       mock,
     );
   const providers = capabilities();
@@ -218,7 +236,7 @@ export function objectiveResult(
 }
 async function settle(row: Run, now: Date) {
   if (row.state !== "active" || now < row.deadline) return row;
-  const mock = await publishedMock(row.mockId);
+  const mock = await publishedMock(row.mockId, mockVersionOf(row));
   const changed = await getDb()
     .update(examAttempts)
     .set({
@@ -246,7 +264,7 @@ async function settle(row: Run, now: Date) {
 }
 export async function getExam(userId: string, id: string, now = new Date()) {
   const row = await settle(await owned(userId, id), now),
-    mock = await publishedMock(row.mockId);
+    mock = await publishedMock(row.mockId, mockVersionOf(row));
   const tasks = mock.tasks.filter(
     (t) =>
       (row.state === "submitted" && row.mode !== "practice") ||
@@ -287,7 +305,7 @@ export async function saveExam(
   now = new Date(),
 ) {
   const before = await owned(userId, id),
-    mock = await publishedMock(before.mockId);
+    mock = await publishedMock(before.mockId, mockVersionOf(before));
   return getDb().transaction(async (tx) => {
     // A row lock serializes timer expiry, autosave, and explicit submission.
     const row = (
@@ -376,7 +394,7 @@ export async function examAudio(
   audioId: string,
 ) {
   const row = await owned(userId, runId),
-    mock = await publishedMock(row.mockId);
+    mock = await publishedMock(row.mockId, mockVersionOf(row));
   if (row.mode !== "practice")
     throw new AppError(
       403,
@@ -412,7 +430,7 @@ export async function recordExam(
     throw new AppError(413, "The recording exceeds 20 MB.");
   const properties = inspectWav(bytes),
     row = await owned(userId, id),
-    mock = await publishedMock(row.mockId);
+    mock = await publishedMock(row.mockId, mockVersionOf(row));
   if (row.state !== "active" || new Date() >= row.deadline)
     throw new AppError(409, "This section is already closed.");
   if (
@@ -599,12 +617,12 @@ export async function timelineAudio(
       .from(media)
       .where(
         and(
-          eq(media.id, row.mockId + "-timeline-v1"),
+          eq(media.id, row.mockId + "-timeline-v" + mockVersionOf(row)),
           eq(media.state, "ready"),
         ),
       )
   )[0];
-  const mock = await publishedMock(row.mockId);
+  const mock = await publishedMock(row.mockId, mockVersionOf(row));
   if (!isReviewedTimeline(asset, mock))
     throw new AppError(
       503,

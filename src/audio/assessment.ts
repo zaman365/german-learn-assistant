@@ -139,5 +139,5 @@ export async function processAudioAssessment(job: typeof jobs.$inferSelect) {
   });
   if (data.correct !== null)
     await updateProductiveProgress(job.userId, attempt.id, data);
-  if (/^D[1-5]$/.test(lesson.id)) await refreshPlacement(job.userId);
+  await refreshPlacement(job.userId);
 }

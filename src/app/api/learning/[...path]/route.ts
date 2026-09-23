@@ -14,6 +14,7 @@ import {
   saveDraft,
   submitAttempt,
   reveal,
+  submitArticleProbe,
 } from "@/learning/service";
 import { vocabulary, getReferences } from "@/content/catalog";
 import { capabilities } from "@/ai/provider";
@@ -76,6 +77,24 @@ async function handle(request: Request, context: Context) {
         "Too many requests. Wait a moment and try again.",
       );
     const input = await boundedJson(request);
+    if (action === "article-probe")
+      return Response.json(
+        await submitArticleProbe(
+          userId,
+          z
+            .object({
+              patternId: z.string().uuid(),
+              article: z.enum(["der", "die", "das"]),
+              grammaticalCase: z.enum([
+                "nominative",
+                "accusative",
+                "dative",
+                "genitive",
+              ]),
+            })
+            .parse(input),
+        ),
+      );
     if (action === "profile")
       return Response.json(
         await saveProfile(userId, profileSchema.parse(input)),
@@ -91,6 +110,7 @@ async function handle(request: Request, context: Context) {
               response: z.string().max(12000),
               attemptKey: z.string().uuid(),
               sequence: z.number().int().nonnegative(),
+              version: z.number().int().positive().optional(),
               step: z.number().int().nonnegative().optional(),
             })
             .parse(input),

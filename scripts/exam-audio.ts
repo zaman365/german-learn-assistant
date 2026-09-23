@@ -12,7 +12,7 @@ async function main() {
     mock = mocks.find((m) => m.id === id);
   if (!mock) throw new Error("Choose MOCK-01, MOCK-02 or MOCK-03.");
   const db = getDb(),
-    assetId = id + "-timeline-v1";
+    assetId = id + "-timeline-v" + mock.version;
   if (action === "compose") {
     if ((await db.select().from(media).where(eq(media.id, assetId))).length)
       throw new Error(
@@ -43,7 +43,7 @@ async function main() {
         mockId: id,
         sourceHash: timelineSourceHash(mock),
         duration: 1500,
-        version: 1,
+        version: mock.version,
         synthetic: true,
         reviewRequired:
           "Listen end-to-end; verify cues, answer windows and content. This original timeline is not claimed to reproduce official unverified cue rules.",

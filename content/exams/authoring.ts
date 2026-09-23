@@ -7,9 +7,11 @@ type Question = {
 };
 export type MockDraft = {
   id: string;
+  version?: number;
   title: string;
   description: string;
   teasers: string[];
+  matchingStatements?: string[];
   needs: { text: string; answer: number; why: string }[];
   internal: { text: string; questions: Question[] }[];
   advice: string[];
@@ -70,12 +72,19 @@ export function authorMock(d: MockDraft): Mock {
     .map((s, i) => String.fromCharCode(65 + i) + ". " + s)
     .join("\n\n");
   for (const q of d.needs)
-    choice(0, "Lesen 1", "reading", "Ein passendes Angebot finden", teasers, {
-      prompt: q.text,
-      options: d.teasers.map((_, i) => String.fromCharCode(65 + i)),
-      answer: q.answer,
-      why: q.why,
-    });
+    choice(
+      0,
+      "Lesen 1",
+      "reading",
+      "Einen passenden Zeitungsartikel finden",
+      teasers,
+      {
+        prompt: q.text,
+        options: d.teasers.map((_, i) => String.fromCharCode(65 + i)),
+        answer: q.answer,
+        why: q.why,
+      },
+    );
   const truthChecks: Record<string, { statement: string; correct: boolean }[]> =
     {
       "MOCK-01": [
@@ -189,7 +198,7 @@ export function authorMock(d: MockDraft): Mock {
   const matchingDistractors = d.listening[3].questions[0].options
     .filter((option) => !matchingAnswers.includes(option))
     .slice(0, 2);
-  const matchingBank = [
+  const matchingBank = d.matchingStatements || [
     matchingAnswers[2],
     matchingDistractors[0],
     matchingAnswers[0],
@@ -198,7 +207,11 @@ export function authorMock(d: MockDraft): Mock {
     matchingAnswers[1],
   ];
   d.listening.forEach((clip, i) => {
-    const id = d.id + "-A" + String(i + 1).padStart(2, "0");
+    const id =
+      d.id +
+      (d.version && d.version > 1 ? `-v${d.version}` : "") +
+      "-A" +
+      String(i + 1).padStart(2, "0");
     const section =
       i < 3 ? "Hören 1" : i < 7 ? "Hören 2" : i === 7 ? "Hören 3" : "Hören 4";
     const offsets = [
@@ -208,6 +221,7 @@ export function authorMock(d: MockDraft): Mock {
       id,
       title: clip.title,
       script: clip.script,
+      version: d.version || 1,
       offset: offsets[i],
     });
     clip.questions.forEach((original) => {
@@ -223,11 +237,13 @@ export function authorMock(d: MockDraft): Mock {
       choice(1, section, "listening", clip.title, undefined, question, id);
     });
   });
-  const phoneId = d.id + "-A14";
+  const phoneId =
+    d.id + (d.version && d.version > 1 ? `-v${d.version}` : "") + "-A14";
   audio.push({
     id: phoneId,
     title: "Telefonnotiz",
     script: d.phone.script,
+    version: d.version || 1,
     offset: 1360,
   });
   choice(
@@ -338,7 +354,7 @@ export function authorMock(d: MockDraft): Mock {
     });
   return mockSchema.parse({
     id: d.id,
-    version: 1,
+    version: d.version || 1,
     title: d.title,
     description: d.description,
     reserved: d.id === "MOCK-03",

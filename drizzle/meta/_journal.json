@@ -8,6 +8,13 @@
       "when": 1790158939590,
       "tag": "0000_parallel_silverclaw",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790180345672,
+      "tag": "0001_fancy_blazing_skull",
+      "breakpoints": true
     }
   ]
 }

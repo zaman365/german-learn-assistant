@@ -42,10 +42,20 @@ export function mastery(evidence: Evidence[], introduced = false): Mastery {
   const independent = unique.filter(
     (e) => !e.assisted && e.transfer && e.modality !== "recognition",
   );
-  const recent = independent.slice(-3);
-  const needsRepair = recent.filter((e) => !e.correct).length >= 2;
+  // A recurring failure starts a new evidence period. Old retained success
+  // cannot instantly restore confidence after a single corrected repetition.
+  let repairStart = 0;
+  independent.forEach((check, index) => {
+    if (
+      !check.correct &&
+      independent
+        .slice(Math.max(0, index - 2), index + 1)
+        .filter((e) => !e.correct).length >= 2
+    )
+      repairStart = index + 1;
+  });
   let demonstratedAt: string | null = null;
-  const successes = independent.filter((e) => e.correct);
+  const successes = independent.slice(repairStart).filter((e) => e.correct);
   for (let i = 0; i < successes.length; i++) {
     if (
       successes
@@ -62,6 +72,7 @@ export function mastery(evidence: Evidence[], introduced = false): Mastery {
   const retained =
     demonstratedAt !== null &&
     successes.some((e) => e.date >= addDays(demonstratedAt!, 7));
+  const needsRepair = repairStart > 0 && demonstratedAt === null;
   const state = needsRepair
     ? "practising"
     : retained

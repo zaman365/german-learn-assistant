@@ -1,3 +1,8 @@
+import { themeLesson } from "../../content/speaking-themes";
+import { checkpointLessons } from "../../content/checkpoints";
+import { comprehensionCheckpoints } from "../../content/checkpoint-comprehension";
+import { repairLessons } from "../../content/repair-lessons";
+import { repairVocabulary } from "../../content/lexicon-repairs";
 import fs from "node:fs";
 import path from "node:path";
 import { bridgeLessons, diagnosticLesson } from "../../content/bridge";
@@ -22,6 +27,8 @@ import type { Module } from "./types";
 export const lessons = [
   ...bridgeLessons,
   ...expandedBridge,
+  ...checkpointLessons.filter((l) => l.stage === "bridge"),
+  ...comprehensionCheckpoints.filter((l) => l.stage === "bridge"),
   ...c1Foundations,
   ...c1Meetings,
   ...c1Customers,
@@ -30,15 +37,24 @@ export const lessons = [
   ...c1Leadership,
   ...c1CareerChange,
   ...c1Transfer,
+  ...checkpointLessons.filter((l) => l.stage === "c1"),
+  ...comprehensionCheckpoints.filter((l) => l.stage === "c1"),
   ...articleLessons,
+  ...repairLessons,
   ...pronunciationLessons,
   ...listeningLessons,
   ...examPreparation,
+  themeLesson,
+  ...checkpointLessons.filter((l) => l.stage === "c2"),
   ...c2Lessons,
 ];
 export const diagnostic = diagnosticLesson;
 export const diagnostics = [diagnostic, ...diagnosticRounds];
-export const vocabulary = [...bridgeVocabulary, ...extraVocabulary];
+export const vocabulary = [
+  ...bridgeVocabulary,
+  ...extraVocabulary,
+  ...repairVocabulary,
+];
 export function getReference(id: string) {
   const canonical = id === "plurals" ? "noun-endings" : id;
   if (!/^[a-z-]+$/.test(canonical)) return null;
@@ -146,6 +162,17 @@ export const modules: Module[] = Object.entries(moduleNames).flatMap(
       outcome: title,
       order: i + 1,
     })),
+);
+modules.splice(
+  modules.findIndex((m) => m.stage === "c2"),
+  0,
+  {
+    id: "C2-00",
+    stage: "c2",
+    title: "Fresh C2 entry diagnostic",
+    outcome: "Locate the next written stretch and separate sound evidence gaps",
+    order: 0,
+  },
 );
 export function findLesson(id: string) {
   return (

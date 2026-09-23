@@ -10,6 +10,7 @@ export type Check = {
 };
 export type LessonDraft = {
   id: string;
+  version?: number;
   title: string;
   de: string;
   stage?: Lesson["stage"];
@@ -85,7 +86,7 @@ export function authorLesson(d: LessonDraft): Lesson {
   });
   return lessonSchema.parse({
     id: d.id,
-    version: 1,
+    version: d.version || 1,
     moduleId: d.id.replace(/-L\d+$/, ""),
     stage: d.stage || "c1",
     title: d.title,

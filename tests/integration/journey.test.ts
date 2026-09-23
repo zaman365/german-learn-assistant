@@ -1,3 +1,5 @@
+import archivedLessons from "../../content/archive/lessons-v1.json";
+import archivedMocks from "../../content/archive/mocks-v1.json";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import { randomUUID, createHash } from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";
@@ -15,6 +17,9 @@ import {
   evaluations,
   errorPatterns,
   reviews,
+  examAttempts,
+  placement,
+  lessonProgress,
 } from "@/db/schema";
 import { lessons, diagnostics } from "@/content/catalog";
 import { mocks } from "../../content/exams";
@@ -39,6 +44,8 @@ import {
   reveal,
   saveDraft,
   dashboard,
+  refreshPlacement,
+  submitArticleProbe,
 } from "@/learning/service";
 let directory: string;
 const owner = randomUUID(),
@@ -65,7 +72,7 @@ beforeAll(async () => {
     await db
       .insert(user)
       .values({ id, name: "Integration learner", email: `${id}@example.test` });
-  for (const lesson of [...lessons, ...diagnostics])
+  for (const lesson of [...archivedLessons, ...lessons, ...diagnostics])
     await db
       .insert(contentVersions)
       .values({
@@ -77,7 +84,7 @@ beforeAll(async () => {
         published: true,
       })
       .onConflictDoNothing();
-  for (const mock of mocks)
+  for (const mock of [...archivedMocks, ...mocks])
     await db
       .insert(contentVersions)
       .values({
@@ -429,5 +436,218 @@ describe("durable first journey", () => {
     expect(
       (await dashboard(owner)).skills.filter((s) => s.state === "retained"),
     ).toHaveLength(0);
+  });
+});
+
+describe("published versions and recovery evidence", () => {
+  it("resumes an in-progress lesson against its published source version", async () => {
+    const learner = randomUUID();
+    await getDb()
+      .insert(user)
+      .values({
+        id: learner,
+        name: "Version test",
+        email: learner + "@example.test",
+      });
+    await getDb().insert(lessonProgress).values({
+      userId: learner,
+      lessonId: "B2-10-L01",
+      version: 1,
+      state: "in_progress",
+      position: 0,
+    });
+    const resumed = await learnerLesson(learner, "B2-10-L01");
+    expect(resumed.lesson.version).toBe(1);
+    expect(resumed.lesson.blocks).toEqual(archivedLessons[0].blocks);
+    const submitted = await submitAttempt(learner, {
+      lessonId: "B2-10-L01",
+      version: 1,
+      exerciseId: "B2-10-L01-Q01",
+      response: "Simple inquiries",
+      attemptKey: randomUUID(),
+    });
+    expect(submitted.attempt.contentVersion).toBe(1);
+    await saveDraft(learner, {
+      lessonId: "B2-10-L01",
+      version: 1,
+      exerciseId: "B2-10-L01-Q02",
+      response: "old source draft",
+      attemptKey: randomUUID(),
+      sequence: 9,
+    });
+    await getDb()
+      .update(lessonProgress)
+      .set({ state: "completed" })
+      .where(eq(lessonProgress.userId, learner));
+    const revised = await learnerLesson(learner, "B2-10-L01");
+    expect(revised.lesson.version).toBe(2);
+    expect(revised.draft).toBeNull();
+    expect(revised.draftSequence).toBe(9);
+    await saveDraft(learner, {
+      lessonId: "B2-10-L01",
+      version: 2,
+      exerciseId: "B2-10-L01-Q01",
+      response: "new source draft",
+      attemptKey: randomUUID(),
+      sequence: 10,
+    });
+    await submitAttempt(learner, {
+      lessonId: "B2-10-L01",
+      version: 2,
+      exerciseId: "B2-10-L01-Q01",
+      response: "Simple inquiries",
+      attemptKey: randomUUID(),
+    });
+    await submitAttempt(learner, {
+      lessonId: "B2-10-L01",
+      version: 1,
+      exerciseId: "B2-10-L01-Q02",
+      response: "ein",
+      attemptKey: randomUUID(),
+    });
+    expect(
+      (
+        await getDb()
+          .select()
+          .from(lessonProgress)
+          .where(eq(lessonProgress.userId, learner))
+      )[0].version,
+    ).toBe(2);
+    await getDb().delete(user).where(eq(user.id, learner));
+  });
+  it("keeps an existing exam on its original mock version after publication", async () => {
+    const now = new Date("2026-09-23T12:00:00Z"),
+      id = randomUUID();
+    await getDb()
+      .insert(examAttempts)
+      .values({
+        id,
+        userId: owner,
+        mockId: "MOCK-01",
+        definitionVersion: "paper-2022-reviewed-2026-09-23-v1/mock-1",
+        mode: "practice",
+        block: 0,
+        state: "active",
+        startedAt: now,
+        deadline: new Date(now.getTime() + 3900000),
+        answers: {},
+        flags: ["unofficial"],
+      });
+    const run = await getExam(owner, id, now);
+    expect(run.tasks[0].stimulus).toBe(archivedMocks[0].tasks[0].stimulus);
+    const fresh = await startExam(
+      owner,
+      { id: randomUUID(), mockId: "MOCK-01", mode: "practice", block: 0 },
+      now,
+    );
+    expect(fresh.tasks[0].stimulus).toBe(mocks[0].tasks[0].stimulus);
+    expect(fresh.tasks[0].stimulus).not.toBe(run.tasks[0].stimulus);
+  });
+  it("saves a scoped article probe without treating it as independent recovery", async () => {
+    const id = randomUUID();
+    await getDb().insert(errorPatterns).values({
+      id,
+      userId: other,
+      skill: "probe-test",
+      tag: "CASE",
+      rootCause: "needs_probe",
+      original: "mit der Vertrag",
+      correction: "mit dem Vertrag",
+      explanation: "Determine dictionary article and case separately.",
+      exerciseId: "probe",
+      lessonId: "ART-05-L02",
+    });
+    await expect(
+      submitArticleProbe(owner, {
+        patternId: id,
+        article: "der",
+        grammaticalCase: "dative",
+      }),
+    ).rejects.toMatchObject({ status: 404 });
+    await submitArticleProbe(other, {
+      patternId: id,
+      article: "die",
+      grammaticalCase: "dative",
+    });
+    const pattern = (
+      await getDb().select().from(errorPatterns).where(eq(errorPatterns.id, id))
+    )[0];
+    expect(pattern.probe?.outcome).toBe("gender_gap");
+    expect(pattern.status).toBe("retesting");
+    expect(pattern.resolutionEvidence).toEqual([]);
+  });
+  it("reconsiders a diagnostic waiver after later independent contradictory evidence", async () => {
+    const learner = randomUUID();
+    await getDb()
+      .insert(user)
+      .values({
+        id: learner,
+        name: "Placement test",
+        email: learner + "@example.test",
+      });
+    const firstDate = new Date("2026-09-01T12:00:00Z");
+    for (const [i, lessonId, correct] of [
+      [0, "D1", true],
+      [1, "D1", true],
+      [2, "B2-01-L01", false],
+    ] as const) {
+      if (i === 2) {
+        await refreshPlacement(learner, firstDate);
+        expect(
+          (
+            await getDb()
+              .select()
+              .from(placement)
+              .where(eq(placement.userId, learner))
+          ).find((r) => r.moduleId === "B2-01")?.route,
+        ).toBe("skip");
+      }
+      const id = randomUUID();
+      await getDb()
+        .insert(attempts)
+        .values({
+          id,
+          userId: learner,
+          lessonId,
+          contentVersion: 1,
+          exerciseId: `placement-test-${i}`,
+          response: correct ? "correct" : "wrong",
+          skill: "word-order",
+          family: `family-${i}`,
+          modality: "production",
+          assisted: false,
+          transfer: true,
+          localDate: `2026-09-0${i + 1}`,
+          timezone: "Europe/Berlin",
+          idempotencyKey: randomUUID(),
+          createdAt: new Date(firstDate.getTime() + i * 86400000),
+        });
+      await getDb()
+        .insert(evaluations)
+        .values({
+          id: randomUUID(),
+          userId: learner,
+          attemptId: id,
+          status: "completed",
+          source: "test-fixture",
+          data: {
+            correct,
+            score: correct ? 1 : 0,
+            explanation: "Synthetic placement regression.",
+          },
+          rubricVersion: "test",
+        });
+    }
+    await refreshPlacement(learner);
+    const route = (
+      await getDb()
+        .select()
+        .from(placement)
+        .where(eq(placement.userId, learner))
+    ).find((r) => r.moduleId === "B2-01")!;
+    expect(route.route).toBe("repair");
+    expect(route.waivedObjectives).toEqual([]);
+    expect(route.evidence).toHaveLength(3);
+    await getDb().delete(user).where(eq(user.id, learner));
   });
 });

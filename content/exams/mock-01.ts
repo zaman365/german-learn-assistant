@@ -10,41 +10,50 @@ export const mock01 = authorMock({
   title: "Service und Zusammenarbeit",
   description:
     "Ein Servicebetrieb verändert seine Abläufe. Informationen abwägen, Beschwerden lösen und Entscheidungen begründen.",
+  version: 2,
+  matchingStatements: [
+    "Der Prüfaufwand sollte zum Risiko passen.",
+    "Auch einfache Bestätigungen müssen immer von einer zweiten Person geprüft werden.",
+    "Ein Feld zur Verantwortung sollte verbindlich sein.",
+    "Änderungen sollten rechtzeitig angekündigt werden.",
+    "Aufzeichnungen sollten vollständig durch feste Schulungstermine ersetzt werden.",
+    "Selbstlernen ist nützlich, persönliche Rückfragen bleiben wichtig.",
+  ],
   teasers: [
-    "Moderieren ohne Weisungsbefugnis: In zwei Online-Abenden üben Sie, kontroverse Besprechungen zu strukturieren. Sie arbeiten an eigenen Fällen; Fachwissen über Projektmanagement ist nicht erforderlich. Das Angebot richtet sich ausdrücklich an Personen, die Arbeitsgruppen koordinieren, aber keine Personalverantwortung haben.",
-    "Berichte, die Entscheidungen ermöglichen: Dieser Präsenzworkshop in Köln verbindet kurze Texte mit aussagekräftigen Tabellen. Sie bringen einen anonymisierten Bericht mit und überarbeiten ihn im Kurs. Eine Einführung in Tabellenkalkulation gehört nicht zum Programm.",
-    "Führen im Schichtbetrieb: Das Seminar für erfahrene Führungskräfte behandelt Personalgespräche, Delegation und Dienstplanung. Voraussetzung ist mindestens ein Jahr disziplinarische Führungsverantwortung. Zwei Präsenztage, anschließend ein individuelles Coaching.",
-    "Telefontraining für den Berufseinstieg: An drei Vormittagen üben Auszubildende die Begrüßung, Weiterleitung und Aufnahme einfacher Anliegen. Die Teilnehmenden benötigen keine Vorkenntnisse. Komplexe Reklamationen werden erst im Aufbaukurs behandelt.",
-    "Reklamationen schriftlich bearbeiten: Im Selbstlernkurs überarbeiten Sie anspruchsvolle Antworten auf Beschwerden. Eine Fachtrainerin kommentiert zwei Ihrer Texte individuell. Alle Einheiten sind zeitlich frei zugänglich; ein gemeinsamer Termin ist nicht vorgesehen.",
-    "Datenschutz in der täglichen Kommunikation: Eine einstündige Einführung erläutert anhand fiktiver Fälle, wie Daten sparsam weitergegeben werden. Der Vortrag enthält keine individuelle rechtliche Prüfung und keinen praktischen Schreibteil.",
-    "Präsentieren vor der Kamera: Sie nehmen einen kurzen beruflichen Vortrag auf und erhalten in einer kleinen Live-Gruppe Rückmeldungen zu Aufbau, Sprechtempo und Wirkung. Die Technik wird vor Beginn gemeinsam getestet.",
-    "Tabellenkalkulation kompakt: Sie lernen Grundfunktionen, einfache Formeln und die Sortierung von Listen. Der Kurs ist für Anfängerinnen und Anfänger gedacht. Unternehmensberichte werden nicht sprachlich überarbeitet.",
+    "Wenn niemand das letzte Wort hat: In vielen Projektgruppen koordinieren Beschäftigte die Arbeit, ohne Vorgesetzte zu sein. Unsere Reporterin begleitet ein Serviceteam, das sich bei strittigen Fragen regelmäßig festfuhr. Wie eine wechselnde Moderation und klar benannte Entscheidungswege die Gespräche verändert haben – und warum nicht jede Diskussion einen Konsens braucht.",
+    "Weniger Tabellen, mehr Orientierung: Ein Monatsbericht kann korrekt sein und dennoch an den Fragen der Geschäftsleitung vorbeigehen. An zwei anonymisierten Berichten zeigt die Wirtschaftsredaktion, wie Zahlen, Bezugsgrößen und eine begründete Empfehlung zusammenwirken. Die verwendeten Rechenfunktionen werden vorausgesetzt; im Mittelpunkt steht die verständliche Darstellung einer Entscheidung.",
+    "Führung zwischen Früh- und Spätschicht: Dienstpläne sollen fair sein, doch kurzfristige Ausfälle machen gute Vorsätze schnell zunichte. Zwei Personalverantwortliche schildern, wie sie Vertretungen organisieren und Konflikte über Wochenenddienste besprechen. Der Beitrag beleuchtet Entscheidungen von Vorgesetzten mit Personalverantwortung; die Moderation gleichberechtigter Projektgruppen steht nicht im Zentrum.",
+    "Der erste Anruf am Empfang: Eine Auszubildende erzählt von ihrer ersten Woche in einem Handwerksbetrieb. Anfangs wollte sie jede Frage sofort beantworten. Inzwischen weiß sie, wann sie weiterleiten sollte und welche Angaben eine brauchbare Telefonnotiz enthält. Der Erfahrungsbericht erklärt einfache Gesprächsschritte; schwierige Reklamationen werden an erfahrene Kolleginnen abgegeben.",
+    "Eine Antwort, die Ärger nicht vergrößert: Wie reagieren Unternehmen schriftlich auf berechtigte Beschwerden, ohne ungesicherte Zusagen zu machen? Eine Sprachtrainerin kommentiert drei fiktive Kundenbriefe und erläutert, warum eine konkrete nächste Handlung mehr hilft als eine lange Entschuldigung. Leser können die Überarbeitungen Schritt für Schritt nachvollziehen; ein persönliches Beratungsangebot ist der Artikel nicht.",
+    "Wer muss diese Nachricht wirklich erhalten? Beim Weiterleiten von Kundenanfragen gelangen häufig mehr Daten in Umlauf als für die Bearbeitung nötig wären. Ein Datenschutzbeauftragter erläutert typische organisatorische Fehler und berichtet über eine neue interne Verteilerregel. Der Artikel vermittelt Einblicke in einen Betrieb und ersetzt weder eine individuelle Rechtsprüfung noch ein Schreibtraining.",
+    "Wie ein Vortrag auf dem Bildschirm wirkt: Blickkontakt, Pausen und verständliche Übergänge verändern die Wahrnehmung einer Videopräsentation. Eine Projektleiterin vergleicht zwei Aufnahmen ihres eigenen Vortrags. Der Medienbeitrag erklärt an ihrem Beispiel, was sie bei Sprechtempo und Aufbau verändert hat. Die Auswahl von Kamera und Beleuchtung bleibt dabei eine Nebenfrage.",
+    "Die erste eigene Tabelle: Wer bisher mit Papierlisten arbeitet, braucht beim Umstieg vor allem überschaubare Schritte. Eine Bürokauffrau zeigt an einer kleinen Materialliste, wie Sortieren und einfache Summen funktionieren. Der Technikbeitrag richtet sich an Einsteiger; die sprachliche Qualität von Berichten und das Präsentieren von Ergebnissen werden nicht behandelt.",
   ],
   needs: [
     {
-      text: "Mara leitet gelegentlich eine Arbeitsgruppe, ist aber keine Vorgesetzte. Sie möchte Diskussionen besser führen.",
+      text: "Mara koordiniert ohne Vorgesetztenrolle eine Arbeitsgruppe. Sie möchte lesen, wie Teams strittige Diskussionen strukturieren.",
       answer: 0,
-      why: "A behandelt Moderation ausdrücklich ohne Personalverantwortung.",
+      why: "A beschreibt Moderation und Entscheidungswege ohne Personalverantwortung.",
     },
     {
-      text: "Omar möchte schwierige Kundenbriefe verbessern und braucht persönliche Rückmeldung. Feste Termine sind für ihn nicht möglich.",
+      text: "Omar sucht einen Artikel mit kommentierten Beispielen für schriftliche Antworten auf Kundenbeschwerden.",
       answer: 4,
-      why: "E verbindet freie Zeiteinteilung mit individuellem Textfeedback.",
+      why: "E analysiert fiktive Beschwerdeantworten. Es ist kein Kursangebot.",
     },
     {
-      text: "Lina soll Entscheidungsberichte verfassen. Sie kann bereits Tabellen erstellen und möchte einen eigenen Bericht überarbeiten.",
+      text: "Lina beherrscht Tabellenkalkulation. Sie möchte erfahren, wie ein Bericht der Geschäftsleitung eine Entscheidung erleichtert.",
       answer: 1,
-      why: "B arbeitet an einem mitgebrachten Bericht und setzt Tabellenkenntnisse voraus.",
+      why: "B verbindet Zahlen und Bezugsgrößen mit einer begründeten Empfehlung.",
     },
     {
-      text: "Jens muss künftig online präsentieren und möchte seine Sprechweise anhand einer eigenen Aufnahme überprüfen.",
+      text: "Jens möchte anhand eines Erfahrungsberichts verstehen, wie Sprechtempo und Aufbau bei Videovorträgen wirken.",
       answer: 6,
-      why: "G bietet eine Aufnahme und Rückmeldungen zur Sprechweise.",
+      why: "G vergleicht zwei Vortragsaufnahmen und ihre Wirkung.",
     },
     {
-      text: "Sofia beginnt ihre Ausbildung am Empfang. Sie sucht ein Training für einfache Telefongespräche.",
+      text: "Sofia beginnt am Empfang. Sie interessiert sich für Erfahrungen mit einfachen Telefonaten und brauchbaren Notizen.",
       answer: 3,
-      why: "D richtet sich an Auszubildende ohne Vorkenntnisse.",
+      why: "D behandelt die ersten Gesprächsschritte einer Auszubildenden.",
     },
   ],
   internal: [
@@ -357,7 +366,7 @@ export const mock01 = authorMock({
     {
       title: "Rückmeldung 1",
       script:
-        "Die neue Liste finde ich grundsätzlich hilfreich. Nur die zuständige Person fehlt mir manchmal. Ohne diese Angabe weiß niemand, wer den nächsten Schritt übernimmt. Ich würde dieses Feld verpflichtend machen.",
+        "Mara: Bei drei offenen Fällen wusste ich heute nicht, wen ich fragen sollte. Fehlt uns eine weitere Liste?\nJonas: Eher nicht. In der vorhandenen Liste steht zwar der Stand, aber das Feld für die verantwortliche Person bleibt oft leer.\nMara: Also die Liste abschaffen und wieder direkt anrufen?\nJonas: Dann fehlt der nächsten Schicht dieselbe Information. Ich würde das Verantwortungsfeld zur Pflicht machen.\nMara: Einverstanden. Für die Übergangszeit müssten wir noch klären, wer unvollständige Einträge ergänzt.\nJonas: Das nehmen wir als offene Frage ins nächste Treffen mit.",
       questions: [
         q(
           "Welche Aussage passt?",
@@ -375,7 +384,7 @@ export const mock01 = authorMock({
     {
       title: "Rückmeldung 2",
       script:
-        "Mit den Aufzeichnungen komme ich gut zurecht. Ich kann schwierige Stellen wiederholen, wenn es im Dienst ruhiger wird. Für individuelle Fälle brauche ich trotzdem gelegentlich ein Gespräch mit der Trainerin.",
+        "Lea: Hast du die Aufzeichnungen inzwischen angesehen? Ich überlege, ob wir sie durch feste Termine ersetzen sollten.\nOmar: Bitte nicht vollständig. Ich kann schwierige Stellen wiederholen, wenn es im Dienst ruhiger wird.\nLea: Dann brauchen wir die Trainerin eigentlich nicht mehr?\nOmar: Doch. Bei zwei eigenen Fällen wusste ich trotz Video nicht weiter. Dafür wäre eine kurze Sprechzeit hilfreich.\nLea: Also selbstständig lernen und bei Bedarf nachfragen?\nOmar: Genau. Für die Grundlagen passt die Aufzeichnung, für besondere Fälle brauche ich ein Gespräch.",
       questions: [
         q(
           "Welche Aussage passt?",
@@ -393,7 +402,7 @@ export const mock01 = authorMock({
     {
       title: "Rückmeldung 3",
       script:
-        "Ich habe gegen eine zweite Prüfung nichts einzuwenden. Allerdings sollten wir zwischen einfachen Bestätigungen und verbindlichen Zusagen unterscheiden. Wenn jede kurze Nachricht warten muss, gewinnen wir wenig.",
+        "Nora: Seit gestern wartet jede Kundenmail auf eine zweite Freigabe. Das dauert ziemlich lange.\nBen: Die zusätzliche Prüfung soll falsche Zusagen verhindern. Dagegen habe ich nichts.\nNora: Würdest du auch eine reine Eingangsbestätigung prüfen lassen?\nBen: Eben nicht. Eine Bestätigung verspricht noch keine Erstattung. Wir sollten zwischen Information und verbindlicher Zusage unterscheiden.\nNora: Dann brauchen wir klare Beispiele für beide Gruppen.\nBen: Ja. Bei hohem Risiko gründlich prüfen, einfache Antworten aber nicht unnötig aufhalten.",
       questions: [
         q(
           "Welche Aussage passt?",
@@ -411,7 +420,7 @@ export const mock01 = authorMock({
     {
       title: "Rückmeldung 4",
       script:
-        "Mich stört weniger die Zahl der Änderungen als der Zeitpunkt. Oft erfahre ich erst am Telefon, dass ein Verfahren seit morgens anders läuft. Eine kurze Mitteilung vor Beginn würde schon helfen.",
+        "Eva: Du klangst vorhin genervt. Sind dir die neuen Verfahren grundsätzlich zu viel?\nMalik: Nicht die Änderungen selbst. Heute hat mich eine Kundin nach dem neuen Ablauf gefragt, und ich wusste noch gar nichts davon.\nEva: Sollen wir vor jeder Änderung eine Schulung organisieren?\nMalik: Für diese kleine Änderung hätte eine kurze Mitteilung gestern gereicht.\nEva: Also informieren, bevor die neue Regel gilt?\nMalik: Genau. Dann kann ich mich vorbereiten und muss die Kundschaft nicht erst warten lassen.",
       questions: [
         q(
           "Welche Aussage passt?",

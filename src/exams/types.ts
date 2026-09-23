@@ -17,7 +17,7 @@ export const examTaskSchema = z.object({
 });
 export const mockSchema = z.object({
   id: z.string(),
-  version: z.literal(1),
+  version: z.number().int().positive(),
   title: z.string(),
   description: z.string(),
   reserved: z.boolean(),
@@ -29,6 +29,7 @@ export const mockSchema = z.object({
       title: z.string(),
       offset: z.number().int(),
       script: z.string(),
+      version: z.number().int().positive().optional(),
     }),
   ),
 });

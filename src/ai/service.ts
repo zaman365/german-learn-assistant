@@ -1,3 +1,4 @@
+import { correctionSkills } from "@/learning/repairs";
 import { createHash, randomUUID } from "node:crypto";
 import { and, eq, desc, sql } from "drizzle-orm";
 import { getDb } from "@/db";
@@ -277,7 +278,9 @@ export async function processJob(id: string) {
           for (const correction of result.value.corrections.filter(
             (c) => c.kind === "error",
           )) {
-            const pattern = attempt.skill + ":" + correction.tag;
+            const targetSkill =
+              correctionSkills[correction.tag] || attempt.skill;
+            const pattern = targetSkill + ":" + correction.tag;
             if (patterns.has(pattern)) continue;
             patterns.add(pattern);
             await tx
@@ -285,7 +288,7 @@ export async function processJob(id: string) {
               .values({
                 id: randomUUID(),
                 userId: claimed.userId,
-                skill: attempt.skill,
+                skill: targetSkill,
                 tag: correction.tag,
                 rootCause: correction.cause,
                 original: correction.original,
@@ -304,6 +307,8 @@ export async function processJob(id: string) {
                 set: {
                   count: sql.raw('"error_patterns"."count" + 1'),
                   status: "open",
+                  resolutionEvidence: [],
+                  probe: null,
                   original: correction.original,
                   correction: correction.corrected,
                   explanation: correction.explanation,
@@ -332,7 +337,7 @@ export async function processJob(id: string) {
       });
       if (data.correct !== null)
         await updateProductiveProgress(claimed.userId, attempt.id, data);
-      if (/^D[1-5]$/.test(lesson.id)) await refreshPlacement(claimed.userId);
+      await refreshPlacement(claimed.userId);
     } else if (
       claimed.operation === "explain" ||
       claimed.operation === "roleplay"
@@ -454,6 +459,7 @@ export async function updateProductiveProgress(
       and(
         eq(lessonProgress.userId, userId),
         eq(lessonProgress.lessonId, lesson.id),
+        eq(lessonProgress.version, lesson.version),
       ),
     );
   const current = (

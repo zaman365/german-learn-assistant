@@ -35,8 +35,9 @@ export function skillEvidence(rows: Row[], skill: string, lessons: Lesson[]) {
       ),
       exercise = lesson?.exercises.find((x) => x.id === a.exerciseId);
     const rubricTransfer = !!exercise?.rubric?.length && a.transfer;
-    const relevant =
-      a.skill === skill || (rubricTransfer && lesson?.skills.includes(skill));
+    // A lesson's teaching tags are not assessment claims. A writing task in a
+    // listening lesson, for example, cannot establish listening competence.
+    const relevant = a.skill === skill;
     if (!relevant) return [];
     // A single gap is useful practice, not sufficient evidence for a broad objective.
     return [

@@ -14,7 +14,11 @@ async function main() {
   const script = [
     ...courseAudio,
     ...mocks.flatMap((m) =>
-      m.audio.map((a) => ({ ...a, version: 1, voice: "alloy" })),
+      m.audio.map((a) => ({
+        ...a,
+        version: a.version || m.version,
+        voice: "alloy",
+      })),
     ),
   ].find((s) => s.id === id);
   if (!script) throw new Error("Choose a course or original exam audio ID.");

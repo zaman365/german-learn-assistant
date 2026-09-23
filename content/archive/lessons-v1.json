@@ -1,0 +1,164 @@
+[
+  {
+    "id": "B2-10-L01",
+    "version": 1,
+    "moduleId": "B2-10",
+    "stage": "bridge",
+    "title": "Summarize for the person who needs it",
+    "subtitle": "Das Wesentliche weitergeben",
+    "minutes": 25,
+    "objectives": [
+      "Select relevant information without inventing facts.",
+      "Paraphrase causes and recommendations for an audience."
+    ],
+    "prerequisites": ["B2-07-L01"],
+    "skills": ["mediation", "reading"],
+    "references": ["mediation", "connectors"],
+    "vocabulary": ["team", "projekt", "ergebnis", "empfehlen"],
+    "blocks": [
+      {
+        "type": "text",
+        "title": "Understand the move",
+        "body": "A summary is not a shorter copy of every sentence. Decide what the recipient needs to do, select the facts that support that action, and preserve qualifications. Separate observation, explanation and proposal. A report may show that waiting time increased without proving why. Keep statements such as vermutlich, im Test and nach Angaben des Teams when they affect certainty. Paraphrase by changing both sentence structure and wording: Das Team führt eine Prüfung durch → Das Team prüft. Do not replace precise numbers with a vague improvement if the numbers matter. Conversely, omit background details that cannot influence the recipient's decision. Finish by checking every sentence against the source."
+      },
+      {
+        "type": "example",
+        "german": "Der Bericht empfiehlt einen befristeten Test; eine dauerhafte Einführung wurde noch nicht beschlossen.",
+        "english": "The report recommends a limited trial; permanent introduction has not yet been decided."
+      },
+      {
+        "type": "diagram",
+        "title": "A decision you can reuse",
+        "steps": [
+          {
+            "label": "Audience",
+            "detail": "What does this colleague need?"
+          },
+          {
+            "label": "Facts",
+            "detail": "Keep conditions, dates and quantities"
+          },
+          {
+            "label": "Paraphrase",
+            "detail": "Change structure; preserve meaning"
+          },
+          {
+            "label": "Audit",
+            "detail": "Can every claim be traced?"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "Internal review of the service desk",
+        "body": "In einem vierwöchigen Test beantwortete der Servicebereich einfache Anfragen über einen gemeinsamen Posteingang. Zuvor wurden diese Nachrichten an einzelne Beschäftigte geschickt. Die durchschnittliche erste Reaktionszeit sank im Test von zwei Arbeitstagen auf einen Arbeitstag. Bei komplexen Fällen zeigte sich dagegen keine erkennbare Veränderung. Zwei Teammitglieder berichten, dass die gemeinsame Ablage die Vertretung erleichtert habe. Diese Einschätzung wurde nicht durch eine gesonderte Befragung überprüft. Gleichzeitig gingen drei Anfragen vorübergehend an zwei Bearbeitende, weil die Zuständigkeit nicht sofort sichtbar war. Alle drei Fälle wurden am selben Tag geklärt. Die Arbeitsgruppe schlägt vor, eine verbindliche Kennzeichnung der zuständigen Person einzuführen und den Test um vier Wochen zu verlängern. Zusätzliche Stellen sind nicht vorgesehen. Eine Entscheidung über die dauerhafte Nutzung soll erst nach dem zweiten Testabschnitt fallen."
+      },
+      {
+        "type": "text",
+        "title": "Make it your own",
+        "body": "Highlight facts in one color and proposals in another, with labels as well as colors. Draft from your notes instead of looking at each source sentence. Then audit quantities and certainty. The phrase laut Bericht identifies a source; it does not make unsupported conclusions true."
+      }
+    ],
+    "exercises": [
+      {
+        "id": "B2-10-L01-Q01",
+        "type": "choice",
+        "prompt": "Which cases showed a shorter first response time?",
+        "options": ["All cases", "Simple inquiries", "Only complex cases"],
+        "accepted": ["Simple inquiries"],
+        "explanation": "The reduction was reported for simple inquiries; complex cases showed no clear change.",
+        "hint": "Return to the worked example. Identify the exact relationship or form the task asks for.",
+        "skill": "mediation",
+        "family": "B2-10-L01-recognition",
+        "errorTag": "LEX",
+        "normalize": {
+          "caseSensitive": true,
+          "punctuation": true
+        },
+        "transfer": false,
+        "exit": false
+      },
+      {
+        "id": "B2-10-L01-Q02",
+        "type": "short",
+        "prompt": "Write the new average response time in German: ___ Arbeitstag.",
+        "accepted": ["ein"],
+        "explanation": "It fell from two working days to one working day.",
+        "hint": "Return to the worked example. Identify the exact relationship or form the task asks for.",
+        "skill": "mediation",
+        "family": "B2-10-L01-form",
+        "errorTag": "LEX",
+        "normalize": {
+          "caseSensitive": true,
+          "punctuation": true
+        },
+        "transfer": true,
+        "exit": false
+      },
+      {
+        "id": "B2-10-L01-Q03",
+        "type": "choice",
+        "prompt": "Is permanent use already decided?",
+        "options": ["Yes", "No"],
+        "accepted": ["No"],
+        "explanation": "The decision is postponed until after the second trial period.",
+        "hint": "Return to the worked example. Identify the exact relationship or form the task asks for.",
+        "skill": "mediation",
+        "family": "B2-10-L01-recognition",
+        "errorTag": "LEX",
+        "normalize": {
+          "caseSensitive": true,
+          "punctuation": true
+        },
+        "transfer": false,
+        "exit": false
+      },
+      {
+        "id": "B2-10-L01-Q04",
+        "type": "short",
+        "prompt": "Complete: Der Bericht schlägt ___, den Test zu verlängern.",
+        "accepted": ["vor"],
+        "explanation": "Vorschlagen is separable; the finite main clause places vor at the end.",
+        "hint": "Return to the worked example. Identify the exact relationship or form the task asks for.",
+        "skill": "mediation",
+        "family": "B2-10-L01-transfer",
+        "errorTag": "LEX",
+        "normalize": {
+          "caseSensitive": true,
+          "punctuation": true
+        },
+        "transfer": true,
+        "exit": true
+      },
+      {
+        "id": "B2-10-L01-P01",
+        "type": "writing",
+        "prompt": "Write a 90–110-word summary for a colleague covering response time, the responsibility problem, the proposed change and the undecided permanent rollout. Attribute the unverified staff impression accurately.",
+        "stimulus": "In einem vierwöchigen Test beantwortete der Servicebereich einfache Anfragen über einen gemeinsamen Posteingang. Zuvor wurden diese Nachrichten an einzelne Beschäftigte geschickt. Die durchschnittliche erste Reaktionszeit sank im Test von zwei Arbeitstagen auf einen Arbeitstag. Bei komplexen Fällen zeigte sich dagegen keine erkennbare Veränderung. Zwei Teammitglieder berichten, dass die gemeinsame Ablage die Vertretung erleichtert habe. Diese Einschätzung wurde nicht durch eine gesonderte Befragung überprüft. Gleichzeitig gingen drei Anfragen vorübergehend an zwei Bearbeitende, weil die Zuständigkeit nicht sofort sichtbar war. Alle drei Fälle wurden am selben Tag geklärt. Die Arbeitsgruppe schlägt vor, eine verbindliche Kennzeichnung der zuständigen Person einzuführen und den Test um vier Wochen zu verlängern. Zusätzliche Stellen sind nicht vorgesehen. Eine Entscheidung über die dauerhafte Nutzung soll erst nach dem zweiten Testabschnitt fallen.",
+        "explanation": "Use the published criteria to review task completion, evidence, organization and language. An original response requires rubric evaluation.",
+        "hint": "Plan the relevant content first, then choose structures that express the intended meaning.",
+        "skill": "mediation",
+        "family": "B2-10-L01-independent-composition",
+        "normalize": {
+          "caseSensitive": true,
+          "punctuation": true
+        },
+        "transfer": true,
+        "exit": true,
+        "rubric": [
+          "Preserves the relevant findings and numbers.",
+          "Distinguishes findings, reported impressions and proposals.",
+          "Does not invent a cause, staffing change or decision.",
+          "Uses a coherent paraphrase suitable for a colleague."
+        ]
+      }
+    ],
+    "reflection": "Which word in your summary preserves the source's uncertainty?",
+    "quality": {
+      "method": "ai-authored-and-reviewed",
+      "reviewedAt": "2026-09-23",
+      "unresolved": []
+    },
+    "status": "published"
+  }
+]

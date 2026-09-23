@@ -10,41 +10,50 @@ export const mock02 = authorMock({
   title: "Logistik und Verantwortung",
   description:
     "Ein Logistikunternehmen führt neue Übergaben ein. Lieferinformationen, Schulungen und Zielkonflikte zuverlässig vermitteln.",
+  version: 2,
+  matchingStatements: [
+    "Frühzeitige Information.",
+    "Engere Annahmezeiten sollten sofort eingeführt werden.",
+    "Eine bessere Anordnung eines wichtigen Feldes.",
+    "Verbindliche Ergebnisse und Zuständigkeiten.",
+    "Eine zusätzliche Liste für offene Arbeitsschritte.",
+    "Zuerst die tatsächlichen Ankunftszeiten prüfen.",
+  ],
   teasers: [
-    "Übergaben ohne Informationsverlust: Teams erarbeiten an einem eigenen Ablauf eine kompakte Übergabevorlage. Der Workshop findet im Betrieb statt und richtet sich an Beschäftigte aus mindestens zwei aufeinanderfolgenden Schichten. Die Leitung erhält anschließend keine individuellen Leistungsbewertungen.",
-    "Sicher vor Gruppen sprechen: In kleinen Präsenzgruppen üben Sie einen fünfminütigen Vortrag. Videoaufnahmen dienen ausschließlich Ihrem persönlichen Feedback. Vorkenntnisse sind nicht erforderlich; Verhandlungen sind kein Bestandteil.",
-    "Projektcontrolling für Fortgeschrittene: Sie berechnen Abweichungen, vergleichen Szenarien und bewerten Kennzahlen. Grundkenntnisse der Kostenrechnung werden vorausgesetzt. Das Online-Seminar umfasst vier feste Abendtermine.",
-    "Deutsch im Lager: Berufseinsteiger üben Ortsangaben, Mengen und einfache Rückfragen. Bilder und kurze Dialoge unterstützen das Lernen. Das Angebot ersetzt keine betriebliche Sicherheitsunterweisung.",
-    "Lieferprobleme verhandeln: Einkäuferinnen und Einkäufer üben Gespräche mit Lieferbetrieben, in denen Termine oder Mengen nicht eingehalten wurden. Sie entwickeln Alternativen und halten Zusagen präzise fest. Zwei halbe Tage online mit Partnerübungen.",
-    "Lernen im eigenen Tempo: Eine modulare Einführung erklärt das Lesen einfacher Kennzahlen. Kurze Tests geben sofort Rückmeldung. Alle Inhalte sind jederzeit zugänglich; individuelles Coaching ist nicht enthalten.",
-    "Abläufe bildlich erklären: Sie erstellen verständliche Prozessdarstellungen für neue Beschäftigte. Ausgangspunkt ist ein selbst gewählter betrieblicher Vorgang. Softwarekenntnisse werden nicht benötigt; gearbeitet wird mit Karten und einfachen Formen.",
-    "Rechtliche Einzelfragen im Transport: Eine Beratungsstelle vermittelt nach einer Erstaufnahme an spezialisierte Fachleute. Das Angebot ist kein Sprachkurs und enthält weder Rollenspiele noch allgemeine Rechtsversprechen.",
+    "Was zwischen zwei Schichten verloren geht: Eine Reportage aus einem Versandlager begleitet Früh- und Spätschicht bei der Übergabe offener Aufträge. Früher fehlte oft der nächste Arbeitsschritt. Eine gemeinsam entwickelte Vorlage soll das ändern. Der Text zeigt, welche Angaben beide Teams tatsächlich nutzen und warum die neue Liste zunächst mehr Rückfragen auslöste.",
+    "Fünf Minuten vor Publikum: Eine Ingenieurin spricht erstmals auf einer Betriebsversammlung. Sie berichtet, wie ihr eine Probeaufnahme half, zu schnelle Passagen zu erkennen und den Einstieg zu kürzen. Der Beitrag behandelt die Vorbereitung eines kurzen Vortrags; Verhandlungen über Lieferbedingungen und Abläufe im Schichtbetrieb spielen keine Rolle.",
+    "Wenn der günstigste Plan der teuerste wird: Das Wirtschaftsmagazin vergleicht drei Investitionsszenarien eines Betriebs. Auslastung, Wartung und gebundenes Kapital führen zu unterschiedlichen Ergebnissen. Der Autor erklärt, welche Annahmen die Rechnung besonders beeinflussen. Grundbegriffe der Kostenrechnung werden vorausgesetzt; eine Einführung für Leser ohne Vorwissen bietet der Beitrag nicht.",
+    "Neu im Lager, neu in der Sprache: Ein Porträt begleitet zwei Berufseinsteiger beim Lernen von Mengenangaben und Ortsbezeichnungen. Bilder helfen ihnen, Rückfragen zu stellen, statt eine unklare Anweisung einfach zu bestätigen. Die Reportage zeigt sprachliche Lernwege und betont, dass diese die betriebliche Sicherheitsunterweisung ergänzen, aber nicht ersetzen.",
+    "Liefertermin verpasst – Gespräch noch offen: Ein Einkäufer und eine Lieferantin berichten, wie sie nach mehreren Verzögerungen neue Bedingungen vereinbarten. Statt nur einen Nachlass zu verlangen, prüften sie Teillieferungen und verbindliche Rückmeldetermine. Der Bericht macht die unterschiedlichen Interessen sichtbar und erläutert, welche Zusagen am Ende schriftlich festgehalten wurden.",
+    "Was sagt eine Kennzahl aus? Unsere neue Erklärreihe beginnt mit einem kleinen fiktiven Betrieb und stellt absolute Zahlen den zugehörigen Anteilen gegenüber. Kurze Rechenbeispiele zeigen, warum mehr Fehler nicht immer eine höhere Fehlerquote bedeuten. Der erste Beitrag richtet sich ausdrücklich an Leser ohne Kenntnisse der Kostenrechnung; fortgeschrittene Investitionsmodelle folgen hier nicht.",
+    "Ein Ablauf auf einer einzigen Seite: Neue Beschäftigte verloren bei der Einarbeitung den Überblick über Zuständigkeiten. Daraufhin zeichnete ein Team seinen Arbeitsprozess mit Karten und Pfeilen nach. Der Praxisbericht zeigt die Darstellung und erklärt, wie Bedingungen und Rücksprünge sichtbar werden. Teure Grafiksoftware war dafür nicht nötig; entscheidend waren die Rückfragen der neuen Kollegen.",
+    "Wenn ein Transportfall juristische Fragen aufwirft: Eine Beratungsstelle erläutert, wie sie Anfragen aufnimmt und an spezialisierte Fachleute weitergibt. Der Bericht erklärt die organisatorischen Schritte zwischen Erstkontakt und Beratung. Er enthält keine verbindlichen Antworten auf Einzelfälle und keine Sprachübungen für Gespräche mit Lieferbetrieben.",
   ],
   needs: [
     {
-      text: "Zwei Schichten möchten gemeinsam verbessern, wie unerledigte Aufträge übergeben werden.",
+      text: "Zwei Schichten suchen einen Praxisbericht darüber, wie offene Arbeitsschritte bei der Übergabe sichtbar bleiben.",
       answer: 0,
-      why: "A arbeitet mit benachbarten Schichten an ihrer konkreten Übergabe.",
+      why: "A begleitet zwei Schichten bei der Einführung einer gemeinsamen Übergabevorlage.",
     },
     {
-      text: "Hanna muss mit einem Lieferbetrieb über verspätete Ware sprechen und möchte alternative Lösungen üben.",
+      text: "Hanna möchte lesen, wie Einkauf und Lieferbetrieb bei Verzögerungen zu tragfähigen Vereinbarungen gelangen.",
       answer: 4,
-      why: "E trainiert Verhandlungen über Lieferprobleme.",
+      why: "E beschreibt Interessen, Teillieferungen und schriftlich festgehaltene Zusagen.",
     },
     {
-      text: "Pavel sucht eine zeitlich flexible Einführung in betriebliche Kennzahlen. Er braucht kein persönliches Coaching.",
+      text: "Pavel sucht ohne Vorwissen eine Erklärung des Unterschieds zwischen Fehlerzahlen und Fehlerquoten.",
       answer: 5,
-      why: "F bietet jederzeit zugängliche Grundlagen und Selbsttests.",
+      why: "F führt anhand einfacher Beispiele in Zahlen und Anteile ein.",
     },
     {
-      text: "Aylin soll neuen Beschäftigten einen Ablauf anschaulich erklären und kennt keine Grafiksoftware.",
+      text: "Aylin möchte einen Erfahrungsbericht über verständliche Prozessdarstellungen ohne aufwendige Software lesen.",
       answer: 6,
-      why: "G nutzt einfache Formen ohne Softwarevoraussetzungen.",
+      why: "G erklärt eine mit Karten und Pfeilen erstellte Ablaufdarstellung.",
     },
     {
-      text: "Mark hat Erfahrung in der Kostenrechnung und will anspruchsvollere Szenarien vergleichen.",
+      text: "Mark kennt die Kostenrechnung und möchte erfahren, wie geänderte Annahmen Investitionsszenarien beeinflussen.",
       answer: 2,
-      why: "C setzt Kostenrechnungskenntnisse voraus und behandelt Szenarien.",
+      why: "C setzt Grundlagen voraus und vergleicht anspruchsvollere Szenarien.",
     },
   ],
   internal: [
@@ -348,7 +357,7 @@ export const mock02 = authorMock({
     {
       title: "Rückmeldung aus dem Lager",
       script:
-        "Die neue Übergabe spart Rückfragen. Ich würde nur das Feld für den nächsten Schritt weiter oben platzieren. Es wird beim schnellen Ausfüllen sonst leicht übersehen.",
+        "Pia: Die Übergabe wirkt inzwischen vollständiger. Würdest du noch etwas ändern?\nTarek: Die Liste ist hilfreich. Nur den nächsten Arbeitsschritt übersehe ich beim schnellen Ausfüllen manchmal.\nPia: Soll dafür eine zweite Liste entstehen?\nTarek: Nein, bitte nicht. Das Feld steht ganz unten. Wenn es direkt unter dem Auftrag wäre, würde ich eher daran denken.\nPia: Dann testen wir zuerst eine andere Reihenfolge?\nTarek: Genau. Den Inhalt würde ich beibehalten. Wir sollten prüfen, ob die neue Anordnung schon reicht.",
       questions: [
         q(
           "Was wird vorgeschlagen?",
@@ -366,7 +375,7 @@ export const mock02 = authorMock({
     {
       title: "Rückmeldung vom Empfang",
       script:
-        "Retouren nur morgens anzunehmen wäre für uns einfacher. Viele Fahrer kommen aber nachmittags. Bevor wir die Zeiten ändern, sollten wir eine Woche lang erfassen, wann die Lieferungen wirklich eintreffen.",
+        "Milan: Retouren nur am Vormittag anzunehmen würde unsere Planung vereinfachen. Können wir das ab Montag so machen?\nAnne: Ich bin noch nicht überzeugt. Mehrere Fahrer kommen regelmäßig erst nachmittags.\nMilan: Sind das wirklich viele oder nur einzelne Fälle?\nAnne: Das wissen wir gerade nicht. Lass uns eine Woche lang die tatsächlichen Ankunftszeiten notieren.\nMilan: Und danach entscheiden, ob engere Zeiten sinnvoll sind?\nAnne: Ja. Sonst lösen wir unser Planungsproblem vielleicht auf Kosten der Fahrer, ohne die Folgen zu kennen.",
       questions: [
         q(
           "Welche Position wird vertreten?",
@@ -384,7 +393,7 @@ export const mock02 = authorMock({
     {
       title: "Rückmeldung vom Einkauf",
       script:
-        "Ein Preisnachlass hilft manchmal, ersetzt aber keine verlässliche Information. Wenn ich früher von einer Verzögerung erfahre, kann ich oft umplanen. Das ist für mich entscheidender als ein kleiner Rabatt.",
+        "Selin: Der Lieferbetrieb bietet wegen der Verzögerung drei Prozent Nachlass. Das klingt doch entgegenkommend.\nPaul: Schon, aber der Rabatt hilft mir wenig, wenn ich erst am Liefertag von der Verschiebung erfahre.\nSelin: Du würdest lieber einen höheren Nachlass fordern?\nPaul: Mir wäre eine verlässliche frühe Nachricht wichtiger. Dann könnte ich die Montage umplanen.\nSelin: Also sollten wir einen Rückmeldetermin vereinbaren?\nPaul: Genau. Über den Preis können wir zusätzlich reden, aber die Planungssicherheit steht für mich an erster Stelle.",
       questions: [
         q(
           "Was ist besonders wichtig?",
@@ -402,7 +411,7 @@ export const mock02 = authorMock({
     {
       title: "Rückmeldung aus der Spätschicht",
       script:
-        "Wir brauchen keine längere Besprechung. Wir brauchen jemanden, der am Ende festhält, wer was bis wann macht. Sonst diskutieren wir dieselben Fragen am nächsten Tag erneut.",
+        "Kira: Morgen ist wieder Schichtbesprechung. Sollen wir diesmal mehr Zeit einplanen?\nJan: Die Zeit reicht meistens. Das Problem beginnt hinterher: Niemand weiß genau, was vereinbart wurde.\nKira: Eine Aufnahme des ganzen Gesprächs wäre möglich.\nJan: Dann müsste jeder alles noch einmal anhören. Eine kurze Ergebnisliste mit Verantwortlichen und Terminen wäre nützlicher.\nKira: Ich kann sie führen und am Ende vorlesen.\nJan: Gut. Dann merken wir gleich, wenn wir uns bei einer Zuständigkeit noch nicht einig sind.",
       questions: [
         q(
           "Was fehlt aus Sicht der Sprecherin?",

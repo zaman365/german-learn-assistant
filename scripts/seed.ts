@@ -1,3 +1,5 @@
+import archivedMocks from "../content/archive/mocks-v1.json";
+import archivedLessons from "../content/archive/lessons-v1.json";
 import "dotenv/config";
 import { vocabularyLessons } from "../src/content/vocabulary-practice";
 import { mocks } from "../content/exams";
@@ -16,15 +18,18 @@ import { validateContent } from "./validate-content";
 async function main() {
   const counts = validateContent();
   const db = getDb();
-  const entries = [...lessons, ...diagnostics, ...vocabularyLessons].map(
-    (l) => ({
-      id: l.id,
-      version: l.version,
-      type: "lesson",
-      payload: l,
-      published: l.status === "published",
-    }),
-  );
+  const entries = [
+    ...archivedLessons,
+    ...lessons,
+    ...diagnostics,
+    ...vocabularyLessons,
+  ].map((l) => ({
+    id: l.id,
+    version: l.version,
+    type: "lesson",
+    payload: l,
+    published: l.status === "published",
+  }));
   const others = [
     ...vocabulary.map((w) => ({
       id: `lex:${w.id}`,
@@ -42,7 +47,7 @@ async function main() {
     for (const entry of [
       ...entries,
       ...others,
-      ...mocks.map((m) => ({
+      ...[...archivedMocks, ...mocks].map((m) => ({
         id: m.id,
         version: m.version,
         type: "mock",

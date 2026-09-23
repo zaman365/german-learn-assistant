@@ -10,41 +10,50 @@ export const mock03 = authorMock({
   title: "Weiterbildung und Veränderung",
   description:
     "Reservierter Originalsatz: ein Bildungsanbieter plant neue Angebote und bearbeitet organisatorische Konflikte.",
+  version: 2,
+  matchingStatements: [
+    "Absolute Zahlen benötigen eine passende Bezugsgröße.",
+    "Eine ausführlichere Anleitung soll telefonische Buchungen vollständig ersetzen.",
+    "Digitale Buchung mit erreichbarer Alternative.",
+    "Die Verständlichkeit des Arbeitsauftrags.",
+    "Ein zusätzlicher Vortrag soll die informellen Gespräche ersetzen.",
+    "Zeit für informelle Fragen einplanen.",
+  ],
   teasers: [
-    "Digitale Lernräume gestalten: Lehrende entwickeln eine kurze Online-Einheit mit klaren Arbeitsaufträgen, Rückmeldungen und Austauschphasen. Ein eigener Laptop ist erforderlich. Technische Grundkenntnisse werden vorausgesetzt; Programmierung spielt keine Rolle.",
-    "Barrierearme Dokumente: Mitarbeitende aus Verwaltung und Lehre prüfen Texte auf klare Gliederung, verständliche Verweise und zugängliche Gestaltung. Sie überarbeiten ein eigenes Dokument. Das Angebot ersetzt keine vollständige technische Zertifizierung.",
-    "Schwierige Beratungsgespräche: In Rollenspielen üben Sie, widersprüchliche Erwartungen zu klären und Grenzen respektvoll zu erläutern. Zwei Präsenztage mit individueller Rückmeldung; geeignet für Beschäftigte mit regelmäßigem Kundenkontakt.",
-    "Finanzplanung für kleine Projekte: Ein Selbstlernkurs führt in Einnahmen, Ausgaben und Reserven ein. Die Übungen verwenden vorgegebene Beispieldaten. Eine Beratung zu persönlichen Steuerfragen ist nicht enthalten.",
-    "Erste Schritte im Büro: Jugendliche im Praktikum lernen einfache Ablage, Terminnotizen und höfliche Rückfragen. Der Kurs setzt keine Berufserfahrung voraus und behandelt keine Personalführung.",
-    "Wirkung von Fortbildungen prüfen: Verantwortliche für Personalentwicklung erarbeiten Kriterien, mit denen sich der Transfer in den Arbeitsalltag beobachten lässt. Der Schwerpunkt liegt auf der Auswertung nach einer Maßnahme, nicht auf der Veranstaltungsorganisation.",
-    "Konzentriert arbeiten: Der kurze Online-Vortrag stellt persönliche Strategien gegen Unterbrechungen vor. Er enthält keine Partnerübungen und keine individuelle Rückmeldung.",
-    "Projektkonflikte moderieren: Koordinierende üben, unterschiedliche Interessen sichtbar zu machen und Entscheidungswege zu vereinbaren. Gearbeitet wird in Kleingruppen mit Fällen aus der eigenen Praxis; eine Vorgesetztenrolle ist nicht erforderlich.",
+    "Ein digitaler Raum ist noch kein Unterricht: Eine Dozentin berichtet, wie sie eine Online-Einheit nach enttäuschenden ersten Erfahrungen umgestaltet hat. Kürzere Arbeitsaufträge, Rückmeldungen und geplante Austauschphasen stehen im Mittelpunkt des Medienbeitrags. Die technische Bedienung wird vorausgesetzt. Der Text erklärt didaktische Entscheidungen, ohne Programmierkenntnisse zu verlangen.",
+    "Ein Informationsblatt wird lesbar: Die Redaktion begleitet eine Verwaltung bei der Überarbeitung ihrer Teilnehmerunterlagen. Zwischenüberschriften, eindeutige Verweise und eine klarere Reihenfolge helfen Lesern, den nächsten Schritt zu finden. Vorher-nachher-Beispiele zeigen die Änderungen. Der Beitrag behandelt verständliche Gestaltung, ohne eine vollständige technische Barrierefreiheitsprüfung zu versprechen.",
+    "Freundlich bleiben, Grenzen deutlich machen: Eine Beraterin schildert ein Gespräch mit einem enttäuschten Kunden. Beide rekonstruierten zunächst ihre unterschiedlichen Erwartungen, bevor sie einen neuen Termin vereinbarten. Der Beitrag analysiert die entscheidenden Gesprächsstellen und zeigt alternative Formulierungen. Er erklärt kommunikatives Handeln, bietet aber keine individuelle Beratung oder pauschale Erfolgsgarantie.",
+    "Ein kleines Projekt braucht eine Reserve: Ein Finanzredakteur erklärt anhand eines Vereinsprojekts Einnahmen, laufende Ausgaben und unerwartete Kosten. Die Modellrechnung macht sichtbar, was bei verspäteten Zahlungen geschieht. Sie ist eine Einführung in Planung und Liquidität; persönliche Steuerfragen und die pädagogische Wirkung von Fortbildungen werden nicht behandelt.",
+    "Eine Woche im Büro: Eine Praktikantin lernt, Termine zu notieren, Unterlagen wiederzufinden und bei unklaren Aufträgen höflich nachzufragen. Ihr Tagebuch zeigt kleine Fortschritte und typische Missverständnisse. Der Erfahrungsbericht richtet sich an Berufseinsteiger und vermittelt keine Methoden der Personalführung oder der Moderation komplexer Projektkonflikte.",
+    "Gute Seminarnoten, wenig Veränderung? Ein Unternehmen fragt sechs Wochen nach einer Fortbildung nach konkreten Anwendungen am Arbeitsplatz. Die Personalentwicklung vergleicht Beobachtungen mit den ursprünglichen Lernzielen. Der Bericht zeigt, warum Zufriedenheit allein kein Transfernachweis ist. Er konzentriert sich auf die Wirkung nach der Maßnahme und nicht auf Buchung oder Veranstaltungslogistik.",
+    "Eine Stunde ohne Unterbrechung: Beschäftigte eines kleinen Betriebs erproben feste Zeiten für konzentrierte Arbeit. Eine Reportage beschreibt persönliche Strategien, aber auch die Grenzen bei Kundenkontakt. Ob weniger Unterbrechungen bereits bessere Ergebnisse bedeuten, bleibt offen. Die Redaktion stellt keine Kursbewertung vor und empfiehlt keine allgemeingültige Produktivitätszahl.",
+    "Koordinieren ohne Chefrolle: In einer Arbeitsgruppe kollidieren die Interessen von Vertrieb und Entwicklung. Eine Projektkoordinatorin beschreibt, wie sie zunächst Entscheidungsspielräume klärte und dann beide Seiten an einer gemeinsamen Alternative arbeiten ließ. Das Porträt untersucht Moderation unter Gleichberechtigten; disziplinarische Weisungen waren dabei gerade kein verfügbares Mittel.",
   ],
   needs: [
     {
-      text: "Fatima möchte herausfinden, ob eine Fortbildung das Verhalten der Beschäftigten im Alltag verändert hat.",
+      text: "Fatima sucht einen Bericht darüber, wie ein Betrieb die Anwendung von Fortbildungsinhalten im Arbeitsalltag untersucht.",
       answer: 5,
-      why: "F konzentriert sich auf den Transfer nach einer Maßnahme.",
+      why: "F trennt Zufriedenheit von beobachtetem Transfer nach einer Fortbildung.",
     },
     {
-      text: "Leon soll ein vorhandenes Informationsblatt verständlicher und zugänglicher gestalten.",
+      text: "Leon möchte anhand von Beispielen lesen, wie ein Informationsblatt verständlicher gestaltet wird.",
       answer: 1,
-      why: "B lässt Teilnehmende ein eigenes Dokument überarbeiten.",
+      why: "B erklärt die Überarbeitung von Teilnehmerunterlagen anhand von Beispielen.",
     },
     {
-      text: "Nina koordiniert ein Projekt ohne Personalverantwortung und möchte mit widersprüchlichen Interessen umgehen.",
+      text: "Nina möchte erfahren, wie eine Projektkoordinatorin ohne Weisungsbefugnis widersprüchliche Interessen bearbeitet.",
       answer: 7,
-      why: "H trainiert Projektmoderation ohne Vorgesetztenrolle.",
+      why: "H beschreibt Moderation unter Gleichberechtigten.",
     },
     {
-      text: "David berät regelmäßig unzufriedene Kunden und möchte schwierige Gespräche praktisch üben.",
+      text: "David interessiert sich für eine Analyse schwieriger Kundengespräche mit möglichen alternativen Formulierungen.",
       answer: 2,
-      why: "C bietet Rollenspiele mit individuellem Feedback.",
+      why: "C untersucht Gesprächsstellen zwischen Beraterin und enttäuschtem Kunden.",
     },
     {
-      text: "Rosa kann digitale Werkzeuge bedienen und möchte eine eigene Online-Lerneinheit entwickeln.",
+      text: "Rosa beherrscht digitale Werkzeuge und sucht einen Erfahrungsbericht zu didaktischen Entscheidungen in Online-Einheiten.",
       answer: 0,
-      why: "A richtet sich an Lehrende mit technischen Grundkenntnissen.",
+      why: "A konzentriert sich auf Arbeitsaufträge, Rückmeldungen und Austausch.",
     },
   ],
   internal: [
@@ -344,7 +353,7 @@ export const mock03 = authorMock({
     {
       title: "Erfahrung aus der Beratung",
       script:
-        "Eine Online-Buchung ist praktisch, solange sie verständlich ist. Manche Ratsuchende kommen damit aber nicht zurecht. Für sie sollte es weiterhin möglich sein, telefonisch einen Termin zu vereinbaren.",
+        "Sven: Die neue Online-Buchung spart dem Empfang Arbeit. Könnten wir telefonische Buchungen jetzt ganz einstellen?\nAmina: Bei vielen funktioniert das gut. Gestern hat mich aber eine Ratsuchende angerufen, die mit dem Formular nicht zurechtkam.\nSven: Reicht eine ausführlichere Anleitung?\nAmina: Sie hilft manchen, aber nicht allen. Ich würde eine erreichbare telefonische Alternative behalten.\nSven: Dann bleiben beide Wege offen?\nAmina: Ja. Wir können den digitalen Weg fördern, ohne Menschen auszuschließen, die dabei Unterstützung benötigen.",
       questions: [
         q(
           "Welche Position vertritt die Person?",
@@ -362,7 +371,7 @@ export const mock03 = authorMock({
     {
       title: "Erfahrung aus einem Kurs",
       script:
-        "Im Online-Kurs haben die Partnerübungen überraschend gut funktioniert. Mir fehlte eher die Möglichkeit, vor oder nach dem Unterricht beiläufig Fragen zu stellen. Eine offene Viertelstunde könnte das auffangen.",
+        "Rita: Wie war dein erster Online-Kurs? Waren die Partnerübungen schwierig?\nCem: Im Gegenteil, die Kleingruppen haben gut funktioniert. Was mir fehlte, waren die kurzen Fragen nach dem Unterricht.\nRita: Dafür gibt es doch den schriftlichen Chat.\nCem: Stimmt, aber manche Frage entsteht erst im lockeren Gespräch. Eine offene Viertelstunde wäre hilfreich.\nRita: Du möchtest also keinen zusätzlichen Vortrag?\nCem: Nein. Nur etwas Zeit, in der man ohne vorbereiteten Beitrag eine Rückfrage stellen kann.",
       questions: [
         q(
           "Was wird vorgeschlagen?",
@@ -380,7 +389,7 @@ export const mock03 = authorMock({
     {
       title: "Erfahrung aus der Planung",
       script:
-        "Ein Kurs mit vielen Anmeldungen ist nicht automatisch gut ausgelastet. Wenn der Raum viel größer ist oder mehr Lehrkräfte eingesetzt werden, sieht das Verhältnis anders aus. Wir sollten die Bezugsgröße immer dazuschreiben.",
+        "Dora: Der neue Kurs hat dreißig Anmeldungen. Dann ist er besser ausgelastet als der alte mit zwanzig, oder?\nEnis: Nicht unbedingt. Wie groß sind die Räume, und wie viele Plätze waren geplant?\nDora: Im neuen Raum wären fünfzig möglich, im alten fünfundzwanzig.\nEnis: Dann erzählen die absoluten Zahlen allein nicht die ganze Geschichte. Auch der Personaleinsatz kann unterschiedlich sein.\nDora: Wir sollten die Bezugsgrößen dazuschreiben.\nEnis: Genau. Erst mit diesen Angaben lässt sich der Vergleich sinnvoll einordnen.",
       questions: [
         q(
           "Was wird betont?",
@@ -398,7 +407,7 @@ export const mock03 = authorMock({
     {
       title: "Erfahrung aus der Arbeitsgruppe",
       script:
-        "Wir haben lange über die Farbe der Vorlage gesprochen. Dabei war der Arbeitsauftrag selbst noch missverständlich. Beim nächsten Treffen sollten wir zuerst prüfen, ob die Teilnehmenden wissen, was sie tun sollen.",
+        "Iris: Beim nächsten Treffen müssen wir endlich eine Farbe für die Überschriften wählen.\nNoah: Können wir vorher den Arbeitsauftrag prüfen? Zwei Teilnehmende haben gestern ganz unterschiedliche Dinge gemacht.\nIris: Vielleicht haben sie die Hinweise nur übersehen.\nNoah: Möglich. Aber auch nach dem Lesen wussten sie nicht, was abzugeben ist. Eine andere Farbe löst diese Unklarheit kaum.\nIris: Dann testen wir zuerst die Formulierung mit einer kleinen Gruppe.\nNoah: Ja. Wenn die Aufgabe verstanden wird, können wir uns um die Gestaltung kümmern.",
       questions: [
         q(
           "Was soll künftig Vorrang haben?",

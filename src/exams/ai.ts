@@ -19,7 +19,7 @@ import { readAsset, putAsset } from "@/audio/storage";
 import { inspectWav } from "@/audio/wav";
 import { pcm16, wavFromPcm } from "@/audio/pcm";
 import { localDate } from "@/learning/policies";
-import { publishedMock, objectiveResult } from "./service";
+import { publishedMock, mockVersionOf, objectiveResult } from "./service";
 import {
   writingHalfPoints,
   speakingHalfPoints,
@@ -61,7 +61,7 @@ export async function requestExamJob(
         503,
         "The spoken partner requires configured speech and transcription models.",
       );
-    const mock = await publishedMock(run.mockId),
+    const mock = await publishedMock(run.mockId, mockVersionOf(run)),
       task = mock.tasks.find(
         (t) =>
           t.id === input.taskId &&
@@ -162,7 +162,7 @@ export async function processExamPartner(job: typeof jobs.$inferSelect) {
     throw new Error(
       "The spoken section closed before this partner request could run.",
     );
-  const mock = await publishedMock(run.mockId),
+  const mock = await publishedMock(run.mockId, mockVersionOf(run)),
     task = mock.tasks.find((t) => t.id === input.taskId)!;
   const previous = await db
     .select()
@@ -305,7 +305,7 @@ export async function processExamEvaluation(job: typeof jobs.$inferSelect) {
     )[0];
   if (!run || run.state !== "submitted")
     throw new Error("Submit the exam before assessment.");
-  const mock = await publishedMock(run.mockId),
+  const mock = await publishedMock(run.mockId, mockVersionOf(run)),
     written = mock.tasks.filter((t) => t.kind === "writing"),
     full = run.mode !== "practice";
   const results = {

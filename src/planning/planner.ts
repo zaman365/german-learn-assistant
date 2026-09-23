@@ -18,7 +18,13 @@ export type PlanInput = {
   diagnosticDone: boolean;
   dueCount: number;
   dueTargets?: string[];
-  repairs: { lessonId: string; title: string; skills: string[] }[];
+  repairs: {
+    lessonId: string;
+    version?: number;
+    title: string;
+    skills: string[];
+    independent?: boolean;
+  }[];
   nextLesson: {
     id: string;
     version: number;
@@ -32,13 +38,17 @@ export type PlanInput = {
     title: string;
     skills: string[];
   };
-  neglected?: { skill: string; href: string; title: string };
+  neglected?: { skill: string; href: string; title: string; version?: number };
 };
 export function createPlan(input: PlanInput): PlanTask[] {
   const tasks: PlanTask[] = [];
   let remaining = input.minutes;
   const add = (task: PlanTask) => {
-    if (task.estimatedMinutes > 0 && task.estimatedMinutes <= remaining) {
+    if (
+      task.estimatedMinutes > 0 &&
+      task.estimatedMinutes <= remaining &&
+      !tasks.some((old) => old.href === task.href)
+    ) {
       tasks.push(task);
       remaining -= task.estimatedMinutes;
     }
@@ -98,12 +108,15 @@ export function createPlan(input: PlanInput): PlanTask[] {
     )[0];
     add({
       activityId: `repair-${repair.lessonId}`,
-      contentVersion: 1,
+      contentVersion: repair.version || 1,
       kind: "repair",
       title: repair.title,
-      reasonCode: "recurring_error",
+      reasonCode:
+        repair.independent === false ? "repair_revisit" : "recurring_error",
       reasonText:
-        "Recent errors show this foundation needs another independent attempt.",
+        repair.independent === false
+          ? "Review the explanation and practise the correction. A new unseen task is still needed for independent evidence."
+          : "Recent errors show this foundation needs another independent attempt.",
       estimatedMinutes: Math.min(12, remaining - 3),
       targetSkills: repair.skills,
       completionCriterion: "Repair the target and attempt a new check.",
@@ -114,7 +127,7 @@ export function createPlan(input: PlanInput): PlanTask[] {
     const n = input.neglected;
     add({
       activityId: "weekly-" + n.skill,
-      contentVersion: 1,
+      contentVersion: n.version || 1,
       kind: "lesson",
       title: n.title,
       reasonCode: "weekly_evidence_gap",

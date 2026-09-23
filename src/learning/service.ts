@@ -31,6 +31,9 @@ import { reconcileSession } from "@/planning/session";
 import { latestEvaluations, skillEvidence } from "./evidence";
 import { courseAudio } from "../../content/audio";
 import { isReviewedClip } from "@/audio/readiness";
+import { articleProbe, repairState } from "./repairs";
+import { vocabulary } from "@/content/catalog";
+import { checkpointProfile } from "./checkpoints";
 
 export class AppError extends Error {
   constructor(
@@ -119,8 +122,19 @@ export async function publishedLesson(
   return lesson;
 }
 export async function learnerLesson(userId: string, id: string) {
-  const lesson = await publishedLesson(id);
   const db = getDb();
+  const active = (
+    await db
+      .select()
+      .from(lessonProgress)
+      .where(
+        and(eq(lessonProgress.userId, userId), eq(lessonProgress.lessonId, id)),
+      )
+  )[0];
+  const lesson = await publishedLesson(
+    id,
+    active && active.state !== "completed" ? active.version : undefined,
+  );
   await db
     .insert(lessonProgress)
     .values({
@@ -151,10 +165,14 @@ export async function learnerLesson(userId: string, id: string) {
   ]);
   return {
     lesson: publicLesson(lesson),
+    draftSequence: saved[0]?.sequence || 0,
     history: latestEvaluations(
       history.filter((h) => h.attempt.contentVersion === lesson.version),
     ),
-    draft: (saved[0] ?? null) as typeof drafts.$inferSelect | null,
+    draft: (saved[0] &&
+    (saved[0].data.contentVersion ?? active?.version ?? 1) === lesson.version
+      ? saved[0]
+      : null) as typeof drafts.$inferSelect | null,
     progress: (progress[0] ?? null) as
       | typeof lessonProgress.$inferSelect
       | null,
@@ -169,9 +187,10 @@ export async function saveDraft(
     attemptKey: string;
     sequence: number;
     step?: number;
+    version?: number;
   },
 ) {
-  const lesson = await publishedLesson(input.lessonId);
+  const lesson = await publishedLesson(input.lessonId, input.version);
   if (!lesson.exercises.some((e) => e.id === input.exerciseId))
     throw new AppError(400, "Unknown exercise.");
   const now = new Date();
@@ -186,6 +205,7 @@ export async function saveDraft(
         exerciseId: input.exerciseId,
         attemptKey: input.attemptKey,
         step: input.step,
+        contentVersion: lesson.version,
       },
       sequence: input.sequence,
       updatedAt: now,
@@ -198,6 +218,7 @@ export async function saveDraft(
           exerciseId: input.exerciseId,
           attemptKey: input.attemptKey,
           step: input.step,
+          contentVersion: lesson.version,
         },
         sequence: input.sequence,
         updatedAt: now,
@@ -484,7 +505,12 @@ export async function submitAttempt(
           },
         });
       if (!data.correct) {
-        const ambiguous = ex.errorTag === "GEN" && ex.type !== "choice";
+        const ambiguous =
+          ["GEN", "CASE"].includes(ex.errorTag || "") &&
+          ex.type !== "choice" &&
+          !/dictionary|noun package|article for|article \+|write the article/i.test(
+            ex.prompt,
+          );
         const tag = ex.errorTag || "LEX";
         await tx
           .insert(errorPatterns)
@@ -516,6 +542,9 @@ export async function submitAttempt(
               lessonId: lesson.id,
               attemptId: attempt.id,
               status: "open",
+              rootCause: ambiguous ? "needs_probe" : "task_target",
+              probe: null,
+              resolutionEvidence: [],
               updatedAt: now,
               count: sql`${errorPatterns.count} + 1`,
             },
@@ -561,14 +590,16 @@ export async function submitAttempt(
       .onConflictDoUpdate({
         target: [lessonProgress.userId, lessonProgress.lessonId],
         set: {
+          version: lesson.version,
           state: complete ? "completed" : "in_progress",
           position: answered.size,
           updatedAt: now,
         },
+        setWhere: sql`${lessonProgress.version} <= ${lesson.version}`,
       });
     return { attempt, evaluation, duplicate: false };
   });
-  if (/^D[1-5]$/.test(lesson.id)) await refreshPlacement(userId, now);
+  await refreshPlacement(userId, now);
   return result;
 }
 const bridgeSkillMap: Record<string, string[]> = {
@@ -591,16 +622,13 @@ export async function refreshPlacement(userId: string, now = new Date()) {
     .select({ attempt: attempts, evaluation: evaluations })
     .from(attempts)
     .innerJoin(evaluations, eq(evaluations.attemptId, attempts.id))
-    .where(
-      and(
-        eq(attempts.userId, userId),
-        sql`${attempts.lessonId} in ('D1','D2','D3','D4','D5')`,
-      ),
-    )
+    .where(eq(attempts.userId, userId))
     .orderBy(asc(attempts.createdAt));
   for (const [moduleId, skills] of Object.entries(bridgeSkillMap)) {
-    const selected = latestEvaluations(evidence).filter(
+    const effective = latestEvaluations(evidence);
+    const selected = effective.filter(
       (e) =>
+        /^D[1-5]$/.test(e.attempt.lessonId) &&
         skills.includes(e.attempt.skill) &&
         e.evaluation.status === "completed" &&
         e.evaluation.data.correct !== null,
@@ -627,11 +655,29 @@ export async function refreshPlacement(userId: string, now = new Date()) {
       )
     )
       decision.route = "check";
+    const diagnosticEnd = Math.max(
+      0,
+      ...first.map((e) => e.attempt.createdAt.getTime()),
+    );
+    const contradictions = effective.filter(
+      (e) =>
+        !/^D[1-5]$/.test(e.attempt.lessonId) &&
+        e.attempt.createdAt.getTime() > diagnosticEnd &&
+        skills.includes(e.attempt.skill) &&
+        !e.attempt.assisted &&
+        e.evaluation.status === "completed" &&
+        e.evaluation.data.correct === false,
+    );
+    if (decision.route === "skip" && contradictions.length) {
+      decision.route = "repair";
+      decision.rationale =
+        "Later independent work contradicts the diagnostic waiver. Complete a focused repair and a new transfer check before relying on this prerequisite.";
+    }
     const value = {
       ...decision,
-      evidence: first.map((e) => e.attempt.id),
+      evidence: [...first, ...contradictions].map((e) => e.attempt.id),
       waivedObjectives: decision.route === "skip" ? skills : [],
-      policy: "placement-v1",
+      policy: "placement-v2",
       updatedAt: now,
     };
     await db
@@ -643,29 +689,148 @@ export async function refreshPlacement(userId: string, now = new Date()) {
       });
   }
 }
+export async function submitArticleProbe(
+  userId: string,
+  input: { patternId: string; article: string; grammaticalCase: string },
+  now = new Date(),
+) {
+  const db = getDb();
+  return db.transaction(async (tx) => {
+    const pattern = (
+      await tx
+        .select()
+        .from(errorPatterns)
+        .where(
+          and(
+            eq(errorPatterns.id, input.patternId),
+            eq(errorPatterns.userId, userId),
+          ),
+        )
+        .for("update")
+    )[0];
+    if (!pattern) throw new AppError(404, "Correction not found.");
+    const probe = articleProbe(pattern.correction, vocabulary);
+    if (!probe)
+      throw new AppError(
+        409,
+        "This phrase needs an individual review; its gender or case cannot be determined safely from the available reference.",
+      );
+    const genderCorrect = input.article === probe.article;
+    const caseCorrect = input.grammaticalCase === probe.grammaticalCase;
+    const outcome =
+      genderCorrect && caseCorrect
+        ? "forms_known_cause_unconfirmed"
+        : genderCorrect
+          ? "case_gap"
+          : caseCorrect
+            ? "gender_gap"
+            : "gender_and_case_gap";
+    await tx
+      .update(errorPatterns)
+      .set({
+        rootCause: `probe_completed:${outcome}`,
+        probe: {
+          article: input.article,
+          grammaticalCase: input.grammaticalCase,
+          outcome,
+          checkedAt: now.toISOString(),
+        },
+        status: "retesting",
+        resolutionEvidence: [],
+        updatedAt: now,
+      })
+      .where(
+        and(eq(errorPatterns.id, pattern.id), eq(errorPatterns.userId, userId)),
+      );
+    return { savedAt: now.toISOString(), outcome, expected: probe };
+  });
+}
 export async function dashboard(userId: string, now = new Date()) {
   const db = getDb();
   const profile = (await profileFor(userId)).data;
   const today = localDate(now, profile.timezone);
-  const [progress, reviewList, errorList, allHistory, routes, audioRows] =
-    await Promise.all([
-      db.select().from(lessonProgress).where(eq(lessonProgress.userId, userId)),
-      db.select().from(reviews).where(eq(reviews.userId, userId)),
-      db
-        .select()
-        .from(errorPatterns)
-        .where(eq(errorPatterns.userId, userId))
-        .orderBy(desc(errorPatterns.updatedAt)),
-      db
-        .select({ attempt: attempts, evaluation: evaluations })
-        .from(attempts)
-        .innerJoin(evaluations, eq(evaluations.attemptId, attempts.id))
-        .where(eq(attempts.userId, userId))
-        .orderBy(asc(attempts.createdAt)),
-      db.select().from(placement).where(eq(placement.userId, userId)),
-      db.select().from(media).where(eq(media.state, "ready")),
-    ]);
+  await refreshPlacement(userId, now);
+  const [
+    progress,
+    reviewList,
+    errorList,
+    allHistory,
+    routes,
+    audioRows,
+    publishedRows,
+    seenSolutions,
+  ] = await Promise.all([
+    db.select().from(lessonProgress).where(eq(lessonProgress.userId, userId)),
+    db.select().from(reviews).where(eq(reviews.userId, userId)),
+    db
+      .select()
+      .from(errorPatterns)
+      .where(eq(errorPatterns.userId, userId))
+      .orderBy(desc(errorPatterns.updatedAt)),
+    db
+      .select({ attempt: attempts, evaluation: evaluations })
+      .from(attempts)
+      .innerJoin(evaluations, eq(evaluations.attemptId, attempts.id))
+      .where(eq(attempts.userId, userId))
+      .orderBy(asc(attempts.createdAt)),
+    db.select().from(placement).where(eq(placement.userId, userId)),
+    db.select().from(media).where(eq(media.state, "ready")),
+    db
+      .select()
+      .from(contentVersions)
+      .where(
+        and(
+          eq(contentVersions.type, "lesson"),
+          eq(contentVersions.published, true),
+        ),
+      ),
+    db
+      .select({
+        exerciseId: exposures.exerciseId,
+        version: exposures.contentVersion,
+      })
+      .from(exposures)
+      .where(eq(exposures.userId, userId)),
+  ]);
   const history = latestEvaluations(allHistory);
+  const versionedLessons = publishedRows.map((row) =>
+    lessonSchema.parse(row.payload),
+  );
+  const checks = history.flatMap(({ attempt: a, evaluation: e }) => {
+    const exercise = versionedLessons
+      .find((l) => l.id === a.lessonId && l.version === a.contentVersion)
+      ?.exercises.find((x) => x.id === a.exerciseId);
+    return e.status === "completed" && e.data.correct !== null && exercise
+      ? [
+          {
+            ...a,
+            date: a.localDate,
+            correct: e.data.correct,
+            tag: exercise.errorTag,
+          },
+        ]
+      : [];
+  });
+  for (const pattern of errorList) {
+    const state = repairState(pattern, checks);
+    if (
+      pattern.status !== state.status ||
+      JSON.stringify(pattern.resolutionEvidence) !==
+        JSON.stringify(state.resolutionEvidence)
+    ) {
+      await db
+        .update(errorPatterns)
+        .set(state)
+        .where(
+          and(
+            eq(errorPatterns.id, pattern.id),
+            eq(errorPatterns.userId, userId),
+            eq(errorPatterns.updatedAt, pattern.updatedAt),
+          ),
+        );
+      Object.assign(pattern, state);
+    }
+  }
   const completed = new Set(
     progress.filter((p) => p.state === "completed").map((p) => p.lessonId),
   );
@@ -686,12 +851,23 @@ export async function dashboard(userId: string, now = new Date()) {
   const skills = skillIds.map((id) => ({
     id,
     ...mastery(
-      skillEvidence(history, id, [...lessons, ...diagnostics]),
+      skillEvidence(history, id, versionedLessons),
       progress.some((p) =>
         lessons.find((l) => l.id === p.lessonId)?.skills.includes(id),
       ),
     ),
   }));
+  for (const skill of skills) {
+    if (
+      errorList.some(
+        (e) => e.skill === skill.id && e.count >= 2 && e.status !== "resolved",
+      )
+    ) {
+      skill.needsRepair = true;
+      if (["retained", "independently_demonstrated"].includes(skill.state))
+        skill.state = "practising";
+    }
+  }
   const audioReady = new Set(
     courseAudio
       .filter((script) =>
@@ -738,7 +914,7 @@ export async function dashboard(userId: string, now = new Date()) {
   const resumable = progress
     .filter((p) => p.state === "in_progress" && !waiting.has(p.lessonId))
     .sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime())
-    .map((p) => lessons.find((l) => l.id === p.lessonId))
+    .map((p) => catalog.find((l) => l.id === p.lessonId && l.available))
     .find(Boolean);
   const diagnosticDone = diagnostic.exercises
     .filter((e) => e.accepted?.length)
@@ -825,6 +1001,35 @@ export async function dashboard(userId: string, now = new Date()) {
         }))
         .find((x) => x.lesson)
     : undefined;
+  const repairTargets = Object.fromEntries(
+    errorList.map((pattern) => [
+      pattern.id,
+      pattern.rootCause.includes("needs_probe")
+        ? undefined
+        : catalog.find(
+            (lesson) =>
+              lesson.available &&
+              !doneLessons.has(lesson.id) &&
+              lesson.exercises.some(
+                (task) =>
+                  task.skill === pattern.skill &&
+                  task.errorTag === pattern.tag &&
+                  task.transfer &&
+                  task.type !== "choice" &&
+                  !task.assistedByDesign &&
+                  !history.some(
+                    (h) =>
+                      h.attempt.exerciseId === task.id &&
+                      h.attempt.contentVersion === lesson.version,
+                  ) &&
+                  !seenSolutions.some(
+                    (e) =>
+                      e.exerciseId === task.id && e.version === lesson.version,
+                  ),
+              ),
+          ),
+    ]),
+  );
   const planned = createPlan({
     minutes: Math.max(
       0,
@@ -844,7 +1049,11 @@ export async function dashboard(userId: string, now = new Date()) {
           !doneLessons.has(e.lessonId),
       )
       .map((e) => ({
-        lessonId: e.lessonId,
+        lessonId: repairTargets[e.id]?.id || e.lessonId,
+        version:
+          repairTargets[e.id]?.version ||
+          catalog.find((l) => l.id === e.lessonId)?.version,
+        independent: !!repairTargets[e.id],
         title: `Repair: ${e.skill.replaceAll("-", " ")}`,
         skills: [e.skill],
       })),
@@ -856,6 +1065,7 @@ export async function dashboard(userId: string, now = new Date()) {
           skill: neglected.skill,
           title: "Keep " + neglected.skill + " in your week",
           href: "/learn/" + neglected.lesson.id,
+          version: neglected.lesson.version,
         }
       : undefined,
   });
@@ -883,6 +1093,7 @@ export async function dashboard(userId: string, now = new Date()) {
     });
   return {
     profile,
+    checkpoints: checkpointProfile(history, lessons),
     today,
     tasks,
     completedTasks,
@@ -904,6 +1115,7 @@ export async function dashboard(userId: string, now = new Date()) {
     reviews: reviewList,
     due,
     errors: errorList,
+    repairTargets,
     history: history.slice(-40),
     routes,
     diagnosticDone,

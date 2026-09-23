@@ -16,6 +16,8 @@ A private learning copilot for the B2 → C1 bridge, professional German, DTB C1
 
 See [the implementation record](docs/IMPLEMENTATION_STATUS.md) and [coverage matrix](docs/CONTENT_COVERAGE.md) for scope and verification limits.
 
+To continue the remaining acceptance work with Codex or Claude Code, use the [implementation handoff prompt](docs/FINISH_IMPLEMENTATION_PROMPT.md).
+
 ## Start locally
 
 Install Node 24 and pnpm 11.19.0. From this repository:

@@ -8,12 +8,12 @@ Branch: codex/build-learning-copilot. Updated 23 September 2026.
 
 | Milestone | Implemented | Open acceptance evidence |
 |---|---|---|
-| M1 — First journey | Owner login, onboarding, diagnostics, real bridge content, autosave, immutable submissions, errors, reviews and progress | Authenticated target-browser/host checks |
+| M1 — First journey | Owner login, onboarding, diagnostics, real bridge content, autosave, immutable submissions, errors, reviews and progress | Personal-device and deployment-host checks; isolated desktop/mobile browser CI passed |
 | M2 — Curriculum | 89 authored lessons; all 12 bridge and 18 C1 modules; 10 exam modules; article/pronunciation tracks; 125 lexical entries with native retrieval; references, tables and diagrams | Independent German/content review and learner validation |
 | M3 — Copilot | Structured text rubric, bounded tutor, correction taxonomy, superseding evaluations, quota/idempotency, daily/weekly recommendations and explicit retries | Real configured-model calls and recovery checks; planner calibration |
 | M4 — Audio | Microphone capture, WAV validation, private playback/deletion/retention, transcription and sound adapters; original scripts | Generate/review recordings; real microphone, model, S3 and worker tests |
 | M5 — Exam | Three distinct 60-task sets and 14 listening scripts each; section practice, full paper-reference rehearsal engine, continuous timeline composer, spoken partner, whole-performance coaching and half-point scoring | Official rule clarification, genre/difficulty/timeline review and a real full run; verified-simulation mode blocked |
-| M6 — Release | Four C2 starter lessons, JSON/CSV/summary export, merge/legacy import, recovery, Docker/Compose, CI/Playwright and runbook | Native PostgreSQL/browser CI result, container/worker/S3 smoke checks, staging restore and accessibility review |
+| M6 — Release | Four C2 starter lessons, JSON/CSV/summary export, merge/legacy import, recovery, Docker/Compose, CI/Playwright and runbook | Container/worker/S3 smoke checks, staging restore and accessibility review; native PostgreSQL/browser CI passed |
 
 Course totals exclude five diagnostic rounds and 125 separate vocabulary practice packages. Course/diagnostic objective items: 390. Official exam papers/audio are not redistributed.
 
@@ -25,7 +25,8 @@ Course totals exclude five diagnostic rounds and 125 separate vocabulary practic
 - 11 integration checks passed on disposable PGlite: retries, owner isolation, stale drafts, assistance, error idempotency, completion/reopen, deadlines/expiry, recording ownership/deletion, import/deduplication, bounded spoken turns, support markers and the empty legacy template.
 - Clean isolated migration, content seed and idempotent reseed passed for the full catalog.
 - The public login screen rendered in the managed browser. Authenticated browser, actual microphone and real provider calls have not been verified here.
-- Native PostgreSQL and Playwright CI are supplied; record their remote result separately. Containers, production worker, S3 and disaster-recovery restore have not been run in this workspace.
+- [GitHub Actions run 35864493243](https://github.com/zaman365/german-learn-assistant/actions/runs/35864493243) passed on remote commit 38d587a687ea9a5b5d9e03791651b7bf80f81feb: native PostgreSQL integration, migration/seed, production build and authenticated desktop/mobile Playwright journeys with synthetic credentials.
+- Containers, production worker, S3, real provider calls, microphone capture and disaster-recovery restore have not been verified. The browser CI result does not establish those gates.
 
 ## Evidence boundaries
 
@@ -45,7 +46,7 @@ Production requires PostgreSQL and private S3-compatible storage. PGlite is a si
 
 ## Release actions
 
-1. Run native PostgreSQL/browser CI and resolve failures.
+1. Keep native PostgreSQL/browser CI passing as the implementation evolves; the run above established the initial baseline.
 2. Configure models, private storage and worker; verify real text, transcription, sound and partner calls.
 3. Generate/review original audio clips and full mock timelines.
 4. Review German and difficulty; resolve official rule gates and version changed definitions.

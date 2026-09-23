@@ -10,14 +10,18 @@ A personal German-learning application progressing through a B2–C1 bridge, com
 |---|---|
 | [BUILD_SPEC.md](BUILD_SPEC.md) | Coding-agent mandate, architecture, product screens, persistent data, learning rules, AI/audio contracts, milestones, tests, and deployment handoff |
 | [docs/COURSE_SPEC.md](docs/COURSE_SPEC.md) | Complete educational requirements, grammar/article toolkit, learning methods, curriculum, personalization, and exam-preparation requirements |
+| [docs/CURRICULUM_MAP.md](docs/CURRICULUM_MAP.md) | Stable IDs, diagnostic routes, twelve bridge modules, eighteen C1 modules, exam and parallel tracks, exit checks |
+| [docs/DTB_C1_EXAM_BLUEPRINT.md](docs/DTB_C1_EXAM_BLUEPRINT.md) | Source-qualified exam tasks, administration blocks, scoring, public speaking themes, and digital transition |
+| [docs/GRAMMAR_REFERENCE.md](docs/GRAMMAR_REFERENCE.md) | Corrected article, case, adjective, noun and preposition seed material with tables and a decision diagram |
+| [docs/C1_FILES_REVIEW.md](docs/C1_FILES_REVIEW.md) | Analysis of the six supplied files, adopted improvements, corrections, and remaining verification points |
 
-Read both documents before implementation. Learner-directed instructions in the course specification describe the tutor behavior to implement inside the app.
+Read the two main specifications and their three supporting contracts before implementation. Learner-directed instructions in the course specification describe the tutor behavior to implement inside the app. The archive review explains the latest design decisions; none of these documents is a claim that the application or full course assets already exist.
 
 ## Implementation brief
 
 Paste this into Codex or Claude Code with this repository open:
 
-> Read `BUILD_SPEC.md` and `docs/COURSE_SPEC.md` in full. Implement German Learn Assistant according to both specifications. Begin with the next incomplete milestone. Deliver M1 as a complete working learning journey: onboarding, diagnostic, real bridge lessons, practice, feedback, persistent progress, and a correct next-day recommendation. Continue M2–M6 in order, verify each acceptance gate, and maintain `docs/IMPLEMENTATION_STATUS.md`. Resolve routine implementation decisions yourself, preserve existing work, and identify unavailable credentials or services precisely while completing independent work.
+> Read `BUILD_SPEC.md`, `docs/COURSE_SPEC.md`, `docs/CURRICULUM_MAP.md`, `docs/DTB_C1_EXAM_BLUEPRINT.md`, and `docs/GRAMMAR_REFERENCE.md` in full. Implement German Learn Assistant according to these contracts. Begin with the next incomplete milestone. Deliver M1 as a complete working learning journey: onboarding, diagnostic, real bridge lessons, practice, feedback, persistent progress, and a correct next-day recommendation. Continue M2–M6 in order, verify each acceptance gate, and maintain `docs/IMPLEMENTATION_STATUS.md`. Resolve routine implementation decisions yourself, preserve existing work, and identify unavailable credentials or services precisely while completing independent work.
 
 ## Planned delivery
 

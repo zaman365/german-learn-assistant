@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useRef, useState } from "react";
 export default function ExamTimeline({ examId }: { examId: string }) {
   const audio = useRef<HTMLAudioElement>(null),
@@ -6,7 +7,9 @@ export default function ExamTimeline({ examId }: { examId: string }) {
     [error, setError] = useState("");
   return (
     <section className="example">
-      <h3>Continuous listening block</h3>
+      <h3>
+        <UiText>{"Continuous listening block"}</UiText>
+      </h3>
       <p>
         The 25-minute server clock is running. Listen once. Reconnecting resumes
         at the current point in the sequence; earlier passages are not replayed.

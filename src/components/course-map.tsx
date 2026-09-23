@@ -1,4 +1,5 @@
 "use client";
+import { UiText, useUi } from "./ui-language";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Clock3, LockKeyhole } from "lucide-react";
@@ -42,24 +43,24 @@ export default function CourseMap({
 }: {
   data: Pick<Dashboard, "catalog" | "modules" | "routes">;
 }) {
+  const { language, t } = useUi();
   const [stage, setStage] = useState("bridge");
   return (
     <>
-      <div className="tabs" role="tablist" aria-label="Learning stages">
+      <div className="tabs" role="group" aria-label={t("Learning stages")}>
         {stages.map((s) => (
           <button
-            role="tab"
-            aria-selected={s.id === stage}
+            aria-pressed={s.id === stage}
             key={s.id}
             className={s.id === stage ? "selected" : ""}
             onClick={() => setStage(s.id)}
           >
-            {s.name}
+            {t(s.name)}
           </button>
         ))}
       </div>
       <p className="muted" style={{ marginBottom: 28 }}>
-        {stages.find((s) => s.id === stage)?.description}
+        {t(stages.find((s) => s.id === stage)?.description || "")}
       </p>
       <div className="stack">
         {data.modules
@@ -77,13 +78,17 @@ export default function CourseMap({
                     <h2 style={{ marginTop: 6 }}>{module.title}</h2>
                   </div>
                   <span className={`badge ${!lessons.length ? "neutral" : ""}`}>
-                    {route
-                      ? route.route === "skip"
-                        ? "Placement waiver"
-                        : route.route
-                      : lessons.length
-                        ? `${lessons.length} lessons`
-                        : "Being prepared"}
+                    {route ? (
+                      route.route === "skip" ? (
+                        <UiText>{"Placement waiver"}</UiText>
+                      ) : (
+                        route.route
+                      )
+                    ) : lessons.length ? (
+                      `${lessons.length} lessons`
+                    ) : (
+                      <UiText>{"Being prepared"}</UiText>
+                    )}
                   </span>
                 </div>
                 {route && <p className="small muted">{route.rationale}</p>}
@@ -99,13 +104,13 @@ export default function CourseMap({
                       )}
                     </div>
                     <div className="grow">
-                      <h3>{l.title}</h3>
+                      <h3>{language === "de" ? l.subtitle : l.title}</h3>
                       <p className="small muted" lang="de">
                         {l.subtitle}
                       </p>
                       <span className="small muted">
                         <Clock3 size={13} style={{ display: "inline" }} />{" "}
-                        {l.minutes} min · {l.state.replaceAll("_", " ")}
+                        {l.minutes} min · <UiText>{l.state}</UiText>
                       </span>
                     </div>
                     {l.available ? (
@@ -113,14 +118,14 @@ export default function CourseMap({
                         href={`/learn/${l.id}`}
                         className="button secondary"
                       >
-                        {l.state === "completed" ? "Review" : "Open"}
+                        {t(l.state === "completed" ? "Review" : "Open")}
                         <ArrowRight size={15} />
                       </Link>
                     ) : (
                       <span className="small muted">
                         {l.audioUnavailable
-                          ? "Audio preparation required"
-                          : "Complete the prerequisite"}
+                          ? t("Audio preparation required")
+                          : t("Complete the prerequisite")}
                       </span>
                     )}
                   </div>

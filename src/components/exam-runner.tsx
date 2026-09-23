@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { PublicRun } from "@/exams/service";
@@ -129,7 +130,8 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
   return (
     <>
       <Link className="inline-link" href="/exam">
-        ← Exam lab
+        {" "}
+        <UiText>{"← Exam lab"}</UiText>{" "}
       </Link>
       <div className="page-heading">
         <div>
@@ -141,7 +143,8 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
           </span>
           <h1 style={{ marginTop: 12 }}>{run.title}</h1>
           <p className="muted">
-            Original, unofficial practice ·{" "}
+            {" "}
+            <UiText>{"Original, unofficial practice ·"}</UiText>{" "}
             {run.definition.blocks[run.block].title}
           </p>
         </div>
@@ -157,7 +160,9 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
       </div>
       {run.state === "between_blocks" && (
         <section className="card" style={{ marginBottom: 24 }}>
-          <h2>Block saved</h2>
+          <h2>
+            <UiText>{"Block saved"}</UiText>
+          </h2>
           <p>
             Your previous responses are locked. The next block starts its own
             server timer when you continue.
@@ -179,16 +184,20 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
               }
             }}
           >
-            Begin next block
+            {" "}
+            <UiText>{"Begin next block"}</UiText>{" "}
           </button>
         </section>
       )}
       {run.state === "submitted" && (
         <section className="card" style={{ marginBottom: 24 }}>
-          <h2>Saved practice evidence</h2>
+          <h2>
+            <UiText>{"Saved practice evidence"}</UiText>
+          </h2>
           <p>
-            {result?.correct ?? 0} of {result?.possible ?? 0} objective items
-            correct.
+            {result?.correct ?? 0} <UiText>{"of"}</UiText>{" "}
+            {result?.possible ?? 0}{" "}
+            <UiText>{"objective items correct."}</UiText>{" "}
           </p>
           <p className="muted">{result?.explanation}</p>
           <div className="chips">
@@ -201,7 +210,9 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
               ),
             )}
           </div>
-          <span className="badge neutral">Overall readiness incomplete</span>
+          <span className="badge neutral">
+            <UiText>{"Overall readiness incomplete"}</UiText>
+          </span>
           <ExamAi examId={run.id} evaluate onComplete={() => void reload()} />
           {result?.feedback &&
             Object.entries(result.feedback)
@@ -216,7 +227,9 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
                   {value.criteria?.map((c) => (
                     <p className="small" key={c.index}>
                       <strong>
-                        Criterion {c.index + 1} · {c.rating}/3
+                        {" "}
+                        <UiText>{"Criterion"}</UiText> {c.index + 1} ·{" "}
+                        {c.rating}/3
                       </strong>{" "}
                       {c.explanation} {c.evidence && "— " + c.evidence}
                     </p>
@@ -234,11 +247,13 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
             {task.section} · {step + 1}/{run.tasks.length}
           </span>
           <span className="small muted">
-            {closed
-              ? "Review"
-              : answers[task.id]
-                ? "Draft saved or saving"
-                : "Not answered"}
+            {closed ? (
+              <UiText>{"Review"}</UiText>
+            ) : answers[task.id] ? (
+              "Draft saved or saving"
+            ) : (
+              "Not answered"
+            )}
           </span>
         </div>
         <h2 style={{ marginTop: 20 }}>{task.title}</h2>
@@ -309,7 +324,8 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
                     className="button secondary"
                     onClick={() => setTake(crypto.randomUUID())}
                   >
-                    Record another turn
+                    {" "}
+                    <UiText>{"Record another turn"}</UiText>{" "}
                   </button>
                 )}
               </>
@@ -317,7 +333,9 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
           </>
         ) : task.options ? (
           <fieldset disabled={closed} style={{ border: 0, padding: 0 }}>
-            <legend className="screen-reader">Choose an answer</legend>
+            <legend className="screen-reader">
+              <UiText>{"Choose an answer"}</UiText>
+            </legend>
             {task.options.map((option) => (
               <label
                 className={
@@ -338,7 +356,9 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
           </fieldset>
         ) : (
           <div className="field">
-            <label htmlFor="exam-response">Your response in German</label>
+            <label htmlFor="exam-response">
+              <UiText>{"Your response in German"}</UiText>
+            </label>
             <textarea
               id="exam-response"
               value={answers[task.id] || ""}
@@ -353,7 +373,7 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
                 (answers[task.id] || "").trim().split(/\s+/).filter(Boolean)
                   .length
               }{" "}
-              words · saved automatically
+              <UiText>{"words · saved automatically"}</UiText>{" "}
             </span>
           </div>
         )}
@@ -382,10 +402,12 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
               setBusy(false);
             }}
           >
-            Previous
+            {" "}
+            <UiText>{"Previous"}</UiText>{" "}
           </button>
           <span className="small muted" role="status">
-            Saved at {new Date(saved).toLocaleTimeString()}
+            {" "}
+            <UiText>{"Saved at"}</UiText> {new Date(saved).toLocaleTimeString()}
           </span>
           <button
             className="button"
@@ -397,12 +419,15 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
               setBusy(false);
             }}
           >
-            Next
+            {" "}
+            <UiText>{"Next"}</UiText>{" "}
           </button>
         </div>
         {!closed && (
           <details className="disclosure section-space">
-            <summary>Finish this section</summary>
+            <summary>
+              <UiText>{"Finish this section"}</UiText>
+            </summary>
             <p className="small">
               Submitting closes the section and shows feedback. Unanswered
               objective items receive zero points. You can start a fresh
@@ -417,7 +442,8 @@ export default function ExamRunner({ initial }: { initial: PublicRun }) {
                 setBusy(false);
               }}
             >
-              Submit section
+              {" "}
+              <UiText>{"Submit section"}</UiText>{" "}
             </button>
           </details>
         )}

@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useEffect, useState } from "react";
 import RecordingPlayer from "./recording-player";
 type Job = {
@@ -149,7 +150,9 @@ export default function ExamAi({
         </p>
       )}
       {["queued", "running"].includes(job?.status || "") && (
-        <p role="status">Preparing your saved request…</p>
+        <p role="status">
+          <UiText>{"Preparing your saved request…"}</UiText>
+        </p>
       )}
       <button
         className="button secondary"
@@ -158,13 +161,15 @@ export default function ExamAi({
         }
         onClick={ask}
       >
-        {busy
-          ? "Saving…"
-          : evaluate
-            ? "Assess submitted exam work"
-            : recordingId
-              ? "Ask the partner to reply"
-              : "Hear the partner’s opening turn"}
+        {busy ? (
+          <UiText>{"Saving…"}</UiText>
+        ) : evaluate ? (
+          "Assess submitted exam work"
+        ) : recordingId ? (
+          "Ask the partner to reply"
+        ) : (
+          "Hear the partner’s opening turn"
+        )}
       </button>
     </section>
   );

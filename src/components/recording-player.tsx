@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useCallback, useEffect, useState } from "react";
 export default function RecordingPlayer({ mediaId }: { mediaId: string }) {
   const [url, setUrl] = useState(""),
@@ -43,10 +44,13 @@ export default function RecordingPlayer({ mediaId }: { mediaId: string }) {
       {!deleted && (
         <>
           <button className="button ghost small" onClick={refresh}>
-            Refresh playback link
+            {" "}
+            <UiText>{"Refresh playback link"}</UiText>{" "}
           </button>
           <details className="disclosure">
-            <summary className="small">Delete this recording</summary>
+            <summary className="small">
+              <UiText>{"Delete this recording"}</UiText>
+            </summary>
             <p className="small">
               The audio is removed from private storage. Your written feedback
               and attempt history stay in your learning record.
@@ -64,7 +68,8 @@ export default function RecordingPlayer({ mediaId }: { mediaId: string }) {
                 } else setError((await r.json()).error);
               }}
             >
-              Delete audio
+              {" "}
+              <UiText>{"Delete audio"}</UiText>{" "}
             </button>
           </details>
         </>

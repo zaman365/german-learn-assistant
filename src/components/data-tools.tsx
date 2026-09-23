@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useState } from "react";
 type Preview = {
   hash: string;
@@ -66,8 +67,12 @@ export default function DataTools() {
   }
   return (
     <section className="card section-space">
-      <span className="eyebrow">YOUR LEARNING DATA</span>
-      <h2 style={{ marginTop: 12 }}>Keep a copy. Bring your history.</h2>
+      <span className="eyebrow">
+        <UiText>{"YOUR LEARNING DATA"}</UiText>
+      </span>
+      <h2 style={{ marginTop: 12 }}>
+        <UiText>{"Keep a copy. Bring your history."}</UiText>
+      </h2>
       <p className="muted">
         Download your evidence and progress, or merge a previous JSON package
         after reviewing it. Import never replaces your existing profile or
@@ -95,7 +100,10 @@ export default function DataTools() {
       </p>
       <div className="field section-space">
         <label htmlFor="import-file">
-          Import a learning backup or learning_record.json
+          {" "}
+          <UiText>
+            {"Import a learning backup or learning_record.json"}
+          </UiText>{" "}
         </label>
         <input
           id="import-file"
@@ -105,7 +113,11 @@ export default function DataTools() {
           disabled={busy}
         />
       </div>
-      {busy && <p role="status">Processing your file…</p>}
+      {busy && (
+        <p role="status">
+          <UiText>{"Processing your file…"}</UiText>
+        </p>
+      )}
       {error && (
         <p className="feedback error" role="alert">
           {error}
@@ -118,10 +130,12 @@ export default function DataTools() {
       )}
       {preview && (
         <div className="example">
-          <h3>Import preview · {preview.kind}</h3>
+          <h3>
+            <UiText>{"Import preview ·"}</UiText> {preview.kind}
+          </h3>
           <p>
-            {preview.newAttempts} new responses · {preview.duplicates} existing
-            responses
+            {preview.newAttempts} <UiText>{"new responses ·"}</UiText>{" "}
+            {preview.duplicates} <UiText>{"existing responses"}</UiText>{" "}
           </p>
           {preview.warnings.map((w) => (
             <p className="small" key={w}>
@@ -138,7 +152,8 @@ export default function DataTools() {
             disabled={!preview.valid || busy}
             onClick={merge}
           >
-            Merge this reviewed package
+            {" "}
+            <UiText>{"Merge this reviewed package"}</UiText>{" "}
           </button>
         </div>
       )}

@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -42,7 +43,9 @@ export default function ProfileForm({
       }}
     >
       <div className="field">
-        <label htmlFor="name">What should we call you?</label>
+        <label htmlFor="name">
+          <UiText>{"What should we call you?"}</UiText>
+        </label>
         <input
           id="name"
           maxLength={80}
@@ -51,12 +54,16 @@ export default function ProfileForm({
           required
         />
       </div>
-      <h2>1. Where are you starting?</h2>
+      <h2>
+        <UiText>{"1. Where are you starting?"}</UiText>
+      </h2>
       <p className="muted small">
         A rough starting point is enough. Your diagnostic will help refine it.
       </p>
       <div className="field">
-        <label htmlFor="level">Current learning or exam status</label>
+        <label htmlFor="level">
+          <UiText>{"Current learning or exam status"}</UiText>
+        </label>
         <select
           id="level"
           value={p.currentLevel}
@@ -69,13 +76,16 @@ export default function ProfileForm({
             "Studying C1",
             "Returning to German",
           ].map((v) => (
-            <option key={v}>{v}</option>
+            <option key={v} value={v}>
+              <UiText>{v}</UiText>
+            </option>
           ))}
         </select>
       </div>
       <fieldset style={{ border: 0, padding: 0, marginBottom: 25 }}>
         <legend className="small" style={{ fontWeight: 600, marginBottom: 12 }}>
-          What feels most difficult?
+          {" "}
+          <UiText>{"What feels most difficult?"}</UiText>{" "}
         </legend>
         <div className="chips">
           {[
@@ -103,15 +113,19 @@ export default function ProfileForm({
                   )
                 }
               />
-              {item}
+              <UiText>{item}</UiText>
             </label>
           ))}
         </div>
       </fieldset>
-      <h2>2. What fits your week?</h2>
+      <h2>
+        <UiText>{"2. What fits your week?"}</UiText>
+      </h2>
       <div className="grid-two">
         <div className="field">
-          <label htmlFor="minutes">Minutes per study day</label>
+          <label htmlFor="minutes">
+            <UiText>{"Minutes per study day"}</UiText>
+          </label>
           <input
             id="minutes"
             type="number"
@@ -123,7 +137,9 @@ export default function ProfileForm({
           />
         </div>
         <div className="field">
-          <label htmlFor="days">Study days per week</label>
+          <label htmlFor="days">
+            <UiText>{"Study days per week"}</UiText>
+          </label>
           <input
             id="days"
             type="number"
@@ -135,22 +151,34 @@ export default function ProfileForm({
           />
         </div>
       </div>
-      <h2>3. Is there an exam date?</h2>
+      <h2>
+        <UiText>{"3. Is there an exam date?"}</UiText>
+      </h2>
       <div className="field">
-        <label htmlFor="exam-date">DTB C1 date · optional</label>
+        <label htmlFor="exam-date">
+          <UiText>{"DTB C1 date · optional"}</UiText>
+        </label>
         <input
           id="exam-date"
           type="date"
           value={p.examDate || ""}
           onChange={(e) => set("examDate", e.target.value || null)}
         />
-        <small>Leave blank if you are still building your foundations.</small>
+        <small>
+          <UiText>
+            {"Leave blank if you are still building your foundations."}
+          </UiText>
+        </small>
       </div>
       <details className="disclosure">
-        <summary>A few optional preferences</summary>
+        <summary>
+          <UiText>{"A few optional preferences"}</UiText>
+        </summary>
         <div className="section-space">
           <div className="field">
-            <label htmlFor="language">Navigation language</label>
+            <label htmlFor="language">
+              <UiText>{"Navigation language"}</UiText>
+            </label>
             <select
               id="language"
               value={p.language}
@@ -159,10 +187,16 @@ export default function ProfileForm({
               <option value="en">English</option>
               <option value="de">Deutsch</option>
             </select>
-            <small>English explanations stay available during study.</small>
+            <small>
+              <UiText>
+                {"English explanations stay available during study."}
+              </UiText>
+            </small>
           </div>
           <div className="field">
-            <label htmlFor="timezone">Study timezone</label>
+            <label htmlFor="timezone">
+              <UiText>{"Study timezone"}</UiText>
+            </label>
             <input
               id="timezone"
               value={p.timezone}
@@ -175,7 +209,9 @@ export default function ProfileForm({
             </small>
           </div>
           <div className="field">
-            <label htmlFor="languages">First or other languages</label>
+            <label htmlFor="languages">
+              <UiText>{"First or other languages"}</UiText>
+            </label>
             <input
               id="languages"
               value={p.firstLanguages}
@@ -184,7 +220,9 @@ export default function ProfileForm({
             />
           </div>
           <div className="field">
-            <label htmlFor="bsk">Current Berufssprachkurs status</label>
+            <label htmlFor="bsk">
+              <UiText>{"Current Berufssprachkurs status"}</UiText>
+            </label>
             <input
               id="bsk"
               value={p.bskStatus}
@@ -204,16 +242,18 @@ export default function ProfileForm({
       )}
       {saved && !onboarding && (
         <p className="feedback" role="status">
-          <Check size={16} style={{ display: "inline" }} /> Saved at{" "}
-          {new Date(saved).toLocaleTimeString()}
+          <Check size={16} style={{ display: "inline" }} />{" "}
+          <UiText>{"Saved at"}</UiText> {new Date(saved).toLocaleTimeString()}
         </p>
       )}
       <button type="submit" className="button section-space" disabled={busy}>
-        {busy
-          ? "Saving…"
-          : onboarding
-            ? "Find my starting point"
-            : "Save preferences"}
+        {busy ? (
+          <UiText>{"Saving…"}</UiText>
+        ) : onboarding ? (
+          <UiText>{"Find my starting point"}</UiText>
+        ) : (
+          <UiText>{"Save preferences"}</UiText>
+        )}
         <ArrowRight size={17} />
       </button>
     </form>

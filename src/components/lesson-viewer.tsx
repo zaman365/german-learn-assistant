@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -21,7 +22,7 @@ type Result = Awaited<ReturnType<typeof submitAttempt>>;
 export function LessonBlock({ block }: { block: Lesson["blocks"][number] }) {
   if (block.type === "text")
     return (
-      <section className="prose">
+      <section lang="en" className="prose">
         {block.title && <h2>{block.title}</h2>}
         <p>{block.body}</p>
       </section>
@@ -32,7 +33,7 @@ export function LessonBlock({ block }: { block: Lesson["blocks"][number] }) {
         <p lang="de" style={{ fontSize: "1.12rem", fontWeight: 550 }}>
           {block.german}
         </p>
-        <p className="muted small" style={{ marginTop: 8 }}>
+        <p lang="en" className="muted small" style={{ marginTop: 8 }}>
           {block.english}
         </p>
         {block.note && (
@@ -48,7 +49,9 @@ export function LessonBlock({ block }: { block: Lesson["blocks"][number] }) {
         className="card"
         style={{ background: "#fafbf9", margin: "22px 0" }}
       >
-        <span className="eyebrow">WORKPLACE TEXT</span>
+        <span className="eyebrow">
+          <UiText>{"WORKPLACE TEXT"}</UiText>
+        </span>
         <h3 style={{ marginTop: 10 }}>{block.title}</h3>
         <p
           lang="de"
@@ -125,7 +128,7 @@ export function LessonBlock({ block }: { block: Lesson["blocks"][number] }) {
               <div className="eyebrow" style={{ fontSize: 12 }}>
                 {i + 1}. {s.label}
               </div>
-              <div lang="de" style={{ marginTop: 8, fontSize: 14 }}>
+              <div lang="en" style={{ marginTop: 8, fontSize: 14 }}>
                 {s.detail}
               </div>
             </li>
@@ -178,7 +181,7 @@ export default function LessonViewer({
     onlyPractice || /^D[1-5]$/.test(lesson.id),
   );
   const [finished, setFinished] = useState(false);
-  const sequence = useRef(initial.draft?.sequence || 0);
+  const sequence = useRef(initial.draftSequence);
   const exercise = lesson.exercises[step];
   const practiceRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -195,6 +198,7 @@ export default function LessonViewer({
         response,
         attemptKey,
         sequence: seq,
+        version: lesson.version,
         step,
       })
         .then((r) => setSaved(r.savedAt))
@@ -202,7 +206,16 @@ export default function LessonViewer({
         .finally(() => setSaving(false));
     }, 650);
     return () => clearTimeout(id);
-  }, [response, attemptKey, exercise.id, lesson.id, step, feedback, finished]);
+  }, [
+    response,
+    attemptKey,
+    exercise.id,
+    lesson.id,
+    lesson.version,
+    step,
+    feedback,
+    finished,
+  ]);
   const next = () => {
     setFeedback(null);
     setResponse("");
@@ -257,8 +270,7 @@ export default function LessonViewer({
         className="inline-link row"
         style={{ display: "inline-flex", gap: 7, marginBottom: 22 }}
       >
-        <ArrowLeft size={15} />
-        Back to course
+        <ArrowLeft size={15} /> <UiText>{"Back to course"}</UiText>{" "}
       </Link>
       <div className="page-heading">
         <div>
@@ -285,20 +297,25 @@ export default function LessonViewer({
                 onClick={() => setPractice(false)}
                 className={!practice ? "selected" : ""}
               >
-                Learn
+                {" "}
+                <UiText>{"Learn"}</UiText>{" "}
               </button>
               <button
                 onClick={() => setPractice(true)}
                 className={practice ? "selected" : ""}
               >
-                Practise · {answered.size}/{lesson.exercises.length}
+                {" "}
+                <UiText>{"Practise ·"}</UiText> {answered.size}/
+                {lesson.exercises.length}
               </button>
             </div>
           )}
           {!practice && (
             <>
               <div className="example">
-                <h3>By the end, you can…</h3>
+                <h3>
+                  <UiText>{"By the end, you can…"}</UiText>
+                </h3>
                 <ul style={{ margin: 0, paddingLeft: 20 }}>
                   {lesson.objectives.map((o) => (
                     <li key={o}>{o}</li>
@@ -315,7 +332,8 @@ export default function LessonViewer({
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               >
-                Put it into practice
+                {" "}
+                <UiText>{"Put it into practice"}</UiText>{" "}
                 <ArrowRight size={17} />
               </button>
             </>
@@ -330,7 +348,9 @@ export default function LessonViewer({
               )}
               <div className="row">
                 <span className="eyebrow">
-                  QUESTION {step + 1} OF {lesson.exercises.length}
+                  {" "}
+                  <UiText>{"QUESTION"}</UiText> {step + 1}{" "}
+                  <UiText>{"OF"}</UiText> {lesson.exercises.length}
                 </span>
                 <span className="badge neutral">
                   {exercise.exit
@@ -398,7 +418,9 @@ export default function LessonViewer({
                 </div>
               ) : (
                 <div className="field">
-                  <label htmlFor="answer">Your answer</label>
+                  <label htmlFor="answer">
+                    <UiText>{"Your answer"}</UiText>
+                  </label>
                   {exercise.type === "writing" ? (
                     <textarea
                       id="answer"
@@ -437,7 +459,9 @@ export default function LessonViewer({
               )}
               {exercise.rubric && (
                 <details className="disclosure">
-                  <summary className="small">What this task checks</summary>
+                  <summary className="small">
+                    <UiText>{"What this task checks"}</UiText>
+                  </summary>
                   <ul>
                     {exercise.rubric.map((r) => (
                       <li key={r}>{r}</li>
@@ -447,7 +471,9 @@ export default function LessonViewer({
               )}
               {help && (
                 <div className="example" style={{ whiteSpace: "pre-line" }}>
-                  <span className="eyebrow">ASSISTED PRACTICE</span>
+                  <span className="eyebrow">
+                    <UiText>{"ASSISTED PRACTICE"}</UiText>
+                  </span>
                   <p style={{ marginTop: 8 }}>{help}</p>
                 </div>
               )}
@@ -478,7 +504,10 @@ export default function LessonViewer({
                   </p>
                   {feedback.attempt.assisted && (
                     <span className="badge neutral">
-                      Assisted · does not establish independent mastery
+                      {" "}
+                      <UiText>
+                        {"Assisted · does not establish independent mastery"}
+                      </UiText>{" "}
                     </span>
                   )}
                   {feedback.evaluation.status === "pending" && (
@@ -507,7 +536,8 @@ export default function LessonViewer({
                       onClick={() => showHelp("hint")}
                       disabled={busy}
                     >
-                      <Lightbulb size={16} />A hint
+                      <Lightbulb size={16} />
+                      <UiText>{"A hint"}</UiText>{" "}
                     </button>
                   </>
                 ) : (
@@ -531,8 +561,8 @@ export default function LessonViewer({
                             );
                           }}
                         >
-                          <RotateCcw size={15} />
-                          Try a repair
+                          <RotateCcw size={15} />{" "}
+                          <UiText>{"Try a repair"}</UiText>{" "}
                         </button>
                       )}
                   </>
@@ -545,7 +575,8 @@ export default function LessonViewer({
                   onClick={() => showHelp("solution")}
                   disabled={busy}
                 >
-                  Show the explained solution
+                  {" "}
+                  <UiText>{"Show the explained solution"}</UiText>{" "}
                 </button>
               )}
               <p className="status-note" role="status">
@@ -562,7 +593,8 @@ export default function LessonViewer({
               className="button secondary"
               onClick={() => showHelp("transcript")}
             >
-              Open transcript · assisted study
+              {" "}
+              <UiText>{"Open transcript · assisted study"}</UiText>{" "}
             </button>
           )}
           {feedback && exercise.rubric && (
@@ -583,11 +615,11 @@ export default function LessonViewer({
           {finished && (
             <div>
               <span className="badge">
-                <Check size={14} />
-                Session saved
+                <Check size={14} /> <UiText>{"Session saved"}</UiText>{" "}
               </span>
               <h2 className="serif" style={{ fontSize: "2rem", marginTop: 20 }}>
-                One useful step forward.
+                {" "}
+                <UiText>{"One useful step forward."}</UiText>{" "}
               </h2>
               <p>{lesson.reflection}</p>
               <p className="muted">
@@ -600,11 +632,12 @@ export default function LessonViewer({
                 style={{ justifyContent: "flex-start", flexWrap: "wrap" }}
               >
                 <Link href="/today" className="button">
-                  See my next step
-                  <ArrowRight size={16} />
+                  {" "}
+                  <UiText>{"See my next step"}</UiText> <ArrowRight size={16} />
                 </Link>
                 <Link href="/progress" className="button secondary">
-                  View progress
+                  {" "}
+                  <UiText>{"View progress"}</UiText>{" "}
                 </Link>
               </div>
             </div>
@@ -613,11 +646,16 @@ export default function LessonViewer({
         <aside className="stack">
           <section className="card">
             <div className="card-header">
-              <h3>Lesson companion</h3>
+              <h3>
+                <UiText>{"Lesson companion"}</UiText>
+              </h3>
               <BookOpen size={18} />
             </div>
             <p className="small muted">
-              Every explanation you need stays within reach.
+              {" "}
+              <UiText>
+                {"Every explanation you need stays within reach."}
+              </UiText>{" "}
             </p>
             {lesson.references.map((id) => (
               <Link
@@ -639,7 +677,9 @@ export default function LessonViewer({
           </section>
           {words.length > 0 && (
             <section className="card">
-              <h3>Words in this lesson</h3>
+              <h3>
+                <UiText>{"Words in this lesson"}</UiText>
+              </h3>
               {words.map((w) => (
                 <details className="disclosure" key={w.id}>
                   <summary lang="de">

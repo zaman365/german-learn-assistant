@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Mic, Square, Upload, RotateCcw } from "lucide-react";
 import { encodeWav } from "@/audio/encode";
@@ -218,7 +219,8 @@ export default function AudioRecorder({
         )}
         {state === "uploading" && (
           <button className="button ghost" onClick={() => xhr.current?.abort()}>
-            Cancel upload
+            {" "}
+            <UiText>{"Cancel upload"}</UiText>{" "}
           </button>
         )}
       </div>
@@ -232,12 +234,14 @@ export default function AudioRecorder({
       )}
       {state === "recording" && (
         <p role="status" className="small">
-          ● Recording · microphone active
+          {" "}
+          <UiText>{"● Recording · microphone active"}</UiText>{" "}
         </p>
       )}
       {state === "saved" && (
         <p role="status" className="small">
-          Recording and attempt saved.
+          {" "}
+          <UiText>{"Recording and attempt saved."}</UiText>{" "}
         </p>
       )}
       {error && (

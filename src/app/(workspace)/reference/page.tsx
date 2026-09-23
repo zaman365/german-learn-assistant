@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import { getReferences } from "@/content/catalog";
 import ReferenceSearch from "@/components/reference-search";
 export default function Reference() {
@@ -5,10 +6,17 @@ export default function Reference() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">YOUR REFERENCE LIBRARY</span>
-          <h1 style={{ marginTop: 12 }}>The explanation is right here.</h1>
+          <span className="eyebrow">
+            <UiText>{"YOUR REFERENCE LIBRARY"}</UiText>
+          </span>
+          <h1 style={{ marginTop: 12 }}>
+            <UiText>{"The explanation is right here."}</UiText>
+          </h1>
           <p className="muted">
-            Articles, cases and clear patterns—with their exceptions.
+            {" "}
+            <UiText>
+              {"Articles, cases and clear patterns—with their exceptions."}
+            </UiText>{" "}
           </p>
         </div>
       </div>

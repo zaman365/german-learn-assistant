@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import { and, eq, desc } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -51,19 +52,22 @@ export default async function FeedbackPage({
   return (
     <>
       <Link href="/progress" className="inline-link">
-        ← Back to progress
+        {" "}
+        <UiText>{"← Back to progress"}</UiText>{" "}
       </Link>
       <div className="page-heading section-space">
         <div>
-          <span className="eyebrow">SAVED RESPONSE · {attempt.localDate}</span>
+          <span className="eyebrow">
+            <UiText>{"SAVED RESPONSE ·"}</UiText> {attempt.localDate}
+          </span>
           <h1>{lesson.title}</h1>
         </div>
       </div>
       <section className="card">
         <h2>{exercise.prompt}</h2>
         <p className="small muted">
-          {attempt.assisted ? "Assisted practice" : "Unaided submission"} ·
-          Content version {attempt.contentVersion}
+          {attempt.assisted ? "Assisted practice" : "Unaided submission"}{" "}
+          <UiText>{"· Content version"}</UiText> {attempt.contentVersion}
         </p>
         <div className="example" lang="de" style={{ whiteSpace: "pre-wrap" }}>
           {attempt.modality === "speaking" ? (

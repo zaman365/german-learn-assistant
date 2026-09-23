@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import { vocabulary } from "@/content/catalog";
 import VocabularyBrowser from "@/components/vocabulary-browser";
 export default function Vocabulary() {
@@ -5,10 +6,17 @@ export default function Vocabulary() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">WORDS YOU CAN USE</span>
-          <h1 style={{ marginTop: 12 }}>More than a translation.</h1>
+          <span className="eyebrow">
+            <UiText>{"WORDS YOU CAN USE"}</UiText>
+          </span>
+          <h1 style={{ marginTop: 12 }}>
+            <UiText>{"More than a translation."}</UiText>
+          </h1>
           <p className="muted">
-            Articles, plurals, verb patterns and phrases for real work.
+            {" "}
+            <UiText>
+              {"Articles, plurals, verb patterns and phrases for real work."}
+            </UiText>{" "}
           </p>
         </div>
       </div>

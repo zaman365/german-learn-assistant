@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, LockKeyhole } from "lucide-react";
@@ -65,7 +66,7 @@ export default function LoginForm() {
         </div>
       )}
       <button className="button" disabled={busy} type="submit">
-        {busy ? "Signing in…" : "Continue learning"}
+        {busy ? "Signing in…" : <UiText>{"Continue learning"}</UiText>}
         <ArrowRight size={17} />
       </button>
       <p className="status-note">

@@ -1,4 +1,5 @@
 "use client";
+import { UiText, useUi } from "@/components/ui-language";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,6 +15,7 @@ export default function ExamCatalog({
 }: {
   initial: Awaited<ReturnType<typeof examCatalog>>;
 }) {
+  const { t } = useUi();
   const router = useRouter(),
     [busy, setBusy] = useState(""),
     [error, setError] = useState("");
@@ -43,7 +45,9 @@ export default function ExamCatalog({
   return (
     <>
       <section className="card">
-        <h2>Your exam format matters</h2>
+        <h2>
+          <UiText>{"Your exam format matters"}</UiText>
+        </h2>
         <p>
           The paper reference has shared blocks of 65 minutes for reading and
           the customer reply, 25 minutes for listening and the phone note, and
@@ -62,18 +66,21 @@ export default function ExamCatalog({
           target="_blank"
           rel="noreferrer"
         >
-          Official format update
+          {" "}
+          <UiText>{"Official format update"}</UiText>{" "}
         </a>
       </section>
       <div className="grid-two section-space">
         {initial.mocks.map((mock) => (
           <section className="card" key={mock.id}>
             <span className="badge neutral">
-              {mock.reserved
-                ? "Reserved for later"
-                : mock.attempted
-                  ? "Previously opened"
-                  : "Original · not yet opened"}
+              {mock.reserved ? (
+                <UiText>{"Reserved for later"}</UiText>
+              ) : mock.attempted ? (
+                <UiText>{"Previously opened"}</UiText>
+              ) : (
+                <UiText>{"Original · not yet opened"}</UiText>
+              )}
             </span>
             <h2 style={{ marginTop: 16 }}>{mock.title}</h2>
             <p className="muted" lang="de">
@@ -94,8 +101,10 @@ export default function ExamCatalog({
                     key={label}
                     onClick={() => start(mock.id, block)}
                   >
-                    {busy === mock.id + "-" + block ? "Opening…" : label}
-                    {block === 1 && !mock.audioReady ? " · audio pending" : ""}
+                    {t(busy === mock.id + "-" + block ? "Opening…" : label)}
+                    {block === 1 && !mock.audioReady
+                      ? t(" · audio pending")
+                      : ""}
                   </button>
                 ))}
               </div>
@@ -105,9 +114,13 @@ export default function ExamCatalog({
               disabled={!!busy || !mock.fullReady}
               onClick={() => start(mock.id, 0, true)}
             >
-              {mock.fullReady
-                ? "Start complete paper-reference rehearsal"
-                : "Full rehearsal · audio/provider setup required"}
+              {mock.fullReady ? (
+                <UiText>{"Start complete paper-reference rehearsal"}</UiText>
+              ) : (
+                <UiText>
+                  {"Full rehearsal · audio/provider setup required"}
+                </UiText>
+              )}
             </button>
             <p className="small muted">
               Unofficial, AI-authored material awaiting independent review.
@@ -123,7 +136,9 @@ export default function ExamCatalog({
         </p>
       )}
       <section className="card section-space">
-        <h2>Your exam practice history</h2>
+        <h2>
+          <UiText>{"Your exam practice history"}</UiText>
+        </h2>
         {initial.history.length ? (
           initial.history.map((run) => (
             <Link href={"/exam/" + run.id} className="module-row" key={run.id}>
@@ -132,11 +147,13 @@ export default function ExamCatalog({
                   {initial.mocks.find((m) => m.id === run.mockId)?.title}
                 </strong>
                 <p className="small muted">
-                  {labels[run.block]} · {run.state} ·{" "}
+                  {t(labels[run.block])} · {t(run.state)} ·{" "}
                   {new Date(run.startedAt).toLocaleDateString()}
                 </p>
               </div>
-              <span className="badge neutral">Open</span>
+              <span className="badge neutral">
+                <UiText>{"Open"}</UiText>
+              </span>
             </Link>
           ))
         ) : (

@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
@@ -22,7 +23,8 @@ export default function VocabularyBrowser({
       <div className="row" style={{ alignItems: "start", flexWrap: "wrap" }}>
         <div className="field search grow">
           <label className="screen-reader" htmlFor="word-query">
-            Search vocabulary
+            {" "}
+            <UiText>{"Search vocabulary"}</UiText>{" "}
           </label>
           <div className="row">
             <Search size={18} />
@@ -40,10 +42,18 @@ export default function VocabularyBrowser({
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="all">All words</option>
-          <option value="noun">Nouns</option>
-          <option value="verb">Verbs</option>
-          <option value="adjective">Adjectives</option>
+          <option value="all">
+            <UiText>{"All words"}</UiText>
+          </option>
+          <option value="noun">
+            <UiText>{"Nouns"}</UiText>
+          </option>
+          <option value="verb">
+            <UiText>{"Verbs"}</UiText>
+          </option>
+          <option value="adjective">
+            <UiText>{"Adjectives"}</UiText>
+          </option>
         </select>
       </div>
       <p className="small muted">
@@ -78,7 +88,10 @@ export default function VocabularyBrowser({
             </p>
             {w.plural && (
               <p className="small" lang="de">
-                <strong>Plural:</strong> {w.plural}
+                <strong>
+                  <UiText>{"Plural:"}</UiText>
+                </strong>{" "}
+                {w.plural}
               </p>
             )}
             {w.forms && (
@@ -87,7 +100,10 @@ export default function VocabularyBrowser({
               </p>
             )}
             <p className="small muted">
-              <strong>Stress:</strong> {w.stress}
+              <strong>
+                <UiText>{"Stress:"}</UiText>
+              </strong>{" "}
+              {w.stress}
             </p>
             <div className="example">
               <p lang="de">{w.phrase}</p>
@@ -101,7 +117,8 @@ export default function VocabularyBrowser({
             <div className="row">
               <span className="small muted">{w.register}</span>
               <Link className="button secondary" href={"/learn/VOC-" + w.id}>
-                Practise this word
+                {" "}
+                <UiText>{"Practise this word"}</UiText>{" "}
               </Link>
             </div>
           </article>

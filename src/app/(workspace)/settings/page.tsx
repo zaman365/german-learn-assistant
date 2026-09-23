@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import { requireUser } from "@/auth/server";
 import { profileFor } from "@/learning/service";
 import DataTools from "@/components/data-tools";
@@ -9,10 +10,17 @@ export default async function Settings() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">YOUR PREFERENCES</span>
-          <h1 style={{ marginTop: 12 }}>Fit learning around your life.</h1>
+          <span className="eyebrow">
+            <UiText>{"YOUR PREFERENCES"}</UiText>
+          </span>
+          <h1 style={{ marginTop: 12 }}>
+            <UiText>{"Fit learning around your life."}</UiText>
+          </h1>
           <p className="muted">
-            Your schedule can change without losing your history.
+            {" "}
+            <UiText>
+              {"Your schedule can change without losing your history."}
+            </UiText>{" "}
           </p>
         </div>
       </div>

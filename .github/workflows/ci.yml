@@ -39,9 +39,11 @@ jobs:
       - run: pnpm content:validate
       - run: pnpm typecheck
       - run: pnpm lint
+      - run: pnpm format:check
       - run: pnpm test
       - run: pnpm test:integration
       - run: pnpm db:migrate
+      - run: pnpm db:seed
       - run: pnpm db:seed
       - run: pnpm owner:create
       - run: pnpm build

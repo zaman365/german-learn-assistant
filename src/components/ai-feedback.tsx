@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MessageCircle, ArrowRight } from "lucide-react";
@@ -187,7 +188,9 @@ export default function AiFeedback({
           )}
           {output.transcript && (
             <details className="disclosure">
-              <summary>Automatic German transcript</summary>
+              <summary>
+                <UiText>{"Automatic German transcript"}</UiText>
+              </summary>
               <p className="small muted">{output.transcriptNotice}</p>
               <p lang="de" style={{ whiteSpace: "pre-wrap" }}>
                 {output.transcript}
@@ -201,7 +204,10 @@ export default function AiFeedback({
               </strong>
               <p>{o.observation}</p>
               <p>
-                <strong>Practise:</strong> {o.practice}
+                <strong>
+                  <UiText>{"Practise:"}</UiText>
+                </strong>{" "}
+                {o.practice}
               </p>
             </div>
           ))}
@@ -210,7 +216,8 @@ export default function AiFeedback({
               {output.criteria.map((c) => (
                 <div key={c.index} className="example small">
                   <strong>
-                    Criterion {c.index + 1} ·{" "}
+                    {" "}
+                    <UiText>{"Criterion"}</UiText> {c.index + 1} ·{" "}
                     {["not met", "partly met", "met", "strongly met"][c.rating]}
                   </strong>
                   <p lang="de" style={{ marginTop: 8 }}>
@@ -223,7 +230,9 @@ export default function AiFeedback({
           )}
           {output.corrections && output.corrections.length > 0 && (
             <>
-              <h3 className="section-space">Priority corrections</h3>
+              <h3 className="section-space">
+                <UiText>{"Priority corrections"}</UiText>
+              </h3>
               {output.corrections.slice(0, 7).map((c, i) => (
                 <div key={i} className="disclosure small">
                   <span className="badge neutral">
@@ -247,7 +256,9 @@ export default function AiFeedback({
               ))}
               {output.corrections.length > 7 && (
                 <details>
-                  <summary>All remaining corrections</summary>
+                  <summary>
+                    <UiText>{"All remaining corrections"}</UiText>
+                  </summary>
                   {output.corrections.slice(7).map((c, i) => (
                     <p key={i} className="small">
                       {c.original} → {c.corrected}: {c.explanation}
@@ -259,7 +270,10 @@ export default function AiFeedback({
           )}
           {output.nextTask && (
             <p>
-              <strong>Next practice:</strong> {output.nextTask}
+              <strong>
+                <UiText>{"Next practice:"}</UiText>
+              </strong>{" "}
+              {output.nextTask}
             </p>
           )}
           {output.followUp && <p lang="de">{output.followUp}</p>}

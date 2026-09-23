@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getReference } from "@/content/catalog";
@@ -13,7 +14,8 @@ export default async function ReferenceEntry({
   return (
     <>
       <Link className="inline-link" href="/reference">
-        ← All references
+        {" "}
+        <UiText>{"← All references"}</UiText>{" "}
       </Link>
       <article className="card lesson-main section-space">
         <Markdown body={ref.body} />

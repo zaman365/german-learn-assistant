@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
@@ -13,9 +14,11 @@ import {
 import { requireUser } from "@/auth/server";
 import { dashboard } from "@/learning/service";
 import TimeBudget from "@/components/time-budget";
+import { translate, planText } from "@/i18n";
 export default async function Today() {
   const user = await requireUser();
   const d = await dashboard(user.id);
+  const t = (s: string) => translate(s, d.profile.language);
   if (!d.profile.onboardingComplete) redirect("/onboarding");
   const main =
     d.tasks.find((t) => !t.completedAt && t.kind !== "reflection") ||
@@ -32,23 +35,31 @@ export default async function Today() {
     pronunciation: "Pronunciation",
   };
   const routeIndex = Math.max(0, ["bridge", "c1", "exam", "c2"].indexOf(stage));
-  const date = new Date(`${d.today}T12:00:00Z`).toLocaleDateString("en-GB", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
+  const mainText = main ? planText(main, d.profile.language, d.catalog) : null;
+  const date = new Date(`${d.today}T12:00:00Z`).toLocaleDateString(
+    d.profile.language === "de" ? "de-DE" : "en-GB",
+    {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+    },
+  );
   return (
     <>
       <div className="page-heading">
         <div>
           <div className="eyebrow">{date}</div>
           <h1 style={{ marginTop: 12, marginBottom: 0 }}>
-            A little closer, {d.profile.name.split(" ")[0]}.
+            {" "}
+            <UiText>{"A little closer,"}</UiText> {d.profile.name.split(" ")[0]}
+            .
           </h1>
           <p className="muted">
-            {d.diagnosticDone
-              ? "Your next steps, shaped by what you’ve practised."
-              : "Let’s find the right place to begin."}
+            {t(
+              d.diagnosticDone
+                ? "Your next steps, shaped by what you’ve practised."
+                : "Let’s find the right place to begin.",
+            )}
           </p>
         </div>
         <TimeBudget profile={d.profile} />
@@ -56,8 +67,7 @@ export default async function Today() {
       <div className="metric-grid">
         <div className="card metric">
           <div className="stat-label">
-            <BookOpen size={17} />
-            Lessons completed
+            <BookOpen size={17} /> <UiText>{"Lessons completed"}</UiText>{" "}
           </div>
           <strong>
             {d.stats.completed}
@@ -66,64 +76,76 @@ export default async function Today() {
               / {d.stats.total}
             </span>
           </strong>
-          <span className="small muted">Published course lessons</span>
-        </div>
-        <div className="card metric">
-          <div className="stat-label">
-            <RotateCcw size={17} />
-            Reviews due
-          </div>
-          <strong>{d.due.length}</strong>
           <span className="small muted">
-            A little retrieval goes a long way
+            <UiText>{"Published course lessons"}</UiText>
           </span>
         </div>
         <div className="card metric">
           <div className="stat-label">
-            <Target size={17} />
-            Demonstrated objectives
+            <RotateCcw size={17} /> <UiText>{"Reviews due"}</UiText>{" "}
+          </div>
+          <strong>{d.due.length}</strong>
+          <span className="small muted">
+            {" "}
+            <UiText>{"A little retrieval goes a long way"}</UiText>{" "}
+          </span>
+        </div>
+        <div className="card metric">
+          <div className="stat-label">
+            <Target size={17} />{" "}
+            <UiText>{"Demonstrated objectives"}</UiText>{" "}
           </div>
           <strong>{d.stats.demonstrated}</strong>
-          <span className="small muted">Based on independent evidence</span>
+          <span className="small muted">
+            <UiText>{"Based on independent evidence"}</UiText>
+          </span>
         </div>
       </div>
       <div className="dashboard-grid">
         <div className="stack">
           <section className="card focus-card">
             <div className="row">
-              <span className="eyebrow">YOUR NEXT BEST STEP</span>
+              <span className="eyebrow">
+                <UiText>{"YOUR NEXT BEST STEP"}</UiText>
+              </span>
               <Sparkles size={19} color="#c2d9cb" />
             </div>
             <h2 className="serif">
-              {main?.title || "Explore your learning record"}
+              {mainText?.title || t("Explore your learning record")}
             </h2>
             <p>
-              {main?.reasonText ||
-                "Your completed work is saved. Review your progress and choose your next practice."}
+              {mainText?.reason ||
+                t(
+                  "Your completed work is saved. Review your progress and choose your next practice.",
+                )}
             </p>
             <div className="focus-meta">
               <span className="row" style={{ gap: 6 }}>
                 <Clock3 size={15} />
                 {main?.estimatedMinutes || 5} min
               </span>
-              <span>{stageNames[stage]}</span>
+              <span>{t(stageNames[stage])}</span>
             </div>
             <Link className="button light" href={main?.href || "/progress"}>
               {" "}
-              {d.diagnosticDone
-                ? "Continue learning"
-                : "Start the short diagnostic"}
+              {t(
+                main?.kind !== "diagnostic"
+                  ? "Continue learning"
+                  : "Start the short diagnostic",
+              )}
               <ArrowRight size={17} />
             </Link>
           </section>
           <section className="card">
             <div className="card-header">
-              <h2>Your session</h2>
+              <h2>
+                <UiText>{"Your session"}</UiText>
+              </h2>
               <span className="badge neutral">
                 {d.tasks
                   .filter((t) => !t.completedAt)
                   .reduce((sum, t) => sum + t.estimatedMinutes, 0)}{" "}
-                min remaining
+                <UiText>{"min remaining"}</UiText>{" "}
               </span>
             </div>
             {d.tasks.map((task, i) => (
@@ -146,10 +168,13 @@ export default async function Today() {
                 </span>
                 <div className="grow">
                   <h3>
-                    {i + 1}. {task.title}
-                    {task.completedAt ? " · done" : ""}
+                    {i + 1}.{" "}
+                    {planText(task, d.profile.language, d.catalog).title}
+                    {task.completedAt ? " · " + t("done") : ""}
                   </h3>
-                  <p className="small muted">{task.reasonText}</p>
+                  <p className="small muted">
+                    {planText(task, d.profile.language, d.catalog).reason}
+                  </p>
                 </div>
                 <span className="small muted" style={{ whiteSpace: "nowrap" }}>
                   {task.estimatedMinutes} min
@@ -159,26 +184,39 @@ export default async function Today() {
           </section>
           <section className="card">
             <div className="card-header">
-              <h2>Make it your own</h2>
+              <h2>
+                <UiText>{"Make it your own"}</UiText>
+              </h2>
               <Link href="/practice" className="inline-link">
-                All practice →
+                {" "}
+                <UiText>{"All practice →"}</UiText>{" "}
               </Link>
             </div>
             <div className="grid-two">
               <Link href="/practice/articles" className="row">
                 <div>
-                  <h3>Article drill</h3>
+                  <h3>
+                    <UiText>{"Article drill"}</UiText>
+                  </h3>
                   <p className="small muted" style={{ margin: 0 }}>
-                    Gender, case, then the whole phrase.
+                    {" "}
+                    <UiText>
+                      {"Gender, case, then the whole phrase."}
+                    </UiText>{" "}
                   </p>
                 </div>
                 <ArrowRight size={18} />
               </Link>
               <Link href="/errors" className="row">
                 <div>
-                  <h3>Practise my mistakes</h3>
+                  <h3>
+                    <UiText>{"Practise my mistakes"}</UiText>
+                  </h3>
                   <p className="small muted" style={{ margin: 0 }}>
-                    Turn a correction into a useful habit.
+                    {" "}
+                    <UiText>
+                      {"Turn a correction into a useful habit."}
+                    </UiText>{" "}
                   </p>
                 </div>
                 <ArrowRight size={18} />
@@ -189,8 +227,10 @@ export default async function Today() {
         <aside className="stack">
           <section className="card">
             <div className="card-header">
-              <h2>Your route</h2>
-              <span className="badge">{stageNames[stage]}</span>
+              <h2>
+                <UiText>{"Your route"}</UiText>
+              </h2>
+              <span className="badge">{t(stageNames[stage])}</span>
             </div>
             <div className="journey">
               {[
@@ -217,8 +257,8 @@ export default async function Today() {
                 >
                   <span className="journey-dot">{i + 1}</span>
                   <div>
-                    <h3>{s.title}</h3>
-                    <p>{s.text}</p>
+                    <h3>{t(s.title)}</h3>
+                    <p>{t(s.text)}</p>
                   </div>
                 </div>
               ))}
@@ -228,12 +268,17 @@ export default async function Today() {
               className="inline-link"
               style={{ display: "block", marginTop: 22 }}
             >
-              View your course map →
+              {" "}
+              <UiText>{"View your course map →"}</UiText>{" "}
             </Link>
           </section>
           <section className="card">
-            <span className="eyebrow">A SMALL DISTINCTION</span>
-            <h2 style={{ marginTop: 12 }}>Gender stays. Case changes.</h2>
+            <span className="eyebrow">
+              <UiText>{"A SMALL DISTINCTION"}</UiText>
+            </span>
+            <h2 style={{ marginTop: 12 }}>
+              <UiText>{"Gender stays. Case changes."}</UiText>
+            </h2>
             <div className="article-demo">
               <div className="article-tile">
                 <b>der</b>
@@ -248,12 +293,13 @@ export default async function Today() {
                 <span>Angebot</span>
               </div>
             </div>
-            <p className="small muted">
+            <p lang="en" className="small muted">
               <span lang="de">Die Firma → mit der Firma.</span> Still feminine.
               The article changes because <i>mit</i> takes dative.
             </p>
             <Link href="/reference/gender" className="inline-link">
-              Open the article toolkit →
+              {" "}
+              <UiText>{"Open the article toolkit →"}</UiText>{" "}
             </Link>
           </section>
           <Link
@@ -263,10 +309,12 @@ export default async function Today() {
           >
             <ChartNoAxesCombined size={24} />
             <div className="grow">
-              <h3 style={{ margin: 0 }}>Your evidence, clearly</h3>
+              <h3 style={{ margin: 0 }}>
+                <UiText>{"Your evidence, clearly"}</UiText>
+              </h3>
               <p className="small muted" style={{ margin: 0 }}>
-                {d.stats.attempts} saved attempts · {d.stats.retained} retained
-                objectives
+                {d.stats.attempts} <UiText>{"saved attempts ·"}</UiText>{" "}
+                {d.stats.retained} <UiText>{"retained objectives"}</UiText>{" "}
               </p>
             </div>
             <ArrowRight size={17} />

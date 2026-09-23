@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import { requireUser } from "@/auth/server";
 import { learnerLesson } from "@/learning/service";
 import LessonViewer from "@/components/lesson-viewer";
@@ -22,7 +23,8 @@ export default async function Diagnostic({
         <h1>{id} · Audio evidence comes next</h1>
         <p>{e.message}</p>
         <Link href="/diagnostic" className="button">
-          Continue with an available round
+          {" "}
+          <UiText>{"Continue with an available round"}</UiText>{" "}
         </Link>
       </section>
     );

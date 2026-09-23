@@ -1,10 +1,12 @@
 "use client";
+import { UiText, useUi } from "@/components/ui-language";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Clock3 } from "lucide-react";
 import { api } from "@/lib/api";
 import type { Profile } from "@/db/schema";
 export default function TimeBudget({ profile }: { profile: Profile }) {
+  const { t } = useUi();
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -12,9 +14,11 @@ export default function TimeBudget({ profile }: { profile: Profile }) {
     <div>
       <label className="row small" style={{ gap: 9 }}>
         <Clock3 size={16} />
-        <span className="screen-reader">Available study time</span>
+        <span className="screen-reader">
+          <UiText>{"Available study time"}</UiText>
+        </span>
         <select
-          aria-label="Available study time"
+          aria-label={t("Available study time")}
           disabled={busy}
           value={profile.minutes}
           style={{ width: 156, minHeight: 42, padding: "7px 12px" }}
@@ -37,7 +41,7 @@ export default function TimeBudget({ profile }: { profile: Profile }) {
             .sort((a, b) => a - b)
             .map((m) => (
               <option key={m} value={m}>
-                {m} minutes today
+                {m} <UiText>{"minutes today"}</UiText>{" "}
               </option>
             ))}
         </select>

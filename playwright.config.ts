@@ -12,6 +12,13 @@ export default defineConfig({
   },
   projects: [
     {
+      name: "tablet",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 768, height: 1024 },
+      },
+    },
+    {
       name: "desktop",
       use: {
         ...devices["Desktop Chrome"],
@@ -23,10 +30,13 @@ export default defineConfig({
       use: { ...devices["iPhone 13"], defaultBrowserType: "chromium" },
     },
   ],
-  webServer: {
-    command: "pnpm start",
-    url: (process.env.APP_URL || "http://localhost:4173") + "/login",
-    reuseExistingServer: false,
-    timeout: 120000,
-  },
+  webServer:
+    process.env.E2E_EXTERNAL_SERVER === "true"
+      ? undefined
+      : {
+          command: "pnpm start",
+          url: (process.env.APP_URL || "http://localhost:4173") + "/login",
+          reuseExistingServer: false,
+          timeout: 120000,
+        },
 });

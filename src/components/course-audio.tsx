@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useRef, useState } from "react";
 export default function CourseAudio({
   id,
@@ -29,7 +30,8 @@ export default function CourseAudio({
         aria-label={title}
       />
       <label className="small">
-        Playback speed{" "}
+        {" "}
+        <UiText>{"Playback speed"}</UiText>{" "}
         <select
           aria-label="Playback speed"
           defaultValue="1"

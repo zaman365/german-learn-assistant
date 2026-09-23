@@ -1,4 +1,5 @@
 "use client";
+import { UiText } from "@/components/ui-language";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Search } from "lucide-react";
@@ -15,7 +16,8 @@ export default function ReferenceSearch({
     <>
       <div className="field search">
         <label htmlFor="reference-query" className="screen-reader">
-          Search grammar references
+          {" "}
+          <UiText>{"Search grammar references"}</UiText>{" "}
         </label>
         <div className="row">
           <Search size={18} />

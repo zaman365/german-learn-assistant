@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireUser } from "@/auth/server";
@@ -32,13 +33,16 @@ export default async function FocusPractice({
   if (mode === "review" && !review)
     return (
       <section className="card empty">
-        <h1>You’re up to date.</h1>
+        <h1>
+          <UiText>{"You’re up to date."}</UiText>
+        </h1>
         <p>
           Your next reviews appear when they are due. You can keep learning at
           your own pace.
         </p>
         <Link href="/today" className="button">
-          Back to Today
+          {" "}
+          <UiText>{"Back to Today"}</UiText>{" "}
         </Link>
       </section>
     );
@@ -80,7 +84,8 @@ export default async function FocusPractice({
             : "No matching practice is available."}
         </h2>
         <Link className="button" href="/today">
-          Back to Today
+          {" "}
+          <UiText>{"Back to Today"}</UiText>{" "}
         </Link>
       </section>
     );

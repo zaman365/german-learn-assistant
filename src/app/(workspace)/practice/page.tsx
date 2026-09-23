@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -51,10 +52,17 @@ export default function Practice() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">MAKE IT STICK</span>
-          <h1 style={{ marginTop: 12 }}>A little practice, with a purpose.</h1>
+          <span className="eyebrow">
+            <UiText>{"MAKE IT STICK"}</UiText>
+          </span>
+          <h1 style={{ marginTop: 12 }}>
+            <UiText>{"A little practice, with a purpose."}</UiText>
+          </h1>
           <p className="muted">
-            Choose a focus, or follow the recommendation on Today.
+            {" "}
+            <UiText>
+              {"Choose a focus, or follow the recommendation on Today."}
+            </UiText>{" "}
           </p>
         </div>
       </div>

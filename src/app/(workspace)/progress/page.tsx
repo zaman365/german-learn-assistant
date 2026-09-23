@@ -1,3 +1,4 @@
+import { UiText } from "@/components/ui-language";
 import Link from "next/link";
 import { requireUser } from "@/auth/server";
 import { dashboard } from "@/learning/service";
@@ -8,47 +9,107 @@ export default async function Progress() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">YOUR LEARNING RECORD</span>
-          <h1 style={{ marginTop: 12 }}>Progress you can point to.</h1>
+          <span className="eyebrow">
+            <UiText>{"YOUR LEARNING RECORD"}</UiText>
+          </span>
+          <h1 style={{ marginTop: 12 }}>
+            <UiText>{"Progress you can point to."}</UiText>
+          </h1>
           <p className="muted">
-            Course completion, demonstrated skill and exam readiness tell
-            different stories.
+            {" "}
+            <UiText>
+              {
+                "Course completion, demonstrated skill and exam readiness tell different stories."
+              }
+            </UiText>{" "}
           </p>
         </div>
         <Link href="/settings" className="button secondary">
-          Export progress
+          {" "}
+          <UiText>{"Export progress"}</UiText>{" "}
         </Link>
       </div>
       <div className="metric-grid">
         <div className="card metric">
-          <span className="stat-label">Course completion</span>
+          <span className="stat-label">
+            <UiText>{"Course completion"}</UiText>
+          </span>
           <strong>
             {d.stats.completed} / {d.stats.total}
           </strong>
-          <span className="small muted">Published lessons completed</span>
+          <span className="small muted">
+            <UiText>{"Published lessons completed"}</UiText>
+          </span>
         </div>
         <div className="card metric">
-          <span className="stat-label">Demonstrated objectives</span>
+          <span className="stat-label">
+            <UiText>{"Demonstrated objectives"}</UiText>
+          </span>
           <strong>
             {d.stats.demonstrated} / {d.skills.length}
           </strong>
-          <span className="small muted">Separate-day independent tasks</span>
+          <span className="small muted">
+            <UiText>{"Separate-day independent tasks"}</UiText>
+          </span>
         </div>
         <div className="card metric">
-          <span className="stat-label">Exam readiness</span>
-          <strong style={{ fontSize: "1.35rem" }}>Not assessed</strong>
+          <span className="stat-label">
+            <UiText>{"Exam readiness"}</UiText>
+          </span>
+          <strong style={{ fontSize: "1.35rem" }}>
+            <UiText>{"Not assessed"}</UiText>
+          </strong>
           <span className="small muted">
-            Full valid mock evidence is still needed
+            {" "}
+            <UiText>{"Full valid mock evidence is still needed"}</UiText>{" "}
           </span>
         </div>
       </div>
       <div className="dashboard-grid">
         <div className="stack">
           <section className="card">
-            <h2>Your past seven days</h2>
+            <h2>
+              <UiText>{"Stage checkpoints"}</UiText>
+            </h2>
+            <p lang="en" className="small muted">
+              These coaching targets guide the next stage. Missing sound or
+              feedback remains unassessed. Suitable C1 work and early exam
+              practice remain available; a completed checkpoint is not delayed
+              retention or certification.
+            </p>
+            {d.checkpoints.map((c) => (
+              <div className="activity" key={c.lessonId + c.kind}>
+                <div className="grow">
+                  <h3>
+                    <Link href={"/learn/" + c.lessonId}>
+                      {c.stage === "bridge" ? "B2 → C1" : "C1 → DTB"} ·{" "}
+                      <UiText>{c.label}</UiText>
+                    </Link>
+                  </h3>
+                  <p className="small muted">
+                    {c.correct}/{c.total} · <UiText>{"Target"}</UiText>:{" "}
+                    {c.minimum} · {c.assessed}/{c.total}{" "}
+                    <UiText>{"assessed"}</UiText>
+                  </p>
+                </div>
+                <span className="badge neutral">
+                  <UiText>
+                    {d.catalog.find((l) => l.id === c.lessonId)
+                      ?.audioUnavailable
+                      ? "Audio preparation needed"
+                      : c.state}
+                  </UiText>
+                </span>
+              </div>
+            ))}
+          </section>
+          <section className="card">
+            <h2>
+              <UiText>{"Your past seven days"}</UiText>
+            </h2>
             <p>
-              {d.weekly.attempts} saved attempts across {d.weekly.activeDays}{" "}
-              study days.
+              {d.weekly.attempts} <UiText>{"saved attempts across"}</UiText>{" "}
+              {d.weekly.activeDays} <UiText>{"study days."}</UiText>{" "}
             </p>
             <p className="small muted">
               {d.weekly.unassessedSkills.length
@@ -63,7 +124,9 @@ export default async function Progress() {
             </p>
           </section>
           <section className="card">
-            <h2>Skill evidence</h2>
+            <h2>
+              <UiText>{"Skill evidence"}</UiText>
+            </h2>
             <p className="small muted">
               Retained means a successful later transfer check, at least seven
               days after independent demonstration.
@@ -72,10 +135,10 @@ export default async function Progress() {
               <div key={s.id} className="activity">
                 <div className="grow">
                   <h3 style={{ textTransform: "capitalize" }}>
-                    {s.id.replaceAll("-", " ")}
+                    <UiText>{s.id}</UiText>
                   </h3>
                   <p className="small muted">
-                    {s.evidenceCount} assessed attempts
+                    {s.evidenceCount} <UiText>{"assessed attempts"}</UiText>{" "}
                     {s.demonstratedAt
                       ? ` · demonstrated ${s.demonstratedAt}`
                       : ""}
@@ -84,17 +147,19 @@ export default async function Progress() {
                 <span
                   className={`badge ${s.state === "not_assessed" ? "neutral" : s.needsRepair ? "amber" : ""}`}
                 >
-                  {s.needsRepair
-                    ? "Needs repair"
-                    : s.state.replaceAll("_", " ")}
+                  <UiText>{s.needsRepair ? "Needs repair" : s.state}</UiText>
                 </span>
               </div>
             ))}
           </section>
           <section className="card">
-            <h2>Recent work</h2>
+            <h2>
+              <UiText>{"Recent work"}</UiText>
+            </h2>
             {!d.history.length ? (
-              <p className="muted">Your first attempt will appear here.</p>
+              <p className="muted">
+                <UiText>{"Your first attempt will appear here."}</UiText>
+              </p>
             ) : (
               d.history
                 .slice(-12)
@@ -136,14 +201,16 @@ export default async function Progress() {
         </div>
         <aside className="stack">
           <section className="card">
-            <h2>Coming up for review</h2>
+            <h2>
+              <UiText>{"Coming up for review"}</UiText>
+            </h2>
             {d.reviews.length ? (
               d.reviews.map((r) => (
                 <div className="activity" key={r.id}>
                   <div>
                     <h3>{r.targetId.replaceAll("-", " ")}</h3>
                     <p className="small muted">
-                      {r.mode} · {r.dueDate}
+                      <UiText>{r.mode}</UiText> · {r.dueDate}
                     </p>
                   </div>
                 </div>
@@ -156,12 +223,14 @@ export default async function Progress() {
             )}
           </section>
           <section className="card">
-            <h2>Your bridge placement</h2>
+            <h2>
+              <UiText>{"Your bridge placement"}</UiText>
+            </h2>
             {d.routes.length ? (
               d.routes.map((r) => (
                 <details className="disclosure" key={r.moduleId}>
                   <summary className="small">
-                    {r.moduleId} · {r.route}
+                    {r.moduleId} · <UiText>{r.route}</UiText>
                   </summary>
                   <p className="small muted" style={{ marginTop: 10 }}>
                     {r.rationale}
@@ -170,7 +239,12 @@ export default async function Progress() {
               ))
             ) : (
               <p className="small muted">
-                Complete a diagnostic segment to start building your route.
+                {" "}
+                <UiText>
+                  {
+                    "Complete a diagnostic segment to start building your route."
+                  }
+                </UiText>{" "}
               </p>
             )}
           </section>

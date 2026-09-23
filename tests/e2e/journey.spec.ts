@@ -1,3 +1,4 @@
+import { signIn } from "./sign-in";
 import { test, expect } from "@playwright/test";
 test("closed signup and a saved authenticated learner journey", async ({
   page,
@@ -13,18 +14,18 @@ test("closed signup and a saved authenticated learner journey", async ({
   expect(signup.ok()).toBe(false);
   await page.goto("/today");
   await expect(page).toHaveURL(/login/);
-  await page.getByLabel("Email address").fill(process.env.OWNER_EMAIL!);
-  await page
-    .getByLabel("Password", { exact: true })
-    .fill(process.env.OWNER_PASSWORD!);
-  await page.getByRole("button", { name: "Continue learning" }).click();
-  await expect(page).toHaveURL(/today|onboarding/);
+  await signIn(page);
   const profileResponse = await page.request.get("/api/learning/profile");
   expect(profileResponse.ok()).toBe(true);
   const profile = await profileResponse.json();
   const updated = await page.request.post("/api/learning/profile", {
     headers: { Origin: process.env.APP_URL || "http://localhost:4173" },
-    data: { ...profile.data, onboardingComplete: true, name: "Test Learner" },
+    data: {
+      ...profile.data,
+      onboardingComplete: true,
+      name: "Test Learner",
+      language: "en",
+    },
   });
   expect(updated.ok()).toBe(true);
   await page.goto("/today");
